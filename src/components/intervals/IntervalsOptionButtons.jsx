@@ -1,6 +1,6 @@
 import React from "react";
-import LeftSideButtons from "../leftSideButtons/LeftSideButtons";
-import RightSideButtons from "../rightSideButtons/RightSideButtons";
+import LeftSideButtons from "./LeftSideButtons";
+import RightSideButtons from "./RightSideButtons";
 
 const IntervalsOptionButtons = ({
   play,

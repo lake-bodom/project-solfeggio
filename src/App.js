@@ -4,8 +4,8 @@ import "./App.css";
 import MIDISounds from "midi-sounds-react";
 
 import Header from "./components/header/Header";
-import Piano from "./components/piano/Piano";
-import Intervals from "./components/intervals/Intervals";
+import Piano from "./containers/pianoContainer";
+import Intervals from "./containers/intervalsContainer";
 
 import ChangeRangeOfNotes from "./components/changeRangeOfNotes/ChangeRangeOfNotes";
 

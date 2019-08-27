@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import {
   actionSetBordersOfRange,
   actionChangeNotesRange
-} from "../../store/actions/piano";
+} from "../../store/actions/pianoActions";
 
 import Button from "../button/Button";
 

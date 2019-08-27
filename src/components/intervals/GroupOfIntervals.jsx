@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonsGroup from "../../buttonsGroup/ButtonsGroup";
-import Button from "../../button/Button";
+import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
+import Button from "../button/Button";
 
 const GroupOfIntervals = ({ group }) => {
   const body = group.map(interval => {

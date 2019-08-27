@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import piano from "./piano";
-import intervals from "./intervals";
+import piano from "./pianoReducer";
+import intervals from "./intervalsReducer";
 
 export default combineReducers({
   piano,

@@ -1,14 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import "./intervals.css";
-import ListOfIntervals from "./listOfIntervals/ListOfIntervals";
+// import ListOfIntervals from "./ListOfIntervals";
+import ListOfIntervalsContainer from "./containers/listOfIntervalsContainer";
 
-import {
-  actionSetActiveTypeOfInterval,
-  actionSetSequenceOfNotes
-} from "../../store/actions/intervals";
-
-import IntervalsOptionButtons from "./intervalsOptionButtons/IntervalsOptionButtons";
+import IntervalsOptionButtons from "./IntervalsOptionButtons";
 
 import PropTypes from "prop-types";
 
@@ -66,24 +61,11 @@ class Intervals extends React.Component {
           sequenceOfNotes={sequenceOfNotes}
         ></IntervalsOptionButtons>
         <div className={"intervalsButton"}>
-          <ListOfIntervals groupsOfIntervals={groupsOfIntervals} />
+          <ListOfIntervalsContainer />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  intervals: state.intervals,
-  sliceArr: state.piano.sliceArr
-});
-
-const mapDispatchToProps = {
-  actionSetActiveTypeOfInterval,
-  actionSetSequenceOfNotes
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Intervals);
+export default Intervals;

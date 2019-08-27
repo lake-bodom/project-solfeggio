@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import "./piano.css";
 import PianoBody from "./PianoBody";
@@ -24,9 +23,4 @@ Piano.propTypes = {
   play: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ piano, intervals }) => ({
-  arrOfNotes: piano.arrOfNotes,
-  sequenceOfNotes: intervals.sequenceOfNotes
-});
-
-export default connect(mapStateToProps)(Piano);
+export default Piano;

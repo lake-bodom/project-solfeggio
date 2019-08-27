@@ -28,6 +28,7 @@ export default (state = initialState, action) => {
         state.secondBorder.index
       );
       const arrOfNotes = getFullArrayOfNotes(sliceArr);
+
       return { ...state, arrOfNotes, sliceArr };
     }
 
