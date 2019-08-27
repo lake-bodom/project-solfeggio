@@ -1,0 +1,40 @@
+/* .buttonGroup {
+	margin-top: 20px;
+} */
+
+.buttonGroup.horizontal>.button {
+	margin-left: 0;
+	border-radius: 0;
+	border-right-width: 0;
+}
+
+.buttonGroup.horizontal>.button:first-child {
+	border-radius: 5px 0 0 5px;
+}
+
+.buttonGroup.horizontal>.button:last-child {
+	border-radius: 0 5px 5px 0;
+	border-right-width: 1px;
+}
+
+.buttonGroup.vertical {
+	margin-right: 20px;
+}
+
+.buttonGroup.vertical>.button {
+	display: block;
+	border-radius: 0;
+	margin-top: 0;
+	border-bottom-width: 0;
+	width: 100%
+}
+
+.buttonGroup.vertical>.button:first-child {
+	margin-top: 20px;
+	border-radius: 5px 5px 0 0;
+}
+
+.buttonGroup.vertical>.button:last-child {
+	border-radius: 0 0 5px 5px;
+	border-bottom-width: 1px;
+}

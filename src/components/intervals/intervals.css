@@ -1,0 +1,13 @@
+.intervalsOptionsButtons {
+	display: flex;
+	justify-content: space-between;
+}
+
+.intervalsButton {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.intervalsButton>div {
+	flex-basis: 250px;
+}

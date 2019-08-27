@@ -1,0 +1,121 @@
+.button {
+	border-radius: 5px;
+	cursor: pointer;
+	padding: .4rem 1rem;
+	background-color: transparent;
+	border: 1px solid transparent;
+	font: inherit;
+	transition: all .15s;
+	user-select: none;
+	display: inline-block;
+	margin-top: 20px;
+}
+
+.button:disabled {
+	cursor: inherit;
+}
+
+.button.primary-outline {
+	color: #619edf;
+	border-color: #619edf;
+}
+
+.button.primary-outline:hover,
+.button.primary-outline.active {
+	background-color: #619edf;
+	color: #fff;
+}
+
+.button.primary-outline:active,
+.button.primary-outline.active {
+	box-shadow: 0 0 0 3px rgba(0, 123, 255, .5);
+}
+
+.button.primary {
+	color: #fff;
+	border-color: #619edf;
+	background: #619edf;
+}
+
+.button.primary:hover,
+.button.primary.active {
+	background-color: #5285bb;
+	border-color: #5285bb;
+}
+
+.button.primary:active {
+	box-shadow: 0 0 0 3px rgba(82, 133, 187, 0.5);
+}
+
+.button.secondary-outline {
+	color: #6c757d;
+	border-color: #6c757d;
+}
+
+.button.secondary-outline:hover,
+.button.secondary-outline.active {
+	color: #fff;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
+
+.button.secondary-outline:active,
+.button.secondary-outline.active {
+	box-shadow: 0 0 0 3px rgba(108, 117, 125, .5);
+}
+
+
+
+.button.secondary {
+	color: #fff;
+	border-color: #6c757d;
+	background: #6c757d;
+}
+
+.button.secondary:hover,
+.button.secondary.active {
+	background-color: #596168;
+	border-color: #596168;
+}
+
+.button.secondary:active,
+.button.secondary.active {
+	box-shadow: 0 0 0 3px rgba(89, 97, 104, 0.5);
+}
+
+
+
+.button.info-outline {
+	color: #17a2b8;
+	border-color: #17a2b8;
+}
+
+.button.info-outline:hover,
+.button.info-outline.active {
+	color: #fff;
+	background-color: #17a2b8;
+	border-color: #17a2b8;
+}
+
+.button.info-outline:active,
+.button.info-outline.active {
+	box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.5);
+}
+
+.button.info {
+	color: #fff;
+	border-color: #17a2b8;
+	background: #17a2b8;
+}
+
+.button.info:hover,
+.button.info.active {
+	color: #fff;
+	background-color: #138697;
+	border-color: #138697;
+}
+
+.button.info:active,
+.button.info.active {
+	box-shadow: 0 0 0 3px rgba(19, 134, 151, 0.5);
+}
