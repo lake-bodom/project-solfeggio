@@ -1,4 +1,4 @@
-import { getBaseArrayOfNotes, getFullArrayOfNotes } from "../../arrayOfNotes";
+import { getBaseArrayOfNotes, getFullArrayOfNotes } from "../arrayOfNotes";
 import { CHANGE_NOTES_RANGE, SET_BORDERS_OF_RANGE } from "../actionTypes";
 
 const baseArrOfNotes = getBaseArrayOfNotes();
