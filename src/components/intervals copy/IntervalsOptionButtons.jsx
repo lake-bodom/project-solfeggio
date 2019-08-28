@@ -10,8 +10,6 @@ const IntervalsOptionButtons = ({
   actionSetActiveTypeOfInterval,
   actionSettingsClick
 }) => {
-  const widthWindow = window.innerWidth;
-  const cls = widthWindow < 810 ? "vertical" : "horizontal";
   return (
     <div className="intervalsOptionsButtons">
       <LeftSideButtons
@@ -20,12 +18,10 @@ const IntervalsOptionButtons = ({
         sequenceOfNotes={sequenceOfNotes}
         actionSettingsClick={actionSettingsClick}
         settingsIsOpen={settingsIsOpen}
-        cls={cls}
       />
       <RightSideButtons
         typeOfInterval={typeOfInterval}
         actionSetActiveTypeOfInterval={actionSetActiveTypeOfInterval}
-        cls={cls}
       />
     </div>
   );

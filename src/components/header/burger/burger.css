@@ -8,6 +8,7 @@
 	flex-direction: column;
 	justify-content: space-around;
 	cursor: pointer;
+	z-index: 1000;
 }
 
 .burger span {

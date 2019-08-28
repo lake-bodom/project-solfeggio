@@ -1,15 +1,20 @@
 import IntervalsOptionButtons from "../components/intervals/IntervalsOptionButtons";
 import { connect } from "react-redux";
 
-import { actionSetActiveTypeOfInterval } from "../store/actions/intervalsActions";
+import {
+  actionSetActiveTypeOfInterval,
+  actionSettingsClick
+} from "../store/actions/intervalsActions";
 
 const mapStateToProps = ({ intervals }) => ({
-  typesOfInterval: intervals.typesOfInterval,
-  sequenceOfNotes: intervals.sequenceOfNotes
+  typeOfInterval: intervals.typeOfInterval,
+  sequenceOfNotes: intervals.sequenceOfNotes,
+  settingsIsOpen: intervals.settingsIsOpen
 });
 
 const mapDispatchToProps = {
-  actionSetActiveTypeOfInterval
+  actionSetActiveTypeOfInterval,
+  actionSettingsClick
 };
 
 export default connect(

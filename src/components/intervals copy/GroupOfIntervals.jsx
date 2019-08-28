@@ -2,18 +2,13 @@ import React from "react";
 import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
 import Button from "../button/Button";
 
-const GroupOfIntervals = ({
-  group,
-  settingsIsOpen,
-  actionInverseChosenInterval
-}) => {
+const GroupOfIntervals = ({ group, settingsIsOpen }) => {
   const body = group.map(interval => {
-    const funcOnClick = settingsIsOpen ? actionInverseChosenInterval : () => {};
     return (
       <Button
         key={interval.name}
         onClick={() => {
-          funcOnClick(interval);
+          interval.chosen = !interval.chosen;
         }}
       >
         {settingsIsOpen ? (

@@ -1,22 +1,19 @@
 import React from "react";
 import SelectBody from "./SelectBody";
 
-const SelectOfRange = props => {
-  const {
-    nameOfSelect,
-    valueOfSelect,
-    actionSetBordersOfRange,
-    piano,
-    piano: { baseArrOfNotes, MIN_AMOUNT_OF_NOTES }
-  } = props;
-
-  let { firstBorder, secondBorder } = props.piano;
-
+const SelectOfRange = ({
+  nameOfSelect,
+  baseArrOfNotes,
+  minAmountOfNotes,
+  actionSetBordersOfRange,
+  firstBorder,
+  secondBorder
+}) => {
   const selectChangeHandler = (e, field) => {
     let index = +e.target.value;
     const key = baseArrOfNotes[index].key;
 
-    if (field === "first") {
+    if (field === "firstBorder") {
       if (checkRightAmountOfNotes(secondBorder.key, key)) return;
       firstBorder = { index, key };
     } else {
@@ -28,7 +25,7 @@ const SelectOfRange = props => {
   };
 
   const checkRightAmountOfNotes = (key1, key2) => {
-    return Math.abs(key1 - key2) < MIN_AMOUNT_OF_NOTES;
+    return Math.abs(key1 - key2) < minAmountOfNotes;
   };
 
   const setSelects = arr => {
@@ -36,6 +33,8 @@ const SelectOfRange = props => {
     actionSetBordersOfRange(arr);
   };
 
+  const valueOfSelect =
+    nameOfSelect === "firstBorder" ? firstBorder.index : secondBorder.index;
   return (
     <select
       value={valueOfSelect}
@@ -43,7 +42,7 @@ const SelectOfRange = props => {
         selectChangeHandler(e, nameOfSelect);
       }}
     >
-      <SelectBody piano={piano} />
+      <SelectBody baseArrOfNotes={baseArrOfNotes} />
     </select>
   );
 };

@@ -73,7 +73,7 @@ export const dataOfIntervals = [
   }
 ];
 
-export const filterOfIntervals = arr => {
+export const getChosenIntervals = arr => {
   return [...arr].filter(elem => {
     return elem.chosen;
   });

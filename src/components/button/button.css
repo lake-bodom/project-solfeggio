@@ -9,6 +9,7 @@
 	user-select: none;
 	display: inline-block;
 	margin-top: 20px;
+	position: relative;
 }
 
 .button:disabled {
@@ -64,8 +65,6 @@
 	box-shadow: 0 0 0 3px rgba(108, 117, 125, .5);
 }
 
-
-
 .button.secondary {
 	color: #fff;
 	border-color: #6c757d;
@@ -73,6 +72,7 @@
 }
 
 .button.secondary:hover,
+.button.secondary:disabled,
 .button.secondary.active {
 	background-color: #596168;
 	border-color: #596168;

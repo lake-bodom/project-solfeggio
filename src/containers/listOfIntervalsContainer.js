@@ -1,8 +1,17 @@
 import ListOfIntervals from "../components/intervals/ListOfIntervals";
 import { connect } from "react-redux";
+import { actionInverseChosenInterval } from "../store/actions/intervalsActions";
 
 const mapStateToProps = ({ intervals }) => ({
-  groupsOfIntervals: intervals.groupsOfIntervals
+  settingsIsOpen: intervals.settingsIsOpen,
+  allIntervals: intervals.allIntervals
 });
 
-export default connect(mapStateToProps)(ListOfIntervals);
+const mapDispatchToProps = {
+  actionInverseChosenInterval
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListOfIntervals);

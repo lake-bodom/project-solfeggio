@@ -1,38 +1,30 @@
 import {
   dataOfIntervals,
   getChosenIntervals,
+  createGroupsOfIntervals,
   getNewInterval
 } from "../dataOfIntervals";
 
 import {
   SET_ACTIVE_TYPE_OF_INTERVAL,
   SET_SEQUENCE_OF_NOTES,
-  SETTINGS_CLICK,
-  INVERSE_CHOSEN_INTERVAL
+  SETTINGS_CLICK
 } from "../actionTypes";
 
 const allIntervals = [...dataOfIntervals];
 let chosenIntervals = getChosenIntervals(allIntervals);
+let groupsOfFilteredIntervals = createGroupsOfIntervals(chosenIntervals);
+let groupsOfAllIntervals = createGroupsOfIntervals(allIntervals);
 
 let activeInterval = getNewInterval(chosenIntervals);
 
 const initialState = {
-  allIntervals,
+  groupsOfFilteredIntervals,
+  groupsOfAllIntervals,
   typeOfInterval: "melodicUp",
   activeInterval,
   sequenceOfNotes: [],
   settingsIsOpen: false
-};
-
-const findIndex = (arr, name) => {
-  const index = arr.findIndex(obj => obj.name === name);
-  return index;
-};
-
-const getLengthOfChosenIntervals = arr => {
-  return arr.reduce((sum, elem) => {
-    return elem.chosen ? sum + 1 : sum;
-  }, 0);
 };
 
 export default (state = initialState, action) => {
@@ -49,23 +41,6 @@ export default (state = initialState, action) => {
       return { ...state, settingsIsOpen: !state.settingsIsOpen };
     }
 
-    case INVERSE_CHOSEN_INTERVAL: {
-      const { payload } = action;
-      const chosen = payload.chosen;
-
-      const allIntervals = [...state.allIntervals];
-
-      if (chosen && getLengthOfChosenIntervals(allIntervals) <= 2) {
-        return { ...state };
-      }
-
-      const index = findIndex(allIntervals, payload.name);
-      payload.chosen = !payload.chosen;
-
-      allIntervals[index] = payload;
-
-      return { ...state, allIntervals };
-    }
     default: {
       return state;
     }

@@ -9,8 +9,7 @@ const LeftSideButtons = ({
   typeOfInterval,
   settingsIsOpen,
   play,
-  actionSettingsClick,
-  cls
+  actionSettingsClick
 }) => {
   const playInterval = () => {
     const first = sequenceOfNotes[0].key;
@@ -42,7 +41,7 @@ const LeftSideButtons = ({
   };
 
   return (
-    <ButtonsGroup cls={cls}>
+    <ButtonsGroup cls="horizontal">
       <Button
         cls={settingsIsOpen ? "secondary" : "info"}
         disabled={settingsIsOpen ? true : false}

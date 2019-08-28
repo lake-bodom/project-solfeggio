@@ -8,17 +8,9 @@
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	overflow-y: scroll;
-	padding: 0 10px;
-	width: 1200px;
+	padding: 0 20px;
+	min-width: 760px;
+	/* width: 100%; */
 	margin: 0 auto;
 	font-size: 15px;
-}
-
-.wrap {
-	width: 940px;
-	margin: 0 auto;
-}
-
-.piano {
-	height: 100px;
 }

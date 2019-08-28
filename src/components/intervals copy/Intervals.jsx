@@ -1,8 +1,10 @@
 import React from "react";
 import "./intervals.css";
+// import ListOfIntervals from "./ListOfIntervals";
+
+import ListOfIntervalsContainer from "../../containers/listOfIntervalsContainer";
 
 import IntervalsOptionButtonsContainer from "../../containers/IntervalsOptionButtonsContainer";
-import ListOfIntervalsContainer from "../../containers/listOfIntervalsContainer";
 
 import PropTypes from "prop-types";
 

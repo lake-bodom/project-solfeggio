@@ -2,33 +2,36 @@ import React from "react";
 import SelectOfRange from "./SelectOfRange";
 import "./changeRangeOfNotes.css";
 
-import { connect } from "react-redux";
-
-import {
-  actionSetBordersOfRange,
-  actionChangeNotesRange
-} from "../../store/actions/pianoActions";
+import PropTypes from "prop-types";
 
 import Button from "../button/Button";
 
-const ChangeRangeOfNotes = props => {
-  const { firstBorder, secondBorder } = props.piano;
-
+const ChangeRangeOfNotes = ({
+  actionChangeNotesRange,
+  actionSetBordersOfRange,
+  piano: { firstBorder, secondBorder, baseArrOfNotes, minAmountOfNotes }
+}) => {
   const clickHandler = () => {
-    props.actionChangeNotesRange();
+    actionChangeNotesRange();
   };
 
   return (
     <div className="changeRangeOfNotes">
       <SelectOfRange
-        valueOfSelect={firstBorder.index}
-        nameOfSelect="first"
-        {...props}
+        firstBorder={firstBorder}
+        secondBorder={secondBorder}
+        nameOfSelect="firstBorder"
+        actionSetBordersOfRange={actionSetBordersOfRange}
+        baseArrOfNotes={baseArrOfNotes}
+        minAmountOfNotes={minAmountOfNotes}
       />
       <SelectOfRange
-        valueOfSelect={secondBorder.index}
-        nameOfSelect="second"
-        {...props}
+        firstBorder={firstBorder}
+        secondBorder={secondBorder}
+        nameOfSelect="secondBorder"
+        actionSetBordersOfRange={actionSetBordersOfRange}
+        baseArrOfNotes={baseArrOfNotes}
+        minAmountOfNotes={minAmountOfNotes}
       />
 
       <Button onClick={clickHandler}>Выбрать диапазон</Button>
@@ -36,16 +39,10 @@ const ChangeRangeOfNotes = props => {
   );
 };
 
-const mapStateToProps = ({ piano }) => ({
-  piano
-});
-
-const mapDispatchToProps = {
-  actionSetBordersOfRange,
-  actionChangeNotesRange
+ChangeRangeOfNotes.propTypes = {
+  actionChangeNotesRange: PropTypes.func.isRequired,
+  actionSetBordersOfRange: PropTypes.func.isRequired,
+  piano: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ChangeRangeOfNotes);
+export default ChangeRangeOfNotes;

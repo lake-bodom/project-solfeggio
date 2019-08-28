@@ -1,8 +1,8 @@
 import React from "react";
 import OptionFromSelectRanges from "./OptionFromSelectRanges";
 
-const SelectBody = ({ piano }) => {
-  const body = piano.baseArrOfNotes.map(({ fullName, key, index }) => {
+const SelectBody = ({ baseArrOfNotes }) => {
+  const body = baseArrOfNotes.map(({ fullName, key, index }) => {
     return (
       <OptionFromSelectRanges fullName={fullName} index={index} key={key} />
     );

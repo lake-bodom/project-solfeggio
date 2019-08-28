@@ -7,7 +7,7 @@ import Header from "./components/header/Header";
 import Piano from "./containers/pianoContainer";
 import Intervals from "./containers/intervalsContainer";
 
-import ChangeRangeOfNotes from "./components/changeRangeOfNotes/ChangeRangeOfNotes";
+import ChangeRangeOfNotes from "./containers/changeRangeOfNotesContainer";
 
 class App extends Component {
   state = {

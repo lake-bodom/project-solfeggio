@@ -7,5 +7,5 @@ export const actionChangeNotesRange = active => ({
 
 export const actionSetBordersOfRange = arr => ({
   type: SET_BORDERS_OF_RANGE,
-  payload: arr
+  payload: { firstBorder: arr[0], secondBorder: arr[1] }
 });
