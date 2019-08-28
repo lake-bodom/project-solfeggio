@@ -8,6 +8,7 @@ const RightSideButtons = ({
 }) => {
   const primary = "primary active";
   const primaryOutline = "primary-outline";
+  console.log(melodicDown);
 
   return (
     <ButtonsGroup cls="horizontal">

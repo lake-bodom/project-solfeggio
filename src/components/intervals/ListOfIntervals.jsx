@@ -6,7 +6,7 @@ const ListOfIntervals = ({ groupsOfIntervals }) => {
     <GroupOfIntervals group={group} key={group[0].name} />
   ));
 
-  return <React.Fragment>{body}</React.Fragment>;
+  return <div className={"listOfIntervals"}>{body}</div>;
 };
 
 export default ListOfIntervals;

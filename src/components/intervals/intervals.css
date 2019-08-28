@@ -3,11 +3,11 @@
 	justify-content: space-between;
 }
 
-.intervalsButton {
+.listOfIntervals {
 	display: flex;
 	justify-content: flex-start;
 }
 
-.intervalsButton>div {
+.listOfIntervals>div {
 	flex-basis: 250px;
 }

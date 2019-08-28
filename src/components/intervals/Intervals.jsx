@@ -1,9 +1,10 @@
 import React from "react";
 import "./intervals.css";
 // import ListOfIntervals from "./ListOfIntervals";
-import ListOfIntervalsContainer from "./containers/listOfIntervalsContainer";
 
-import IntervalsOptionButtons from "./IntervalsOptionButtons";
+import ListOfIntervalsContainer from "../../containers/listOfIntervalsContainer";
+
+import IntervalsOptionButtonsContainer from "../../containers/IntervalsOptionButtonsContainer";
 
 import PropTypes from "prop-types";
 
@@ -45,24 +46,15 @@ class Intervals extends React.Component {
   };
 
   render() {
-    const {
-      typesOfInterval,
-      groupsOfIntervals,
-      sequenceOfNotes
-    } = this.props.intervals;
-    const { actionSetActiveTypeOfInterval, play } = this.props;
+    const { play } = this.props;
 
     return (
       <div className="intervals">
-        <IntervalsOptionButtons
+        <IntervalsOptionButtonsContainer
           play={play}
-          typesOfInterval={typesOfInterval}
-          actionSetActiveTypeOfInterval={actionSetActiveTypeOfInterval}
-          sequenceOfNotes={sequenceOfNotes}
-        ></IntervalsOptionButtons>
-        <div className={"intervalsButton"}>
-          <ListOfIntervalsContainer />
-        </div>
+        ></IntervalsOptionButtonsContainer>
+
+        <ListOfIntervalsContainer />
       </div>
     );
   }
