@@ -8,9 +8,12 @@ const LeftSideButtons = ({
   sequenceOfNotes,
   typeOfInterval,
   settingsIsOpen,
+  showAnswer,
+  sliceArr,
   play,
   actionSettingsClick,
-  cls
+  actionNextButtonClick,
+  actionGetNextInterval
 }) => {
   const playInterval = () => {
     const first = sequenceOfNotes[0].key;
@@ -41,14 +44,19 @@ const LeftSideButtons = ({
     }
   };
 
+  const nextClickHandler = () => {
+    actionNextButtonClick();
+    actionGetNextInterval(sliceArr);
+  };
+
   return (
-    <ButtonsGroup cls={cls}>
+    <ButtonsGroup cls="horizontal">
       <Button
         cls={settingsIsOpen ? "secondary" : "info"}
         disabled={settingsIsOpen ? true : false}
-        onClick={playInterval}
+        onClick={showAnswer ? nextClickHandler : playInterval}
       >
-        Играть интервал
+        {showAnswer ? "Дальше" : "Играть интервал"}
       </Button>
       <Button
         cls={settingsIsOpen ? "info" : "secondary"}

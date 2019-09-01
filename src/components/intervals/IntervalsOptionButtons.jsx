@@ -2,33 +2,45 @@ import React from "react";
 import LeftSideButtons from "./LeftSideButtons";
 import RightSideButtons from "./RightSideButtons";
 
-const IntervalsOptionButtons = ({
-  play,
-  typeOfInterval,
-  sequenceOfNotes,
-  settingsIsOpen,
-  actionSetActiveTypeOfInterval,
-  actionSettingsClick
-}) => {
-  const widthWindow = window.innerWidth;
-  const cls = widthWindow < 810 ? "vertical" : "horizontal";
-  return (
-    <div className="intervalsOptionsButtons">
-      <LeftSideButtons
-        typeOfInterval={typeOfInterval}
-        play={play}
-        sequenceOfNotes={sequenceOfNotes}
-        actionSettingsClick={actionSettingsClick}
-        settingsIsOpen={settingsIsOpen}
-        cls={cls}
-      />
-      <RightSideButtons
-        typeOfInterval={typeOfInterval}
-        actionSetActiveTypeOfInterval={actionSetActiveTypeOfInterval}
-        cls={cls}
-      />
-    </div>
-  );
-};
+class IntervalsOptionButtons extends React.Component {
+  componentDidMount() {
+    this.props.actionGetNextInterval(this.props.sliceArr);
+  }
+
+  render() {
+    const {
+      sliceArr,
+      play,
+      typeOfInterval,
+      sequenceOfNotes,
+      settingsIsOpen,
+      showAnswer,
+      actionSetActiveTypeOfInterval,
+      actionSettingsClick,
+      actionNextButtonClick,
+      actionGetNextInterval
+    } = this.props;
+
+    return (
+      <div className="intervalsOptionsButtons">
+        <LeftSideButtons
+          sequenceOfNotes={sequenceOfNotes}
+          typeOfInterval={typeOfInterval}
+          settingsIsOpen={settingsIsOpen}
+          showAnswer={showAnswer}
+          sliceArr={sliceArr}
+          play={play}
+          actionSettingsClick={actionSettingsClick}
+          actionNextButtonClick={actionNextButtonClick}
+          actionGetNextInterval={actionGetNextInterval}
+        />
+        <RightSideButtons
+          typeOfInterval={typeOfInterval}
+          actionSetActiveTypeOfInterval={actionSetActiveTypeOfInterval}
+        />
+      </div>
+    );
+  }
+}
 
 export default IntervalsOptionButtons;

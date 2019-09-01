@@ -6,8 +6,7 @@ import PropTypes from "prop-types";
 
 const RightSideButtons = ({
   actionSetActiveTypeOfInterval,
-  typeOfInterval,
-  cls
+  typeOfInterval
 }) => {
   const primary = "primary active";
   const primaryOutline = "primary-outline";
@@ -17,7 +16,7 @@ const RightSideButtons = ({
   const harmonic = typeOfInterval === "harmonic";
 
   return (
-    <ButtonsGroup cls={cls}>
+    <ButtonsGroup cls="horizontal">
       <Button
         cls={melodicUp ? primary : primaryOutline}
         onClick={() => {

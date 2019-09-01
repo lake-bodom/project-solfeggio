@@ -1,23 +1,15 @@
 import {
   SET_ACTIVE_TYPE_OF_INTERVAL,
-  SET_NEW_INTERVAL,
-  SET_SEQUENCE_OF_NOTES,
   SETTINGS_CLICK,
-  INVERSE_CHOSEN_INTERVAL
+  INVERSE_CHOSEN_INTERVAL,
+  GET_ANSWER_INTERVAL,
+  SHOW_THE_CORRECT_INTERVAL,
+  GET_NEXT_INTERVAL
 } from "../actionTypes";
 
 export const actionSetActiveTypeOfInterval = active => ({
   type: SET_ACTIVE_TYPE_OF_INTERVAL,
   payload: active
-});
-
-export const actionSetNewInterval = () => ({
-  type: SET_NEW_INTERVAL
-});
-
-export const actionSetSequenceOfNotes = arr => ({
-  type: SET_SEQUENCE_OF_NOTES,
-  payload: arr
 });
 
 export const actionSettingsClick = () => ({
@@ -27,4 +19,17 @@ export const actionSettingsClick = () => ({
 export const actionInverseChosenInterval = obj => ({
   type: INVERSE_CHOSEN_INTERVAL,
   payload: obj
+});
+
+export const actionGetAnswerIntervals = () => ({
+  type: GET_ANSWER_INTERVAL
+});
+
+export const actionShowTheCorrectInterval = () => ({
+  type: SHOW_THE_CORRECT_INTERVAL
+});
+
+export const actionGetNextInterval = sliceArr => ({
+  type: GET_NEXT_INTERVAL,
+  sliceArr
 });

@@ -5,10 +5,27 @@ import Button from "../button/Button";
 const GroupOfIntervals = ({
   group,
   settingsIsOpen,
-  actionInverseChosenInterval
+  activeInterval,
+  actionShowTheCorrectInterval,
+  actionInverseChosenInterval,
+  actionIncrementRightAnswers,
+  actionIncrementAmountOfAnswers
 }) => {
   const body = group.map(interval => {
-    const funcOnClick = settingsIsOpen ? actionInverseChosenInterval : () => {};
+    const checkAnswer = interval => {
+      actionShowTheCorrectInterval();
+
+      if (activeInterval.name === interval.name) {
+        actionIncrementRightAnswers(activeInterval.rusName);
+      } else {
+        actionIncrementAmountOfAnswers(activeInterval.rusName);
+      }
+    };
+
+    const funcOnClick = settingsIsOpen
+      ? actionInverseChosenInterval
+      : checkAnswer;
+
     return (
       <Button
         key={interval.name}

@@ -3,18 +3,25 @@ import { connect } from "react-redux";
 
 import {
   actionSetActiveTypeOfInterval,
-  actionSettingsClick
+  actionSettingsClick,
+  actionGetNextInterval
 } from "../store/actions/intervalsActions";
 
-const mapStateToProps = ({ intervals }) => ({
-  typeOfInterval: intervals.typeOfInterval,
+import { actionNextButtonClick } from "../store/actions/statisticsActions";
+
+const mapStateToProps = ({ intervals, piano }) => ({
+  sliceArr: piano.sliceArr,
   sequenceOfNotes: intervals.sequenceOfNotes,
+  typeOfInterval: intervals.typeOfInterval,
+  showAnswer: intervals.showAnswer,
   settingsIsOpen: intervals.settingsIsOpen
 });
 
 const mapDispatchToProps = {
   actionSetActiveTypeOfInterval,
-  actionSettingsClick
+  actionSettingsClick,
+  actionNextButtonClick,
+  actionGetNextInterval
 };
 
 export default connect(

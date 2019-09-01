@@ -3,16 +3,18 @@ import StatInfo from "./statInfo/StatInfo";
 import StatIntervalName from "./statInfo/StatIntervalName";
 import "./stat.css";
 
-const Stat = ({ stat: { name, right, rightAnswers, amountOfAnswers } }) => {
-  const statBody = name ? (
-    <StatIntervalName name={name} />
+const Stat = ({
+  stat: { nameOfInterval, right, rightAnswers, amountOfAnswers }
+}) => {
+  const statBody = nameOfInterval ? (
+    <StatIntervalName name={nameOfInterval} />
   ) : (
     <StatInfo rightAnswers={rightAnswers} amountOfAnswers={amountOfAnswers} />
   );
 
   let classesNames = ["stat"];
 
-  if (name) {
+  if (nameOfInterval) {
     if (right) {
       classesNames.push("rightAnswer");
     } else {

@@ -9,17 +9,18 @@
 
 .listOfIntervals {
 	display: flex;
-	justify-content: flex-start;
+
 }
 
 .listOfIntervals>div {
-	flex-basis: 250px;
+	flex-basis: 200px;
+	flex-shrink: 0;
 }
 
 .intervals span.check {
 	position: absolute;
 	top: -1px;
-	left: 16px;
+	left: 7px;
 	font-size: 1.5rem;
 	color: #5285bb;
 	font-weight: bold;
@@ -28,4 +29,21 @@
 
 .intervals button:hover span.check {
 	color: white;
+}
+
+@media (max-width: 815px) {
+	.intervalsOptionsButtons {
+		justify-content: flex-start;
+	}
+
+	.listOfIntervals {
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 600px) {
+	.listOfIntervals>div {
+		flex-basis: 180px;
+	}
+
 }

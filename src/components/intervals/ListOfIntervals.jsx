@@ -9,7 +9,12 @@ import {
 const ListOfIntervals = ({
   settingsIsOpen,
   allIntervals,
-  actionInverseChosenInterval
+  activeInterval,
+  showAnswer,
+  actionInverseChosenInterval,
+  actionShowTheCorrectInterval,
+  actionIncrementRightAnswers,
+  actionIncrementAmountOfAnswers
 }) => {
   let arr = [];
 
@@ -24,11 +29,22 @@ const ListOfIntervals = ({
       group={group}
       key={group[0].name}
       settingsIsOpen={settingsIsOpen}
+      activeInterval={activeInterval}
+      actionShowTheCorrectInterval={actionShowTheCorrectInterval}
       actionInverseChosenInterval={actionInverseChosenInterval}
+      actionIncrementRightAnswers={actionIncrementRightAnswers}
+      actionIncrementAmountOfAnswers={actionIncrementAmountOfAnswers}
     />
   ));
 
-  return <div className="listOfIntervals">{body}</div>;
+  return (
+    <div
+      className="listOfIntervals"
+      style={showAnswer && !settingsIsOpen ? { visibility: "hidden" } : null}
+    >
+      {body}
+    </div>
+  );
 };
 
 export default ListOfIntervals;

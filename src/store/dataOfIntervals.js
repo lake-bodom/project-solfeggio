@@ -103,3 +103,24 @@ export const createGroupsOfIntervals = arr => {
 export const getNewInterval = arr => {
   return arr[Math.floor(Math.random() * arr.length)];
 };
+
+export const getNewSequenceOfNotes = (sliceArr, activeInterval) => {
+  console.log(activeInterval);
+  const { numberOfSemitones } = activeInterval;
+
+  const sequence = getBordersOfSequence(sliceArr, numberOfSemitones);
+
+  return sequence;
+};
+
+const getBordersOfSequence = (arr, num) => {
+  let firstNote = arr[Math.floor(Math.random() * arr.length)];
+  let secondNote = arr[arr.indexOf(firstNote) + num];
+
+  if (!secondNote) {
+    secondNote = arr[arr.length - 1];
+    firstNote = arr[arr.indexOf(secondNote) - num];
+  }
+
+  return [firstNote, secondNote];
+};

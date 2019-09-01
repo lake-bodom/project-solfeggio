@@ -3,23 +3,14 @@ import "./App.css";
 
 import MIDISounds from "midi-sounds-react";
 
-import Header from "./components/header/Header";
+import Header from "./containers/headerContainer";
 import Piano from "./containers/pianoContainer";
-import Intervals from "./containers/intervalsContainer";
+// import Intervals from "./containers/intervalsContainer";
 
 import ChangeRangeOfNotes from "./containers/changeRangeOfNotesContainer";
+import Intervals from "./components/intervals/Intervals";
 
 class App extends Component {
-  state = {
-    statistics: {
-      name: "22",
-      rightAnswers: 12,
-      amountOfAnswers: 1,
-      right: true,
-      view: false
-    }
-  };
-
   componentDidMount() {
     // this.setState(this.state);
     // this.midiSounds.playChordNow(1, [60], 1);
@@ -36,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header statistics={this.state.statistics} />
+        <Header />
         <Piano play={this.play} />
         <ChangeRangeOfNotes />
         <Intervals play={this.play} />

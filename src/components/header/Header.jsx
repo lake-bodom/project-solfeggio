@@ -3,11 +3,11 @@ import Burger from "./burger/Burger";
 import Stat from "./stat/Stat";
 import "./header.css";
 
-const Header = props => {
+const Header = ({ statistics }) => {
   return (
     <div className="header">
       <Burger />
-      <Stat stat={props.statistics} />
+      <Stat stat={statistics} />
     </div>
   );
 };

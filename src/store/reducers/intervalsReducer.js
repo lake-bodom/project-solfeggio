@@ -1,27 +1,35 @@
 import {
   dataOfIntervals,
   getChosenIntervals,
-  getNewInterval
+  getNewInterval,
+  getNewSequenceOfNotes
 } from "../dataOfIntervals";
 
 import {
   SET_ACTIVE_TYPE_OF_INTERVAL,
-  SET_SEQUENCE_OF_NOTES,
   SETTINGS_CLICK,
-  INVERSE_CHOSEN_INTERVAL
+  INVERSE_CHOSEN_INTERVAL,
+  SHOW_THE_CORRECT_INTERVAL,
+  GET_NEXT_INTERVAL
 } from "../actionTypes";
 
 const allIntervals = [...dataOfIntervals];
-let chosenIntervals = getChosenIntervals(allIntervals);
 
-let activeInterval = getNewInterval(chosenIntervals);
+const getNewActiveInterval = arr => {
+  let chosenIntervals = getChosenIntervals(arr);
+
+  let activeInterval = getNewInterval(chosenIntervals);
+
+  return activeInterval;
+};
 
 const initialState = {
   allIntervals,
   typeOfInterval: "melodicUp",
-  activeInterval,
+  activeInterval: "",
   sequenceOfNotes: [],
-  settingsIsOpen: false
+  settingsIsOpen: false,
+  showAnswer: false
 };
 
 const findIndex = (arr, name) => {
@@ -39,10 +47,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_ACTIVE_TYPE_OF_INTERVAL: {
       return { ...state, typeOfInterval: action.payload };
-    }
-
-    case SET_SEQUENCE_OF_NOTES: {
-      return { ...state, sequenceOfNotes: action.payload };
     }
 
     case SETTINGS_CLICK: {
@@ -66,6 +70,21 @@ export default (state = initialState, action) => {
 
       return { ...state, allIntervals };
     }
+
+    case SHOW_THE_CORRECT_INTERVAL: {
+      return { ...state, showAnswer: true };
+    }
+
+    case GET_NEXT_INTERVAL: {
+      const { sliceArr } = action;
+      const { allIntervals } = state;
+      const activeInterval = getNewActiveInterval(allIntervals);
+
+      const sequenceOfNotes = getNewSequenceOfNotes(sliceArr, activeInterval);
+
+      return { ...state, activeInterval, sequenceOfNotes, showAnswer: false };
+    }
+
     default: {
       return state;
     }

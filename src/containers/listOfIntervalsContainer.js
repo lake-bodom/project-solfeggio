@@ -1,14 +1,27 @@
 import ListOfIntervals from "../components/intervals/ListOfIntervals";
 import { connect } from "react-redux";
-import { actionInverseChosenInterval } from "../store/actions/intervalsActions";
+import {
+  actionInverseChosenInterval,
+  actionShowTheCorrectInterval
+} from "../store/actions/intervalsActions";
+
+import {
+  actionIncrementRightAnswers,
+  actionIncrementAmountOfAnswers
+} from "../store/actions/statisticsActions";
 
 const mapStateToProps = ({ intervals }) => ({
   settingsIsOpen: intervals.settingsIsOpen,
-  allIntervals: intervals.allIntervals
+  allIntervals: intervals.allIntervals,
+  activeInterval: intervals.activeInterval,
+  showAnswer: intervals.showAnswer
 });
 
 const mapDispatchToProps = {
-  actionInverseChosenInterval
+  actionInverseChosenInterval,
+  actionShowTheCorrectInterval,
+  actionIncrementRightAnswers,
+  actionIncrementAmountOfAnswers
 };
 
 export default connect(

@@ -38,3 +38,29 @@
 	border-radius: 0 0 5px 5px;
 	border-bottom-width: 1px;
 }
+
+@media (max-width: 815px) {
+
+	.buttonGroup.horizontal {
+		margin-right: 20px;
+	}
+
+	.buttonGroup.horizontal>.button {
+		display: block;
+		border-radius: 0;
+		margin-top: 0;
+		border-bottom-width: 0;
+		width: 100%;
+		border-right-width: 1px;
+	}
+
+	.buttonGroup.horizontal>.button:first-child {
+		margin-top: 20px;
+		border-radius: 5px 5px 0 0;
+	}
+
+	.buttonGroup.horizontal>.button:last-child {
+		border-radius: 0 0 5px 5px;
+		border-bottom-width: 1px;
+	}
+}
