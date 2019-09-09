@@ -1,8 +1,46 @@
-import { getBaseArrayOfNotes, getFullArrayOfNotes } from "../arrayOfNotes";
-import { CHANGE_NOTES_RANGE, SET_BORDERS_OF_RANGE } from "../actionTypes";
+import {
+  getBaseArrayOfNotes,
+  getFullArrayOfNotes,
+  getMapIndex
+} from "../arrayOfNotes";
+import {
+  CHANGE_NOTES_RANGE,
+  SET_BORDERS_OF_RANGE,
+  SHOW_NOTES_ON_THE_PIANO,
+  TURN_OFF_VISUALIZATION
+} from "../actionTypes";
 
 const baseArrOfNotes = getBaseArrayOfNotes();
 const arrOfNotes = getFullArrayOfNotes(baseArrOfNotes);
+const mapIndex = getMapIndex();
+
+const getIndexes = key => {
+  const indexesOfNote = mapIndex[key];
+  const i = indexesOfNote.i;
+  const j = indexesOfNote.j;
+
+  return { i, j };
+};
+
+const setVisualEffect = ({ arrOfNotes, sequence, type, active }) => {
+  let arr = [...arrOfNotes];
+  sequence.forEach(element => {
+    const { i, j } = getIndexes(element);
+
+    if (active) {
+      arr[i][j][type] = true;
+    } else {
+      if (!type) {
+        arr[i][j].right = false;
+        arr[i][j].wrong = false;
+      } else {
+        arr[i][j][type] = false;
+      }
+    }
+  });
+
+  return arr;
+};
 
 const initialState = {
   baseArrOfNotes,
@@ -29,7 +67,39 @@ export default (state = initialState, action) => {
       );
       const arrOfNotes = getFullArrayOfNotes(sliceArr);
 
-      return { ...state, arrOfNotes, sliceArr };
+      return { ...state, arrOfNotes, sliceArr, mapIndex };
+    }
+
+    case SHOW_NOTES_ON_THE_PIANO: {
+      let { arrOfNotes } = state;
+
+      const { sequence, type } = action.payload;
+
+      return {
+        ...state,
+        arrOfNotes: setVisualEffect({
+          arrOfNotes,
+          sequence,
+          type,
+          active: true
+        })
+      };
+    }
+
+    case TURN_OFF_VISUALIZATION: {
+      let { arrOfNotes } = state;
+
+      const { sequence, type } = action.payload;
+
+      return {
+        ...state,
+        arrOfNotes: setVisualEffect({
+          arrOfNotes,
+          sequence,
+          type,
+          active: false
+        })
+      };
     }
 
     default: {

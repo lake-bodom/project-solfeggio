@@ -13,7 +13,8 @@ const LeftSideButtons = ({
   play,
   actionSettingsClick,
   actionNextButtonClick,
-  actionGetNextInterval
+  actionGetNextInterval,
+  actionTurnOffVisualization
 }) => {
   const playInterval = () => {
     const first = sequenceOfNotes[0].key;
@@ -45,8 +46,10 @@ const LeftSideButtons = ({
   };
 
   const nextClickHandler = () => {
+    const sequence = [sequenceOfNotes[0].key, sequenceOfNotes[1].key];
     actionNextButtonClick();
     actionGetNextInterval(sliceArr);
+    actionTurnOffVisualization({ sequence });
   };
 
   return (

@@ -105,7 +105,6 @@ export const getNewInterval = arr => {
 };
 
 export const getNewSequenceOfNotes = (sliceArr, activeInterval) => {
-  console.log(activeInterval);
   const { numberOfSemitones } = activeInterval;
 
   const sequence = getBordersOfSequence(sliceArr, numberOfSemitones);

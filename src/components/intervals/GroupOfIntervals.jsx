@@ -6,26 +6,33 @@ const GroupOfIntervals = ({
   group,
   settingsIsOpen,
   activeInterval,
+  sequenceOfNotes,
   actionShowTheCorrectInterval,
   actionInverseChosenInterval,
   actionIncrementRightAnswers,
-  actionIncrementAmountOfAnswers
+  actionIncrementAmountOfAnswers,
+  actionShowNotesOnThePiano
 }) => {
+  const checkAnswer = interval => {
+    actionShowTheCorrectInterval();
+    const right = activeInterval.name === interval.name;
+    const type = right ? "right" : "wrong";
+    const sequence = [sequenceOfNotes[0].key, sequenceOfNotes[1].key];
+
+    if (right) {
+      actionIncrementRightAnswers(activeInterval.rusName);
+      actionShowNotesOnThePiano({ type, sequence });
+    } else {
+      actionIncrementAmountOfAnswers(activeInterval.rusName);
+      actionShowNotesOnThePiano({ type, sequence });
+    }
+  };
+
+  const funcOnClick = settingsIsOpen
+    ? actionInverseChosenInterval
+    : checkAnswer;
+
   const body = group.map(interval => {
-    const checkAnswer = interval => {
-      actionShowTheCorrectInterval();
-
-      if (activeInterval.name === interval.name) {
-        actionIncrementRightAnswers(activeInterval.rusName);
-      } else {
-        actionIncrementAmountOfAnswers(activeInterval.rusName);
-      }
-    };
-
-    const funcOnClick = settingsIsOpen
-      ? actionInverseChosenInterval
-      : checkAnswer;
-
     return (
       <Button
         key={interval.name}
@@ -44,6 +51,7 @@ const GroupOfIntervals = ({
       </Button>
     );
   });
+
   return <ButtonsGroup cls="vertical">{body}</ButtonsGroup>;
 };
 

@@ -5,10 +5,10 @@ import MIDISounds from "midi-sounds-react";
 
 import Header from "./containers/headerContainer";
 import Piano from "./containers/pianoContainer";
-// import Intervals from "./containers/intervalsContainer";
 
 import ChangeRangeOfNotes from "./containers/changeRangeOfNotesContainer";
 import Intervals from "./components/intervals/Intervals";
+import ActivateMidiContainer from "./containers/activateMidiContainer";
 
 class App extends Component {
   componentDidMount() {
@@ -32,6 +32,7 @@ class App extends Component {
         <ChangeRangeOfNotes />
         <Intervals play={this.play} />
 
+        <ActivateMidiContainer play={this.play} />
         <div className="midiComponent" style={{ display: "none" }}>
           <MIDISounds
             ref={ref => (this.midiSounds = ref)}

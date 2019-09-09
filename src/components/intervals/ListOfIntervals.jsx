@@ -11,10 +11,12 @@ const ListOfIntervals = ({
   allIntervals,
   activeInterval,
   showAnswer,
+  sequenceOfNotes,
   actionInverseChosenInterval,
   actionShowTheCorrectInterval,
   actionIncrementRightAnswers,
-  actionIncrementAmountOfAnswers
+  actionIncrementAmountOfAnswers,
+  actionShowNotesOnThePiano
 }) => {
   let arr = [];
 
@@ -30,10 +32,12 @@ const ListOfIntervals = ({
       key={group[0].name}
       settingsIsOpen={settingsIsOpen}
       activeInterval={activeInterval}
+      sequenceOfNotes={sequenceOfNotes}
       actionShowTheCorrectInterval={actionShowTheCorrectInterval}
       actionInverseChosenInterval={actionInverseChosenInterval}
       actionIncrementRightAnswers={actionIncrementRightAnswers}
       actionIncrementAmountOfAnswers={actionIncrementAmountOfAnswers}
+      actionShowNotesOnThePiano={actionShowNotesOnThePiano}
     />
   ));
 

@@ -18,7 +18,8 @@ class IntervalsOptionButtons extends React.Component {
       actionSetActiveTypeOfInterval,
       actionSettingsClick,
       actionNextButtonClick,
-      actionGetNextInterval
+      actionGetNextInterval,
+      actionTurnOffVisualization
     } = this.props;
 
     return (
@@ -33,6 +34,7 @@ class IntervalsOptionButtons extends React.Component {
           actionSettingsClick={actionSettingsClick}
           actionNextButtonClick={actionNextButtonClick}
           actionGetNextInterval={actionGetNextInterval}
+          actionTurnOffVisualization={actionTurnOffVisualization}
         />
         <RightSideButtons
           typeOfInterval={typeOfInterval}

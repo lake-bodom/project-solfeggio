@@ -9,6 +9,8 @@ import {
 
 import { actionNextButtonClick } from "../store/actions/statisticsActions";
 
+import { actionTurnOffVisualization } from "../store/actions/pianoActions";
+
 const mapStateToProps = ({ intervals, piano }) => ({
   sliceArr: piano.sliceArr,
   sequenceOfNotes: intervals.sequenceOfNotes,
@@ -21,7 +23,8 @@ const mapDispatchToProps = {
   actionSetActiveTypeOfInterval,
   actionSettingsClick,
   actionNextButtonClick,
-  actionGetNextInterval
+  actionGetNextInterval,
+  actionTurnOffVisualization
 };
 
 export default connect(

@@ -41,27 +41,29 @@ function getBaseArrayOfNotes(
   return [...baseArrOfNotes].slice(start, finish + 1);
 }
 
+let mapIndex = {};
+
 function getFullArrayOfNotes(arr) {
+  mapIndex = {};
   const newArr = [];
-  const mapIndex = {};
 
-  for (let i = 0; i < arr.length; i++) {
-    const obj = arr[i];
-    const nextObj = arr[i + 1];
-
+  for (let k = 0; k < arr.length; k++) {
+    const obj = arr[k];
+    const nextObj = arr[k + 1];
+    let i = newArr.length;
     let section = [];
 
     section.push(addNewFields(obj));
 
-    mapIndex[arr[i].key] = {
+    mapIndex[arr[k].key] = {
       i,
       j: 0
     };
 
     if (nextObj && nextObj.name.includes("#")) {
       section.push(addNewFields(nextObj));
-      i++;
-      mapIndex[arr[i].key] = {
+      k++;
+      mapIndex[arr[k].key] = {
         i,
         j: 1
       };
@@ -77,4 +79,8 @@ function getFullArrayOfNotes(arr) {
   return newArr;
 }
 
-export { getBaseArrayOfNotes, getFullArrayOfNotes };
+const getMapIndex = () => {
+  return { ...mapIndex };
+};
+
+export { getBaseArrayOfNotes, getFullArrayOfNotes, getMapIndex };

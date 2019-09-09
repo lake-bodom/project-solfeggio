@@ -10,18 +10,22 @@ import {
   actionIncrementAmountOfAnswers
 } from "../store/actions/statisticsActions";
 
+import { actionShowNotesOnThePiano } from "../store/actions/pianoActions";
+
 const mapStateToProps = ({ intervals }) => ({
   settingsIsOpen: intervals.settingsIsOpen,
   allIntervals: intervals.allIntervals,
   activeInterval: intervals.activeInterval,
-  showAnswer: intervals.showAnswer
+  showAnswer: intervals.showAnswer,
+  sequenceOfNotes: intervals.sequenceOfNotes
 });
 
 const mapDispatchToProps = {
   actionInverseChosenInterval,
   actionShowTheCorrectInterval,
   actionIncrementRightAnswers,
-  actionIncrementAmountOfAnswers
+  actionIncrementAmountOfAnswers,
+  actionShowNotesOnThePiano
 };
 
 export default connect(
