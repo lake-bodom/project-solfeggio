@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import "./App.css";
 
 import MIDISounds from "midi-sounds-react";
+import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 
+import Menu from "./components/menu/Menu";
 import Header from "./containers/headerContainer";
 import Piano from "./containers/pianoContainer";
 
 import ChangeRangeOfNotes from "./containers/changeRangeOfNotesContainer";
 import Intervals from "./components/intervals/Intervals";
 import ActivateMidiContainer from "./containers/activateMidiContainer";
+import FindNote from "./components/findNote/FindNote";
 
 class App extends Component {
   componentDidMount() {
@@ -27,10 +30,19 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <Menu />
         <Header />
         <Piano play={this.play} />
+
+        <Switch>
+          <Route
+            path="/intervals"
+            render={() => <Intervals play={this.play} />}
+          />
+          <Route path="/find-note" render={() => <FindNote />} />
+        </Switch>
+
         <ChangeRangeOfNotes />
-        <Intervals play={this.play} />
 
         <ActivateMidiContainer play={this.play} />
         <div className="midiComponent" style={{ display: "none" }}>
