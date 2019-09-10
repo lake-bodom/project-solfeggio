@@ -76,13 +76,33 @@ export default (state = initialState, action) => {
     }
 
     case GET_NEXT_INTERVAL: {
-      const { sliceArr } = action;
+      const { sliceArr, changeTheIntervalList } = action.payload;
       const { allIntervals } = state;
-      const activeInterval = getNewActiveInterval(allIntervals);
+      let { nextSequenceOfNotes, nextActiveInterval } = state;
 
-      const sequenceOfNotes = getNewSequenceOfNotes(sliceArr, activeInterval);
+      const activeInterval = !changeTheIntervalList
+        ? nextActiveInterval
+          ? nextActiveInterval
+          : getNewActiveInterval(allIntervals)
+        : getNewActiveInterval(allIntervals);
 
-      return { ...state, activeInterval, sequenceOfNotes, showAnswer: false };
+      const sequenceOfNotes = !changeTheIntervalList
+        ? nextSequenceOfNotes
+          ? nextSequenceOfNotes
+          : getNewSequenceOfNotes(sliceArr, activeInterval)
+        : getNewSequenceOfNotes(sliceArr, activeInterval);
+
+      nextActiveInterval = getNewActiveInterval(allIntervals);
+      nextSequenceOfNotes = getNewSequenceOfNotes(sliceArr, nextActiveInterval);
+
+      return {
+        ...state,
+        activeInterval,
+        sequenceOfNotes,
+        showAnswer: false,
+        nextActiveInterval,
+        nextSequenceOfNotes
+      };
     }
 
     default: {

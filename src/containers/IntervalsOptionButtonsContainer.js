@@ -14,6 +14,7 @@ import { actionTurnOffVisualization } from "../store/actions/pianoActions";
 const mapStateToProps = ({ intervals, piano }) => ({
   sliceArr: piano.sliceArr,
   sequenceOfNotes: intervals.sequenceOfNotes,
+  nextSequenceOfNotes: intervals.nextSequenceOfNotes,
   typeOfInterval: intervals.typeOfInterval,
   showAnswer: intervals.showAnswer,
   settingsIsOpen: intervals.settingsIsOpen

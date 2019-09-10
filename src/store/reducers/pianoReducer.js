@@ -12,10 +12,10 @@ import {
 
 const baseArrOfNotes = getBaseArrayOfNotes();
 const arrOfNotes = getFullArrayOfNotes(baseArrOfNotes);
-const mapIndex = getMapIndex();
 
 const getIndexes = key => {
-  const indexesOfNote = mapIndex[key];
+  const indexesOfNote = getMapIndex(key);
+
   const i = indexesOfNote.i;
   const j = indexesOfNote.j;
 
@@ -67,7 +67,7 @@ export default (state = initialState, action) => {
       );
       const arrOfNotes = getFullArrayOfNotes(sliceArr);
 
-      return { ...state, arrOfNotes, sliceArr, mapIndex };
+      return { ...state, arrOfNotes, sliceArr };
     }
 
     case SHOW_NOTES_ON_THE_PIANO: {

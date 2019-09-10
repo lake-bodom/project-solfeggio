@@ -4,7 +4,7 @@ import RightSideButtons from "./RightSideButtons";
 
 class IntervalsOptionButtons extends React.Component {
   componentDidMount() {
-    this.props.actionGetNextInterval(this.props.sliceArr);
+    this.props.actionGetNextInterval({ sliceArr: this.props.sliceArr });
   }
 
   render() {
@@ -13,6 +13,7 @@ class IntervalsOptionButtons extends React.Component {
       play,
       typeOfInterval,
       sequenceOfNotes,
+      nextSequenceOfNotes,
       settingsIsOpen,
       showAnswer,
       actionSetActiveTypeOfInterval,
@@ -26,6 +27,7 @@ class IntervalsOptionButtons extends React.Component {
       <div className="intervalsOptionsButtons">
         <LeftSideButtons
           sequenceOfNotes={sequenceOfNotes}
+          nextSequenceOfNotes={nextSequenceOfNotes}
           typeOfInterval={typeOfInterval}
           settingsIsOpen={settingsIsOpen}
           showAnswer={showAnswer}

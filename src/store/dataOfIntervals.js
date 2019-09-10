@@ -121,5 +121,5 @@ const getBordersOfSequence = (arr, num) => {
     firstNote = arr[arr.indexOf(secondNote) - num];
   }
 
-  return [firstNote, secondNote];
+  return [firstNote.key, secondNote.key];
 };

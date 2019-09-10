@@ -29,7 +29,7 @@ export const actionShowTheCorrectInterval = () => ({
   type: SHOW_THE_CORRECT_INTERVAL
 });
 
-export const actionGetNextInterval = sliceArr => ({
+export const actionGetNextInterval = options => ({
   type: GET_NEXT_INTERVAL,
-  sliceArr
+  payload: options
 });

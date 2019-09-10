@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 const LeftSideButtons = ({
   sequenceOfNotes,
+  nextSequenceOfNotes,
   typeOfInterval,
   settingsIsOpen,
   showAnswer,
@@ -17,8 +18,15 @@ const LeftSideButtons = ({
   actionTurnOffVisualization
 }) => {
   const playInterval = () => {
-    const first = sequenceOfNotes[0].key;
-    const second = sequenceOfNotes[1].key;
+    let first, second;
+
+    if (showAnswer) {
+      first = nextSequenceOfNotes[0];
+      second = nextSequenceOfNotes[1];
+    } else {
+      first = sequenceOfNotes[0];
+      second = sequenceOfNotes[1];
+    }
 
     switch (typeOfInterval) {
       case "melodicUp": {
@@ -46,10 +54,19 @@ const LeftSideButtons = ({
   };
 
   const nextClickHandler = () => {
-    const sequence = [sequenceOfNotes[0].key, sequenceOfNotes[1].key];
     actionNextButtonClick();
-    actionGetNextInterval(sliceArr);
-    actionTurnOffVisualization({ sequence });
+    actionGetNextInterval({ sliceArr });
+    actionTurnOffVisualization({ sequence: sequenceOfNotes });
+    playInterval();
+  };
+
+  const optionsClickHandler = () => {
+    actionSettingsClick();
+    const changeTheIntervalList = true;
+
+    if (settingsIsOpen) {
+      actionGetNextInterval({ sliceArr, changeTheIntervalList });
+    }
   };
 
   return (
@@ -63,7 +80,7 @@ const LeftSideButtons = ({
       </Button>
       <Button
         cls={settingsIsOpen ? "info" : "secondary"}
-        onClick={actionSettingsClick}
+        onClick={optionsClickHandler}
       >
         {settingsIsOpen ? "Установить" : "Настройки"}
       </Button>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "../button/Button";
 
 export default class ActivateMidi extends Component {
   state = { status: "" };
@@ -60,10 +61,12 @@ export default class ActivateMidi extends Component {
   render() {
     return (
       <div className="activate-midi">
-        <h1>{this.state.status}</h1>
-        <button style={{ marginBottom: "20px" }} onClick={this.startListening}>
-          включить MIDI клавиатуру
-        </button>
+        <Button cls="primary" onClick={this.startListening}>
+          Включить MIDI клавиатуру
+        </Button>
+        <p style={{ marginTop: "20px" }}>
+          <b>Статус:</b> {this.state.status ? this.state.status : "отключена"}
+        </p>
       </div>
     );
   }

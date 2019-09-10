@@ -22,6 +22,7 @@ const ChangeRangeOfNotes = ({
         secondBorder={secondBorder}
         nameOfSelect="firstBorder"
         actionSetBordersOfRange={actionSetBordersOfRange}
+        actionChangeNotesRange={actionChangeNotesRange}
         baseArrOfNotes={baseArrOfNotes}
         minAmountOfNotes={minAmountOfNotes}
       />
@@ -30,6 +31,7 @@ const ChangeRangeOfNotes = ({
         secondBorder={secondBorder}
         nameOfSelect="secondBorder"
         actionSetBordersOfRange={actionSetBordersOfRange}
+        actionChangeNotesRange={actionChangeNotesRange}
         baseArrOfNotes={baseArrOfNotes}
         minAmountOfNotes={minAmountOfNotes}
       />

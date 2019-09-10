@@ -45,6 +45,7 @@ let mapIndex = {};
 
 function getFullArrayOfNotes(arr) {
   mapIndex = {};
+
   const newArr = [];
 
   for (let k = 0; k < arr.length; k++) {
@@ -79,8 +80,8 @@ function getFullArrayOfNotes(arr) {
   return newArr;
 }
 
-const getMapIndex = () => {
-  return { ...mapIndex };
+const getMapIndex = index => {
+  return { ...mapIndex[index] };
 };
 
 export { getBaseArrayOfNotes, getFullArrayOfNotes, getMapIndex };

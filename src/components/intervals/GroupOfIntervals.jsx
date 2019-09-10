@@ -17,14 +17,13 @@ const GroupOfIntervals = ({
     actionShowTheCorrectInterval();
     const right = activeInterval.name === interval.name;
     const type = right ? "right" : "wrong";
-    const sequence = [sequenceOfNotes[0].key, sequenceOfNotes[1].key];
 
     if (right) {
       actionIncrementRightAnswers(activeInterval.rusName);
-      actionShowNotesOnThePiano({ type, sequence });
+      actionShowNotesOnThePiano({ type, sequence: sequenceOfNotes });
     } else {
       actionIncrementAmountOfAnswers(activeInterval.rusName);
-      actionShowNotesOnThePiano({ type, sequence });
+      actionShowNotesOnThePiano({ type, sequence: sequenceOfNotes });
     }
   };
 
