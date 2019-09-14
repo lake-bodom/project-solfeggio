@@ -14,23 +14,12 @@ const SelectOfRange = ({
     const key = baseArrOfNotes[index].key;
 
     if (field === "firstBorder") {
-      if (checkRightAmountOfNotes(secondBorder.key, key)) return;
       firstBorder = { index, key };
     } else {
-      if (checkRightAmountOfNotes(firstBorder.key, key)) return;
       secondBorder = { index, key };
     }
 
-    setSelects([firstBorder, secondBorder]);
-  };
-
-  const checkRightAmountOfNotes = (key1, key2) => {
-    return Math.abs(key1 - key2) < minAmountOfNotes;
-  };
-
-  const setSelects = arr => {
-    arr.sort((a, b) => a.index - b.index);
-    actionSetBordersOfRange(arr);
+    actionSetBordersOfRange([firstBorder, secondBorder]);
   };
 
   const valueOfSelect =
@@ -42,7 +31,13 @@ const SelectOfRange = ({
         selectChangeHandler(e, nameOfSelect);
       }}
     >
-      <SelectBody baseArrOfNotes={baseArrOfNotes} />
+      <SelectBody
+        minAmountOfNotes={minAmountOfNotes}
+        firstBorder={firstBorder}
+        secondBorder={secondBorder}
+        nameOfSelect={nameOfSelect}
+        baseArrOfNotes={baseArrOfNotes}
+      />
     </select>
   );
 };

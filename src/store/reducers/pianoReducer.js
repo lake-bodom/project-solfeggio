@@ -51,7 +51,7 @@ const initialState = {
     key: baseArrOfNotes[baseArrOfNotes.length - 1].key
   },
   sliceArr: baseArrOfNotes,
-  minAmountOfNotes: 5
+  minAmountOfNotes: 12
 };
 
 export default (state = initialState, action) => {

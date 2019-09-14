@@ -28,6 +28,7 @@ export default class ActivateMidi extends Component {
   };
 
   midiOnMIDImessage = event => {
+    console.log(event);
     const keydown = 144;
     const keyup = 128;
 
@@ -54,7 +55,7 @@ export default class ActivateMidi extends Component {
         .requestMIDIAccess({ sysex: true })
         .then(this.requestMIDIAccessSuccess, this.requestMIDIAccessFailure);
     } else {
-      this.setState({ status: "navigator.requestMIDIAccess undefined" });
+      this.setState({ status: "Нет доступа к миди-устройству" });
     }
   };
 
@@ -65,7 +66,8 @@ export default class ActivateMidi extends Component {
           Включить MIDI клавиатуру
         </Button>
         <p style={{ marginTop: "20px" }}>
-          <b>Статус:</b> {this.state.status ? this.state.status : "отключена"}
+          <b>Статус midi:</b>{" "}
+          {this.state.status ? this.state.status : "отключена"}
         </p>
       </div>
     );

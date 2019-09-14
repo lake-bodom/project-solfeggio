@@ -18,10 +18,8 @@ const Intervals = ({ play }) => {
   );
 };
 
-// static propTypes = {
-//   sliceArr: PropTypes.array.isRequired,
-//   play: PropTypes.func.isRequired,
-//   actionGetNextInterval: PropTypes.func.isRequired
-// };
+Intervals.propTypes = {
+  play: PropTypes.func.isRequired
+};
 
 export default Intervals;

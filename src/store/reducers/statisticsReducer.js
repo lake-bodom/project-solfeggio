@@ -1,7 +1,8 @@
 import {
   INCREMENT_RIGHT_ANSWERS,
   INCREMENT_AMOUNT_OF_ANSWERS,
-  NEXT_BUTTON_CLICK
+  NEXT_BUTTON_CLICK,
+  STATISTICS_CLEARING
 } from "../actionTypes";
 
 const initialState = {
@@ -13,6 +14,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case STATISTICS_CLEARING: {
+      return { ...state, ...initialState };
+    }
+
     case INCREMENT_RIGHT_ANSWERS: {
       const rightAnswers = state.rightAnswers + 1;
       const amountOfAnswers = state.amountOfAnswers + 1;
@@ -20,7 +25,7 @@ export default (state = initialState, action) => {
         ...state,
         rightAnswers,
         amountOfAnswers,
-        nameOfInterval: action.payload,
+        nameOfInterval: action.payload ? action.payload : null,
         right: true
       };
     }
@@ -29,7 +34,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         amountOfAnswers,
-        nameOfInterval: action.payload,
+        nameOfInterval: action.payload ? action.payload : null,
         right: false
       };
     }

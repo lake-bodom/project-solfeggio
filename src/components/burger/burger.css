@@ -1,7 +1,6 @@
 .burger {
 	position: fixed;
 	top: 10px;
-	display: inline-block;
 	width: 30px;
 	height: 30px;
 	display: flex;
@@ -10,7 +9,7 @@
 	cursor: pointer;
 	z-index: 100;
 	transition: left .4s;
-	/* border: 1px solid black; */
+
 }
 
 .burger span {

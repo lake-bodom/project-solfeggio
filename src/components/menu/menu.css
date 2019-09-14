@@ -1,16 +1,15 @@
 .menu-body {
 	position: fixed;
 	top: 0;
-	/* left: 0; */
 	width: 250px;
 	height: 100vh;
-	border-right: 1px solid black;
+	border-right: 1px solid #3271b3;
 	z-index: 999;
 	background: #fff;
-	transition: .4s;
+	transition: left .4s;
 	display: flex;
 	align-items: center;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+	box-shadow: 0 0 10px rgba(50, 113, 179, 0.5);
 }
 
 .menu-body nav {

@@ -7,6 +7,13 @@ class IntervalsOptionButtons extends React.Component {
     this.props.actionGetNextInterval({ sliceArr: this.props.sliceArr });
   }
 
+  componentWillUnmount() {
+    const sequenceOfNotes = this.props.sequenceOfNotes;
+    const sequence = [sequenceOfNotes[0], sequenceOfNotes[1]];
+    this.props.actionTurnOffVisualization({ sequence });
+    this.props.actionStatisticsClearing();
+  }
+
   render() {
     const {
       sliceArr,

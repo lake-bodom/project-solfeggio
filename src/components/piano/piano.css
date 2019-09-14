@@ -1,13 +1,13 @@
 .piano {
 	display: flex;
-	margin: 0 auto;
 	flex-wrap: nowrap;
 	height: 100px;
+	justify-content: center;
 }
 
 .piano-keys-section {
 	position: relative;
-	flex-basis: 100%;
+	flex-basis: 50px;
 }
 
 .piano-key {
@@ -20,8 +20,9 @@
 	font-size: 10px;
 	height: 100%;
 	padding-bottom: 5px;
+	z-index: 100;
+	user-select: none;
 }
-
 
 .piano-white-key {
 	border-color: #b4b4b4;
@@ -67,8 +68,25 @@
 	color: black;
 }
 
+.piano .piano-key-right:hover {
+	background: #36b64b;
+}
+
+.piano .piano-key-right.piano-key-active,
+.piano .piano-key-right:active {
+	background: #288838;
+}
+
 .piano .piano-key-wrong {
 	background: #f46868;
 	color: white;
+}
 
+.piano .piano-key-wrong:hover {
+	background: #c05050;
+}
+
+.piano .piano-key-wrong.piano-key-active,
+.piano .piano-key-wrong:active {
+	background: #9b4141;
 }

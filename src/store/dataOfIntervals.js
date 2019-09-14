@@ -80,24 +80,14 @@ export const getChosenIntervals = arr => {
 };
 
 export const createGroupsOfIntervals = arr => {
-  let newArr = [];
-
-  let groupArr = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    if (i > 0 && i % 4 === 0) {
-      newArr.push(groupArr);
-      groupArr = [];
-      groupArr.push(arr[i]);
-    } else {
-      groupArr.push(arr[i]);
-      if (i === arr.length - 1) {
-        newArr.push(groupArr);
-      }
-    }
+  const chunk = 4;
+  var i,
+    j,
+    tmp = [];
+  for (i = 0, j = arr.length; i < j; i += chunk) {
+    tmp.push(arr.slice(i, i + chunk));
   }
-
-  return newArr;
+  return tmp;
 };
 
 export const getNewInterval = arr => {

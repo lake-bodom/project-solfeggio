@@ -7,7 +7,10 @@ import {
   actionGetNextInterval
 } from "../store/actions/intervalsActions";
 
-import { actionNextButtonClick } from "../store/actions/statisticsActions";
+import {
+  actionStatisticsClearing,
+  actionNextButtonClick
+} from "../store/actions/statisticsActions";
 
 import { actionTurnOffVisualization } from "../store/actions/pianoActions";
 
@@ -25,7 +28,8 @@ const mapDispatchToProps = {
   actionSettingsClick,
   actionNextButtonClick,
   actionGetNextInterval,
-  actionTurnOffVisualization
+  actionTurnOffVisualization,
+  actionStatisticsClearing
 };
 
 export default connect(

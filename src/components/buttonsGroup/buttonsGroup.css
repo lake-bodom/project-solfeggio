@@ -39,6 +39,12 @@
 	border-bottom-width: 1px;
 }
 
+.buttonGroup.vertical>.button:only-child,
+.buttonGroup.horizontal>.button:only-child {
+	border-radius: 5px;
+}
+
+
 @media (max-width: 815px) {
 
 	.buttonGroup.horizontal {

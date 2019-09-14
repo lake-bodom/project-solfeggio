@@ -65,6 +65,8 @@ const LeftSideButtons = ({
     const changeTheIntervalList = true;
 
     if (settingsIsOpen) {
+      actionNextButtonClick();
+      actionTurnOffVisualization({ sequence: sequenceOfNotes });
       actionGetNextInterval({ sliceArr, changeTheIntervalList });
     }
   };
