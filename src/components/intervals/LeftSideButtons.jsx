@@ -53,6 +53,7 @@ const LeftSideButtons = ({
     }
   };
 
+  console.log(sequenceOfNotes);
   const nextClickHandler = () => {
     actionNextButtonClick();
     actionGetNextInterval({ sliceArr });
@@ -62,12 +63,12 @@ const LeftSideButtons = ({
 
   const optionsClickHandler = () => {
     actionSettingsClick();
-    const changeTheIntervalList = true;
+    const initNewIntervalSequence = true;
 
     if (settingsIsOpen) {
       actionNextButtonClick();
       actionTurnOffVisualization({ sequence: sequenceOfNotes });
-      actionGetNextInterval({ sliceArr, changeTheIntervalList });
+      actionGetNextInterval({ sliceArr, initNewIntervalSequence });
     }
   };
 

@@ -4,7 +4,12 @@ import RightSideButtons from "./RightSideButtons";
 
 class IntervalsOptionButtons extends React.Component {
   componentDidMount() {
-    this.props.actionGetNextInterval({ sliceArr: this.props.sliceArr });
+    const initNewIntervalSequence = true;
+
+    this.props.actionGetNextInterval({
+      sliceArr: this.props.sliceArr,
+      initNewIntervalSequence
+    });
   }
 
   componentWillUnmount() {

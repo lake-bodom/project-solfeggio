@@ -27,6 +27,7 @@ const initialState = {
   allIntervals,
   typeOfInterval: "melodicUp",
   activeInterval: "",
+  nextActiveInterval: "",
   sequenceOfNotes: [],
   settingsIsOpen: false,
   showAnswer: false
@@ -41,6 +42,35 @@ const getLengthOfChosenIntervals = arr => {
   return arr.reduce((sum, elem) => {
     return elem.chosen ? sum + 1 : sum;
   }, 0);
+};
+
+const getNewData = ({
+  initNewIntervalSequence,
+  nextActiveInterval,
+  nextSequenceOfNotes,
+  sliceArr
+}) => {
+  const activeInterval = !initNewIntervalSequence
+    ? nextActiveInterval
+      ? nextActiveInterval
+      : getNewActiveInterval(allIntervals)
+    : getNewActiveInterval(allIntervals);
+
+  const sequenceOfNotes = !initNewIntervalSequence
+    ? nextSequenceOfNotes
+      ? nextSequenceOfNotes
+      : getNewSequenceOfNotes(sliceArr, activeInterval)
+    : getNewSequenceOfNotes(sliceArr, activeInterval);
+
+  nextActiveInterval = getNewActiveInterval(allIntervals);
+  nextSequenceOfNotes = getNewSequenceOfNotes(sliceArr, nextActiveInterval);
+
+  return {
+    sequenceOfNotes,
+    nextActiveInterval,
+    nextSequenceOfNotes,
+    activeInterval
+  };
 };
 
 export default (state = initialState, action) => {
@@ -76,24 +106,21 @@ export default (state = initialState, action) => {
     }
 
     case GET_NEXT_INTERVAL: {
-      const { sliceArr, changeTheIntervalList } = action.payload;
+      const { sliceArr, initNewIntervalSequence } = action.payload;
       const { allIntervals } = state;
-      let { nextSequenceOfNotes, nextActiveInterval } = state;
 
-      const activeInterval = !changeTheIntervalList
-        ? nextActiveInterval
-          ? nextActiveInterval
-          : getNewActiveInterval(allIntervals)
-        : getNewActiveInterval(allIntervals);
-
-      const sequenceOfNotes = !changeTheIntervalList
-        ? nextSequenceOfNotes
-          ? nextSequenceOfNotes
-          : getNewSequenceOfNotes(sliceArr, activeInterval)
-        : getNewSequenceOfNotes(sliceArr, activeInterval);
-
-      nextActiveInterval = getNewActiveInterval(allIntervals);
-      nextSequenceOfNotes = getNewSequenceOfNotes(sliceArr, nextActiveInterval);
+      let {
+        sequenceOfNotes,
+        nextActiveInterval,
+        nextSequenceOfNotes,
+        activeInterval
+      } = getNewData({
+        sliceArr,
+        initNewIntervalSequence,
+        allIntervals,
+        nextActiveInterval: state.nextActiveInterval,
+        nextSequenceOfNotes: state.nextSequenceOfNotes
+      });
 
       return {
         ...state,

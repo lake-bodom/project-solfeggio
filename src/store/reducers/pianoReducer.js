@@ -73,6 +73,8 @@ export default (state = initialState, action) => {
     case SHOW_NOTES_ON_THE_PIANO: {
       let { arrOfNotes } = state;
 
+      console.log("show");
+
       const { sequence, type } = action.payload;
 
       return {
@@ -87,6 +89,7 @@ export default (state = initialState, action) => {
     }
 
     case TURN_OFF_VISUALIZATION: {
+      console.log("turnOff");
       let { arrOfNotes } = state;
 
       const { sequence, type } = action.payload;
