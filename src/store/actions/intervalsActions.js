@@ -1,19 +1,25 @@
 import {
+  INIT_INTERVALS,
   SET_ACTIVE_TYPE_OF_INTERVAL,
-  SETTINGS_CLICK,
+  INTERVALS_SETTINGS_ACTION,
   INVERSE_CHOSEN_INTERVAL,
   GET_ANSWER_INTERVAL,
   SHOW_THE_CORRECT_INTERVAL,
   GET_NEXT_INTERVAL
 } from "../actionTypes";
 
+export const actionInitIntervals = () => ({
+  type: INIT_INTERVALS
+});
+
 export const actionSetActiveTypeOfInterval = active => ({
   type: SET_ACTIVE_TYPE_OF_INTERVAL,
   payload: active
 });
 
-export const actionSettingsClick = () => ({
-  type: SETTINGS_CLICK
+export const actionIntervalsSettingsAction = payload => ({
+  type: INTERVALS_SETTINGS_ACTION,
+  payload
 });
 
 export const actionInverseChosenInterval = obj => ({

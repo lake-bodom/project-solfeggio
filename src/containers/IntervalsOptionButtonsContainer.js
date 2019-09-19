@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import {
   actionSetActiveTypeOfInterval,
-  actionSettingsClick,
+  actionIntervalsSettingsAction,
   actionGetNextInterval
 } from "../store/actions/intervalsActions";
 
@@ -13,6 +13,7 @@ import {
 } from "../store/actions/statisticsActions";
 
 import { actionTurnOffVisualization } from "../store/actions/pianoActions";
+import { actionInitIntervals } from "../store/actions/intervalsActions";
 
 const mapStateToProps = ({ intervals, piano }) => ({
   sliceArr: piano.sliceArr,
@@ -24,8 +25,9 @@ const mapStateToProps = ({ intervals, piano }) => ({
 });
 
 const mapDispatchToProps = {
+  actionInitIntervals,
   actionSetActiveTypeOfInterval,
-  actionSettingsClick,
+  actionIntervalsSettingsAction,
   actionNextButtonClick,
   actionGetNextInterval,
   actionTurnOffVisualization,

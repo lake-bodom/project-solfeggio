@@ -12,7 +12,7 @@ const LeftSideButtons = ({
   showAnswer,
   sliceArr,
   play,
-  actionSettingsClick,
+  actionIntervalsSettingsAction,
   actionNextButtonClick,
   actionGetNextInterval,
   actionTurnOffVisualization
@@ -53,16 +53,15 @@ const LeftSideButtons = ({
     }
   };
 
-  console.log(sequenceOfNotes);
   const nextClickHandler = () => {
-    actionNextButtonClick();
+    actionNextButtonClick(!settingsIsOpen);
     actionGetNextInterval({ sliceArr });
     actionTurnOffVisualization({ sequence: sequenceOfNotes });
     playInterval();
   };
 
   const optionsClickHandler = () => {
-    actionSettingsClick();
+    actionIntervalsSettingsAction(!settingsIsOpen);
     const initNewIntervalSequence = true;
 
     if (settingsIsOpen) {
@@ -96,7 +95,7 @@ LeftSideButtons.propTypes = {
   typeOfInterval: PropTypes.string.isRequired,
   settingsIsOpen: PropTypes.bool.isRequired,
   play: PropTypes.func.isRequired,
-  actionSettingsClick: PropTypes.func.isRequired
+  actionIntervalsSettingsAction: PropTypes.func.isRequired
 };
 
 export default LeftSideButtons;

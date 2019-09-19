@@ -7,10 +7,11 @@ import {
 
 import {
   SET_ACTIVE_TYPE_OF_INTERVAL,
-  SETTINGS_CLICK,
+  INTERVALS_SETTINGS_ACTION,
   INVERSE_CHOSEN_INTERVAL,
   SHOW_THE_CORRECT_INTERVAL,
-  GET_NEXT_INTERVAL
+  GET_NEXT_INTERVAL,
+  INIT_INTERVALS
 } from "../actionTypes";
 
 const allIntervals = [...dataOfIntervals];
@@ -79,8 +80,21 @@ export default (state = initialState, action) => {
       return { ...state, typeOfInterval: action.payload };
     }
 
-    case SETTINGS_CLICK: {
-      return { ...state, settingsIsOpen: !state.settingsIsOpen };
+    case INIT_INTERVALS: {
+      // activeInterval: "",
+      //   nextActiveInterval: "",
+      //   sequenceOfNotes: [],
+      //   nextSequenceOfNotes: [],
+      //   settingsIsOpen: false,
+      //   showAnswer: false
+      console.log(state);
+      return {
+        ...state
+      };
+    }
+    case INTERVALS_SETTINGS_ACTION: {
+      const settingsIsOpen = action.payload;
+      return { ...state, settingsIsOpen };
     }
 
     case INVERSE_CHOSEN_INTERVAL: {

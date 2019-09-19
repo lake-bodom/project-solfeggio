@@ -15,13 +15,13 @@ import FindNote from "./containers/findNoteContainer";
 
 class App extends Component {
   componentDidMount() {
-    var bpm = 120;
+    var bpm = 80;
     var N = (4 * 60) / bpm;
     var duration = N / 4;
     this.setState({ duration });
     // this.setState(this.state);
     // this.midiSounds.playChordNow(1, [60], 1);
-    this.midiSounds.setEchoLevel(0.1);
+    this.midiSounds.setEchoLevel(0);
 
     document.getElementById("root").addEventListener("click", () => {
       if (this.props.menuIsOpen) {

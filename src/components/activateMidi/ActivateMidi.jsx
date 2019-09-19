@@ -28,7 +28,6 @@ export default class ActivateMidi extends Component {
   };
 
   midiOnMIDImessage = event => {
-    console.log(event);
     const keydown = 144;
     const keyup = 128;
 

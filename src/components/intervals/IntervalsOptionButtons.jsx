@@ -6,6 +6,8 @@ class IntervalsOptionButtons extends React.Component {
   componentDidMount() {
     const initNewIntervalSequence = true;
 
+    this.props.actionInitIntervals();
+
     this.props.actionGetNextInterval({
       sliceArr: this.props.sliceArr,
       initNewIntervalSequence
@@ -17,6 +19,7 @@ class IntervalsOptionButtons extends React.Component {
     const sequence = [sequenceOfNotes[0], sequenceOfNotes[1]];
     this.props.actionTurnOffVisualization({ sequence });
     this.props.actionStatisticsClearing();
+    this.props.actionIntervalsSettingsAction(false);
   }
 
   render() {
@@ -29,7 +32,7 @@ class IntervalsOptionButtons extends React.Component {
       settingsIsOpen,
       showAnswer,
       actionSetActiveTypeOfInterval,
-      actionSettingsClick,
+      actionIntervalsSettingsAction,
       actionNextButtonClick,
       actionGetNextInterval,
       actionTurnOffVisualization
@@ -45,7 +48,7 @@ class IntervalsOptionButtons extends React.Component {
           showAnswer={showAnswer}
           sliceArr={sliceArr}
           play={play}
-          actionSettingsClick={actionSettingsClick}
+          actionIntervalsSettingsAction={actionIntervalsSettingsAction}
           actionNextButtonClick={actionNextButtonClick}
           actionGetNextInterval={actionGetNextInterval}
           actionTurnOffVisualization={actionTurnOffVisualization}
