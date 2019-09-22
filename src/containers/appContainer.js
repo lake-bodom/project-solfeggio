@@ -9,7 +9,8 @@ import {
 const mapStateToProps = ({ application }) => ({
   menuIsOpen: application.menuIsOpen,
   note: application.note,
-  needToWriteNote: application.needToWriteNote
+  needToWriteNote: application.needToWriteNote,
+  modeDictation: application.modeDictation
 });
 
 const mapDispatchToProps = {

@@ -45,7 +45,7 @@
 }
 
 .button.primary:active {
-	box-shadow: 0 0 0 3px rgba(82, 133, 187, 0.5);
+	box-shadow: 0 0 0 3px rgba(82, 133, 187, .5);
 }
 
 .button.secondary-outline {
@@ -80,7 +80,25 @@
 
 .button.secondary:active,
 .button.secondary.active {
-	box-shadow: 0 0 0 3px rgba(89, 97, 104, 0.5);
+	box-shadow: 0 0 0 3px rgba(89, 97, 104, .5);
+}
+
+.button.danger {
+	color: #fff;
+	background-color: #de5b67;
+	border-color: #de5b67;
+}
+
+.button.danger:hover,
+.button.danger:disabled,
+.button.danger.active {
+	background-color: #c5515c;
+	border-color: #c5515c;
+}
+
+.button.danger:active,
+.button.danger.active {
+	box-shadow: 0 0 0 3px rgba(197, 81, 92, .5);
 }
 
 .button.info-outline {
@@ -97,7 +115,7 @@
 
 .button.info-outline:active,
 .button.info-outline.active {
-	box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.5);
+	box-shadow: 0 0 0 3px rgba(23, 162, 184, .5);
 }
 
 .button.info {
@@ -113,7 +131,6 @@
 	border-color: #138697;
 }
 
-.button.info:active,
-.button.info.active {
-	box-shadow: 0 0 0 3px rgba(19, 134, 151, 0.5);
+.button.info:active {
+	box-shadow: 0 0 0 3px rgba(19, 134, 151, .5);
 }

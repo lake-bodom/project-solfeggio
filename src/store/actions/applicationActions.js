@@ -1,7 +1,8 @@
 import {
   MENU_ACTION,
   NEED_TO_WRITE_NOTE,
-  WRITE_PLAY_NOTE
+  WRITE_PLAY_NOTE,
+  INIT_DICTATION
 } from "../actionTypes";
 
 export const actionMenuAction = isOpen => ({
@@ -14,7 +15,13 @@ export const actionNeedToWriteNote = bool => ({
   payload: bool
 });
 
-export const actionWritePlayNote = note => ({
+export const actionWritePlayNote = (note, needToWriteNote) => ({
   type: WRITE_PLAY_NOTE,
-  payload: note
+  note,
+  needToWriteNote
+});
+
+export const actionInitDictation = bool => ({
+  type: INIT_DICTATION,
+  payload: bool
 });

@@ -13,7 +13,6 @@ import {
 } from "../store/actions/statisticsActions";
 
 import { actionTurnOffVisualization } from "../store/actions/pianoActions";
-import { actionInitIntervals } from "../store/actions/intervalsActions";
 
 const mapStateToProps = ({ intervals, piano }) => ({
   sliceArr: piano.sliceArr,
@@ -25,7 +24,6 @@ const mapStateToProps = ({ intervals, piano }) => ({
 });
 
 const mapDispatchToProps = {
-  actionInitIntervals,
   actionSetActiveTypeOfInterval,
   actionIntervalsSettingsAction,
   actionNextButtonClick,

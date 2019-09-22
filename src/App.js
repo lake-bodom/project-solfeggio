@@ -12,6 +12,7 @@ import ChangeRangeOfNotes from "./containers/changeRangeOfNotesContainer";
 import Intervals from "./components/intervals/Intervals";
 import ActivateMidiContainer from "./containers/activateMidiContainer";
 import FindNote from "./containers/findNoteContainer";
+import Dictation from "./containers/dictationContainter";
 
 class App extends Component {
   componentDidMount() {
@@ -41,7 +42,11 @@ class App extends Component {
     this.midiSounds.playChordNow(1, [note], duration);
 
     if (this.props.needToWriteNote) {
-      this.props.actionWritePlayNote(note);
+      if (this.props.modeDictation) {
+        this.props.actionWritePlayNote(note, true);
+      } else {
+        this.props.actionWritePlayNote(note, false);
+      }
     }
   };
 
@@ -62,6 +67,10 @@ class App extends Component {
             render={() => <FindNote play={this.play} />}
           />
           <Route path="/options" render={() => <ChangeRangeOfNotes />} />
+          <Route
+            path="/dictation"
+            render={() => <Dictation play={this.play} />}
+          />
         </Switch>
 
         <ActivateMidiContainer play={this.play} />

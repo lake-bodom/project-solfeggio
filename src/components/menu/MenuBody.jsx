@@ -11,6 +11,9 @@ const MenuBody = ({ left, clickHandler }) => {
         <NavLink onClick={clickHandler} to="/intervals">
           Поиск Интервала
         </NavLink>
+        <NavLink onClick={clickHandler} to="/dictation">
+          Музыкальный диктант
+        </NavLink>
         <NavLink onClick={clickHandler} to="/options">
           Настройки
         </NavLink>

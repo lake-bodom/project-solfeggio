@@ -30,6 +30,7 @@ export default class ActivateMidi extends Component {
   midiOnMIDImessage = event => {
     const keydown = 144;
     const keyup = 128;
+    const velocity = event.data[2];
 
     const eventKey = event.data[0];
     const note = event.data[1];
@@ -38,10 +39,11 @@ export default class ActivateMidi extends Component {
     if (note >= sliceArr[0].key && note <= sliceArr[sliceArr.length - 1].key) {
       const options = { sequence: [note], type: "active" };
 
-      if (eventKey === keydown) {
+      if (eventKey === keydown && velocity !== 0) {
+        console.log(event);
         this.props.actionShowNotesOnThePiano(options);
         this.props.play(note);
-      } else if (eventKey === keyup) {
+      } else if (eventKey === keyup || velocity === 0) {
         this.props.actionTurnOffVisualization(options);
       }
     }

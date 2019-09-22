@@ -27,24 +27,3 @@ const Menu = ({ menuIsOpen, actionMenuAction }) => {
 };
 
 export default Menu;
-
-/* <div className="menu">
-      <div className="menu-body" style={{ left: leftMenuBody }}>
-        <nav className="nav">
-          <NavLink onClick={clickHandler} to="/find-note">
-            Искать ноту
-          </NavLink>
-          <NavLink onClick={clickHandler} to="/intervals">
-            Поиск Интервала
-          </NavLink>
-          <NavLink onClick={clickHandler} to="/options">
-            Настройки
-          </NavLink>
-        </nav>
-      </div>
-      <Burger
-        left={leftBurger}
-        clickHandler={clickHandler}
-        menuIsOpen={menuIsOpen}
-      />
-    </div> */

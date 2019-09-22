@@ -1,13 +1,15 @@
 import {
   MENU_ACTION,
   NEED_TO_WRITE_NOTE,
-  WRITE_PLAY_NOTE
+  WRITE_PLAY_NOTE,
+  INIT_DICTATION
 } from "../actionTypes";
 
 const initialState = {
   menuIsOpen: false,
   playNote: null,
-  needToWriteNote: false
+  needToWriteNote: false,
+  modeDictation: false
 };
 
 export default (state = initialState, action) => {
@@ -28,9 +30,22 @@ export default (state = initialState, action) => {
     case NEED_TO_WRITE_NOTE: {
       return { ...state, needToWriteNote: action.payload, playNote: null };
     }
+    // case WRITE_PLAY_NOTE: {
+    //   return { ...state, playNote: action.payload };
+    // }
+
     case WRITE_PLAY_NOTE: {
-      return { ...state, playNote: action.payload, needToWriteNote: false };
+      return {
+        ...state,
+        playNote: action.note,
+        needToWriteNote: action.needToWriteNote
+      };
     }
+
+    case INIT_DICTATION: {
+      return { ...state, modeDictation: action.payload };
+    }
+
     default:
       return { ...state };
   }
