@@ -3,11 +3,14 @@ import Dictation from "../components/dictation/Dictation";
 
 import {
   actionGetNewMelody,
-  actionChangeMode
+  actionChangeMode,
+  actionAddNoteToAnswerArray,
+  actionPopLastElemFromAnswerArray
 } from "../store/actions/dictationActions";
 import {
   actionNeedToWriteNote,
-  actionInitDictation
+  actionInitDictation,
+  actionWritePlayNote
 } from "../store/actions/applicationActions";
 
 const mapStateToProps = ({ piano, dictation, application }) => ({
@@ -21,7 +24,10 @@ const mapDispatchToProps = {
   actionGetNewMelody,
   actionChangeMode,
   actionNeedToWriteNote,
-  actionInitDictation
+  actionInitDictation,
+  actionAddNoteToAnswerArray,
+  actionWritePlayNote,
+  actionPopLastElemFromAnswerArray
 };
 
 export default connect(

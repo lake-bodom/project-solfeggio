@@ -84,4 +84,12 @@ const getMapIndex = index => {
   return { ...mapIndex[index] };
 };
 
-export { getBaseArrayOfNotes, getFullArrayOfNotes, getMapIndex };
+const getIndexes = key => {
+  const indexesOfNote = getMapIndex(key);
+  const i = indexesOfNote.i;
+  const j = indexesOfNote.j;
+
+  return { i, j };
+};
+
+export { getBaseArrayOfNotes, getFullArrayOfNotes, getMapIndex, getIndexes };

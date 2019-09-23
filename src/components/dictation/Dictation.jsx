@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import "./dictation.css";
 
-import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
-import Button from "../button/Button";
+import DictationPlayButtons from "./DictationPlayButtons";
+import DictationOptionsButtons from "./DictationOptionsButtons";
 
 export default class Dictation extends Component {
   componentDidMount() {
-    this.changeMode(null, this.props.dictation.defaultModeWrite);
+    const { defaultModeWrite } = this.props.dictation;
+    this.props.actionWritePlayNote(null, false);
+
+    this.changeMode(null, defaultModeWrite);
+
+    if (this.props.needToWriteNote !== defaultModeWrite) {
+      console.log(1);
+      this.props.actionNeedToWriteNote(defaultModeWrite);
+    }
+
     this.props.actionGetNewMelody(this.props.sliceArr);
     this.props.actionInitDictation(true);
   }
@@ -15,71 +24,120 @@ export default class Dictation extends Component {
     this.props.actionInitDictation(false);
   }
 
+  componentDidUpdate(prevState) {
+    const { sequenceOfWrittenMelody } = this.props.dictation;
+    const { amountOfNotes } = this.props.dictation;
+    const { playNote } = this.props;
+
+    if (sequenceOfWrittenMelody.length < amountOfNotes && playNote) {
+      if (
+        (prevState.playNote && playNote.id !== prevState.playNote.id) ||
+        (prevState.playNote === null && playNote !== null)
+      ) {
+        this.props.actionAddNoteToAnswerArray(playNote);
+      }
+    }
+  }
+
   playGuessedMelody = () => {
-    const { sequenceOfMelody } = this.props.dictation;
-    this.playMelody(sequenceOfMelody);
+    const sequence = this.props.dictation.sequenceOfMelody.map(
+      elem => elem.key
+    );
+
+    this.playMelody(sequence);
   };
 
   playWrittenMelody = () => {
-    const arr = [{ key: 21 }, { key: 32 }, undefined, undefined];
-    this.playMelody(arr);
+    const sequence = this.props.dictation.sequenceOfWrittenMelody.map(
+      elem => elem.note
+    );
+
+    this.playMelody(sequence);
   };
 
   playMelody = sequence => {
+    const onlyPlay = true;
     for (let i = 0; i < sequence.length; i++) {
       if (sequence[i]) {
         setTimeout(() => {
-          this.props.play(sequence[i].key);
+          this.props.play(sequence[i], onlyPlay);
         }, 800 * i);
       }
     }
   };
 
   changeMode = (e, modeWrite) => {
-    modeWrite = modeWrite ? modeWrite : !this.props.dictation.modeWrite;
+    modeWrite =
+      typeof modeWrite === "boolean"
+        ? modeWrite
+        : !this.props.dictation.modeWrite;
+
     this.props.actionChangeMode(modeWrite);
 
     this.props.actionNeedToWriteNote(modeWrite);
+  };
+
+  clearButtonHandler = () => {
+    if (this.props.dictation.sequenceOfWrittenMelody.length > 0) {
+      this.props.actionPopLastElemFromAnswerArray();
+    }
+  };
+
+  checkAnswerHandler = () => {
+    const arrayOfMelody = this.props.dictation.sequenceOfMelody.map(
+      elem => elem.key
+    );
+
+    const arrayOfAnswer = this.props.dictation.sequenceOfWrittenMelody.map(
+      elem => elem.note
+    );
+
+    let hits = [];
+
+    let right = false;
+
+    for (let i = 0; i < arrayOfMelody.length; i++) {
+      if (arrayOfMelody[i] === arrayOfAnswer[i]) {
+        hits.push(true);
+      } else {
+        hits.push(false);
+      }
+    }
+
+    if (hits.indexOf(false) === -1) {
+      right = true;
+    }
+
+    console.log(hits);
   };
 
   render() {
     const modeWrite = this.props.dictation.modeWrite || false;
 
     const needToWriteNote = this.props.needToWriteNote;
+
     return (
       <div>
-        <ButtonsGroup cls="horizontal">
-          <Button onClick={this.playGuessedMelody}>
-            Играть угадываемую мелодию
-          </Button>
-          <Button onClick={this.playWrittenMelody}>
-            Играть написанную мелодию
-          </Button>
-        </ButtonsGroup>
-
-        <div className="dictation-options-buttons">
-          <ButtonsGroup cls="horizontal">
-            <Button
-              onClick={this.changeMode}
-              cls={modeWrite ? "info-outline" : "info active"}
-              disabled={modeWrite ? false : true}
-            >
-              Играть
-            </Button>
-            <Button
-              onClick={this.changeMode}
-              cls={modeWrite ? "info active" : "info-outline"}
-              disabled={modeWrite ? true : false}
-            >
-              Писать
-            </Button>
-          </ButtonsGroup>
-          <ButtonsGroup cls="horizontal">
-            <Button>Стереть</Button>
-            <Button cls="danger">Проверить</Button>
-          </ButtonsGroup>
-          <Button cls="primary">Настроки</Button>
-        </div>
+        <DictationPlayButtons
+          playGuessedMelody={this.playGuessedMelody}
+          playWrittenMelody={this.playWrittenMelody}
+        />
+        <DictationOptionsButtons
+          modeWrite={modeWrite}
+          changeMode={this.changeMode}
+          clearButtonHandler={this.clearButtonHandler}
+          checkAnswerHandler={this.checkAnswerHandler}
+        />
+        <p>
+          {needToWriteNote
+            ? this.props.dictation.sequenceOfWrittenMelody.reduce(
+                (output, elem) => {
+                  return output + " " + elem.note;
+                },
+                ""
+              )
+            : null}
+        </p>
       </div>
     );
   }

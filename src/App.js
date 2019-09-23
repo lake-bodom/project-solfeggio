@@ -37,15 +37,17 @@ class App extends Component {
     });
   }
 
-  play = note => {
+  play = (note, onlyPlay) => {
     const { duration } = this.state;
     this.midiSounds.playChordNow(1, [note], duration);
 
-    if (this.props.needToWriteNote) {
-      if (this.props.modeDictation) {
-        this.props.actionWritePlayNote(note, true);
-      } else {
-        this.props.actionWritePlayNote(note, false);
+    if (!onlyPlay) {
+      if (this.props.needToWriteNote) {
+        if (this.props.modeDictation) {
+          this.props.actionWritePlayNote(note, true);
+        } else {
+          this.props.actionWritePlayNote(note, false);
+        }
       }
     }
   };

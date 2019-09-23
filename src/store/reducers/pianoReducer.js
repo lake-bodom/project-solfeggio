@@ -1,7 +1,7 @@
 import {
   getBaseArrayOfNotes,
   getFullArrayOfNotes,
-  getMapIndex
+  getIndexes
 } from "../arrayOfNotes";
 import {
   CHANGE_NOTES_RANGE,
@@ -12,15 +12,6 @@ import {
 
 const baseArrOfNotes = getBaseArrayOfNotes();
 const arrOfNotes = getFullArrayOfNotes(baseArrOfNotes);
-
-const getIndexes = key => {
-  const indexesOfNote = getMapIndex(key);
-
-  const i = indexesOfNote.i;
-  const j = indexesOfNote.j;
-
-  return { i, j };
-};
 
 const setVisualEffect = ({ arrOfNotes, sequence, type, active }) => {
   let arr = [...arrOfNotes];

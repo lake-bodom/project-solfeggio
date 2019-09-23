@@ -28,7 +28,11 @@ export default (state = initialState, action) => {
     }
 
     case NEED_TO_WRITE_NOTE: {
-      return { ...state, needToWriteNote: action.payload, playNote: null };
+      return {
+        ...state,
+        needToWriteNote: action.payload || false,
+        playNote: null
+      };
     }
     // case WRITE_PLAY_NOTE: {
     //   return { ...state, playNote: action.payload };
@@ -37,7 +41,7 @@ export default (state = initialState, action) => {
     case WRITE_PLAY_NOTE: {
       return {
         ...state,
-        playNote: action.note,
+        playNote: { note: action.note, id: action.id },
         needToWriteNote: action.needToWriteNote
       };
     }

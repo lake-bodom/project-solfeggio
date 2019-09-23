@@ -14,7 +14,7 @@ export default class FindNote extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.needToWriteNote && !this.props.needToWriteNote) {
       if (this.props.playNote !== null) {
-        const playNote = this.props.playNote;
+        const playNote = this.props.playNote.note;
         const note = this.props.note;
         if (playNote === note) {
           this.props.actionIncrementRightAnswers();
@@ -29,8 +29,9 @@ export default class FindNote extends Component {
   }
 
   setVisualEffect = right => {
+    const sequence = [this.props.playNote.note];
     if (right) {
-      const options = { sequence: [this.props.playNote], type: "right" };
+      const options = { sequence, type: "right" };
       this.props.actionShowNotesOnThePiano(options);
 
       setTimeout(() => {
@@ -38,7 +39,7 @@ export default class FindNote extends Component {
       }, 2000);
     } else {
       const options1 = {
-        sequence: [this.props.playNote],
+        sequence,
         type: "wrong"
       };
 

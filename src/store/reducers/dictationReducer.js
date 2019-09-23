@@ -1,10 +1,15 @@
-import { GET_NEW_MELODY, CHANGE_MODE } from "../actionTypes";
+import {
+  GET_NEW_MELODY,
+  CHANGE_MODE,
+  ADD_NOTE_TO_ANSWER_ARRAY,
+  POP_LAST_ELEM_FROM_ANSWER_ARRAY
+} from "../actionTypes";
 
 const initialState = {
   amountOfNotes: 4,
   sequenceOfMelody: [],
   sequenceOfWrittenMelody: [],
-  defaultModeWrite: true
+  defaultModeWrite: false
 };
 
 const getNewMelody = ({ sliceArr, amountOfNotes }) => {
@@ -31,6 +36,22 @@ export default (state = initialState, action) => {
     case CHANGE_MODE: {
       const modeWrite = action.payload;
       return { ...state, modeWrite };
+    }
+    case ADD_NOTE_TO_ANSWER_ARRAY: {
+      const { sequenceOfWrittenMelody } = state;
+      sequenceOfWrittenMelody.push(action.payload);
+
+      return { ...state, sequenceOfWrittenMelody };
+    }
+
+    case POP_LAST_ELEM_FROM_ANSWER_ARRAY: {
+      const sequenceOfWrittenMelody = [...state.sequenceOfWrittenMelody];
+
+      if (sequenceOfWrittenMelody.length > 0) {
+        sequenceOfWrittenMelody.pop();
+      }
+
+      return { ...state, sequenceOfWrittenMelody };
     }
     default:
       return { ...state };
