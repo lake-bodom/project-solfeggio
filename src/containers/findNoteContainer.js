@@ -2,6 +2,7 @@ import FindNote from "../components/findNote/FindNote";
 import { connect } from "react-redux";
 
 import { actionSetActiveNote } from "../store/actions/notesActions";
+
 import {
   actionStatisticsClearing,
   actionIncrementRightAnswers,

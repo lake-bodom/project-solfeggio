@@ -2,14 +2,18 @@ import {
   GET_NEW_MELODY,
   CHANGE_MODE,
   ADD_NOTE_TO_ANSWER_ARRAY,
-  POP_LAST_ELEM_FROM_ANSWER_ARRAY
+  POP_LAST_ELEM_FROM_ANSWER_ARRAY,
+  WRITE_ANSWERS,
+  CLEAR_WRITTEN_MELODY
 } from "../actionTypes";
 
 const initialState = {
   amountOfNotes: 4,
   sequenceOfMelody: [],
   sequenceOfWrittenMelody: [],
-  defaultModeWrite: false
+  defaultModeWrite: false,
+  answers: [],
+  answerGiven: false
 };
 
 const getNewMelody = ({ sliceArr, amountOfNotes }) => {
@@ -52,6 +56,15 @@ export default (state = initialState, action) => {
       }
 
       return { ...state, sequenceOfWrittenMelody };
+    }
+
+    case WRITE_ANSWERS: {
+      const answerGiven = action.payload.length > 0;
+      return { ...state, answers: action.payload, answerGiven };
+    }
+
+    case CLEAR_WRITTEN_MELODY: {
+      return { ...state, sequenceOfWrittenMelody: [] };
     }
     default:
       return { ...state };

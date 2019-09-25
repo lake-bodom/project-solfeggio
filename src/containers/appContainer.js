@@ -6,11 +6,13 @@ import {
   actionWritePlayNote
 } from "../store/actions/applicationActions";
 
-const mapStateToProps = ({ application }) => ({
+const mapStateToProps = ({ application, piano }) => ({
   menuIsOpen: application.menuIsOpen,
   note: application.note,
   needToWriteNote: application.needToWriteNote,
-  modeDictation: application.modeDictation
+  modeDictation: application.modeDictation,
+  sliceArr: piano.sliceArr,
+  mapIndex: piano.mapIndex
 });
 
 const mapDispatchToProps = {

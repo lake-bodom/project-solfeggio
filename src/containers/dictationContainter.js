@@ -5,8 +5,17 @@ import {
   actionGetNewMelody,
   actionChangeMode,
   actionAddNoteToAnswerArray,
-  actionPopLastElemFromAnswerArray
+  actionPopLastElemFromAnswerArray,
+  actionWriteAnswers,
+  actionClearWrittenMelody
 } from "../store/actions/dictationActions";
+
+import {
+  actionStatisticsClearing,
+  actionIncrementRightAnswers,
+  actionIncrementAmountOfAnswers
+} from "../store/actions/statisticsActions";
+
 import {
   actionNeedToWriteNote,
   actionInitDictation,
@@ -27,7 +36,12 @@ const mapDispatchToProps = {
   actionInitDictation,
   actionAddNoteToAnswerArray,
   actionWritePlayNote,
-  actionPopLastElemFromAnswerArray
+  actionPopLastElemFromAnswerArray,
+  actionWriteAnswers,
+  actionStatisticsClearing,
+  actionIncrementRightAnswers,
+  actionIncrementAmountOfAnswers,
+  actionClearWrittenMelody
 };
 
 export default connect(

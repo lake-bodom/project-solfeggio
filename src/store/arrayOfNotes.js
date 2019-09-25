@@ -1,6 +1,6 @@
 let baseArrOfNotes = [];
 
-let BASE_NAMES = [
+const BASE_NAMES = [
   "A",
   "A#",
   "B",
@@ -14,6 +14,18 @@ let BASE_NAMES = [
   "G",
   "G#"
 ];
+
+const NAMES_OF_OCTAVES = {
+  0: "Субконтроктава",
+  1: "Контроктава",
+  2: "Большая октава",
+  3: "Малая октава",
+  4: "Первая октава",
+  5: "Вторая октава",
+  6: "Третья октава",
+  7: "Четвертая октава",
+  8: "Пятая октава"
+};
 
 const BASE_START_NOTE = 21;
 const BASE_FINISH_NOTE = 108;
@@ -30,7 +42,8 @@ for (let i = 0; i <= BASE_FINISH_NOTE - BASE_START_NOTE; i++) {
     index: i,
     key: i + BASE_START_NOTE,
     name,
-    fullName: name + octaveNumber
+    fullName: name + octaveNumber,
+    octaveName: NAMES_OF_OCTAVES[octaveNumber]
   });
 }
 
@@ -41,17 +54,15 @@ function getBaseArrayOfNotes(
   return [...baseArrOfNotes].slice(start, finish + 1);
 }
 
-let mapIndex = {};
+function getFullArrayAndMapIndexes(arr) {
+  const mapIndex = {};
 
-function getFullArrayOfNotes(arr) {
-  mapIndex = {};
-
-  const newArr = [];
+  const arrOfNotes = [];
 
   for (let k = 0; k < arr.length; k++) {
     const obj = arr[k];
     const nextObj = arr[k + 1];
-    let i = newArr.length;
+    let i = arrOfNotes.length;
     let section = [];
 
     section.push(addNewFields(obj));
@@ -70,26 +81,48 @@ function getFullArrayOfNotes(arr) {
       };
     }
 
-    newArr.push(section);
+    arrOfNotes.push(section);
   }
 
-  function addNewFields(obj) {
-    return { ...obj, active: false, wrong: false, right: false };
-  }
-
-  return newArr;
+  return { mapIndex, arrOfNotes };
 }
 
-const getMapIndex = index => {
-  return { ...mapIndex[index] };
-};
+function addNewFields(obj) {
+  return { ...obj, active: false, wrong: false, right: false };
+}
 
-const getIndexes = key => {
-  const indexesOfNote = getMapIndex(key);
+const getIndexes = ({ key, mapIndex }) => {
+  const indexesOfNote = mapIndex[key];
   const i = indexesOfNote.i;
   const j = indexesOfNote.j;
-
   return { i, j };
 };
 
-export { getBaseArrayOfNotes, getFullArrayOfNotes, getMapIndex, getIndexes };
+window.getIndexes = getIndexes;
+
+const setVisualEffect = ({ arrOfNotes, sequence, type, active, mapIndex }) => {
+  let arr = [...arrOfNotes];
+
+  sequence.forEach(element => {
+    const { i, j } = getIndexes({ key: element, mapIndex });
+    if (active) {
+      arr[i][j][type] = true;
+    } else {
+      if (!type) {
+        arr[i][j].right = false;
+        arr[i][j].wrong = false;
+      } else {
+        arr[i][j][type] = false;
+      }
+    }
+  });
+
+  return arr;
+};
+
+export {
+  getBaseArrayOfNotes,
+  getFullArrayAndMapIndexes,
+  getIndexes,
+  setVisualEffect
+};

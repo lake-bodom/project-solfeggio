@@ -2,7 +2,9 @@ import {
   GET_NEW_MELODY,
   CHANGE_MODE,
   ADD_NOTE_TO_ANSWER_ARRAY,
-  POP_LAST_ELEM_FROM_ANSWER_ARRAY
+  POP_LAST_ELEM_FROM_ANSWER_ARRAY,
+  WRITE_ANSWERS,
+  CLEAR_WRITTEN_MELODY
 } from "../actionTypes";
 
 export const actionGetNewMelody = sliceArr => ({
@@ -22,4 +24,13 @@ export const actionAddNoteToAnswerArray = payload => ({
 
 export const actionPopLastElemFromAnswerArray = () => ({
   type: POP_LAST_ELEM_FROM_ANSWER_ARRAY
+});
+
+export const actionWriteAnswers = arr => ({
+  type: WRITE_ANSWERS,
+  payload: arr
+});
+
+export const actionClearWrittenMelody = () => ({
+  type: CLEAR_WRITTEN_MELODY
 });

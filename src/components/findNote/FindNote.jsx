@@ -14,48 +14,57 @@ export default class FindNote extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.needToWriteNote && !this.props.needToWriteNote) {
       if (this.props.playNote !== null) {
-        const playNote = this.props.playNote.note;
+        const playNote = this.props.playNote.key;
         const note = this.props.note;
+
         if (playNote === note) {
           this.props.actionIncrementRightAnswers();
-          this.setVisualEffect(true);
+          this.setVisualEffect({ right: true });
         } else {
           this.props.actionIncrementAmountOfAnswers();
-          this.setVisualEffect(false);
+          this.setVisualEffect({ right: false, note });
         }
         this.props.actionSetActiveNote(this.props.sliceArr);
       }
     }
   }
 
-  setVisualEffect = right => {
-    const sequence = [this.props.playNote.note];
+  setVisualEffect = ({ right, note }) => {
+    const sequence = [this.props.playNote.key];
     if (right) {
-      const options = { sequence, type: "right" };
-      this.props.actionShowNotesOnThePiano(options);
-
-      setTimeout(() => {
-        this.props.actionTurnOffVisualization(options);
-      }, 2000);
+      this.setRightVisualEffect({ sequence });
     } else {
-      const options1 = {
-        sequence,
-        type: "wrong"
-      };
-
-      const options2 = {
-        sequence: [this.props.note],
-        type: "right"
-      };
-
-      this.props.actionShowNotesOnThePiano(options1);
-      this.props.actionShowNotesOnThePiano(options2);
-
-      setTimeout(() => {
-        this.props.actionTurnOffVisualization(options1);
-        this.props.actionTurnOffVisualization(options2);
-      }, 1500);
+      this.setWrongVisualEffect({ sequence, note });
     }
+  };
+
+  setRightVisualEffect = ({ sequence }) => {
+    const options = { sequence, type: "right" };
+    this.props.actionShowNotesOnThePiano(options);
+
+    setTimeout(() => {
+      this.props.actionTurnOffVisualization(options);
+    }, 2000);
+  };
+
+  setWrongVisualEffect = ({ sequence, note }) => {
+    const options1 = {
+      sequence,
+      type: "wrong"
+    };
+
+    const options2 = {
+      sequence: [note],
+      type: "right"
+    };
+
+    this.props.actionShowNotesOnThePiano(options1);
+    this.props.actionShowNotesOnThePiano(options2);
+
+    setTimeout(() => {
+      this.props.actionTurnOffVisualization(options1);
+      this.props.actionTurnOffVisualization(options2);
+    }, 1500);
   };
 
   playButtonHandler = () => {

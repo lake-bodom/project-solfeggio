@@ -3,6 +3,7 @@ import "./dictation.css";
 
 import DictationPlayButtons from "./DictationPlayButtons";
 import DictationOptionsButtons from "./DictationOptionsButtons";
+import DuctationOutput from "./DuctationOutput";
 
 export default class Dictation extends Component {
   componentDidMount() {
@@ -12,16 +13,18 @@ export default class Dictation extends Component {
     this.changeMode(null, defaultModeWrite);
 
     if (this.props.needToWriteNote !== defaultModeWrite) {
-      console.log(1);
       this.props.actionNeedToWriteNote(defaultModeWrite);
     }
 
-    this.props.actionGetNewMelody(this.props.sliceArr);
+    this.setNewMelody();
     this.props.actionInitDictation(true);
   }
 
   componentWillUnmount() {
     this.props.actionInitDictation(false);
+    this.clearAnswers();
+    this.props.actionStatisticsClearing();
+    this.props.actionClearWrittenMelody();
   }
 
   componentDidUpdate(prevState) {
@@ -39,6 +42,14 @@ export default class Dictation extends Component {
     }
   }
 
+  setNewMelody = () => {
+    this.props.actionGetNewMelody(this.props.sliceArr);
+  };
+
+  clearAnswers = () => {
+    this.props.actionWriteAnswers([]);
+  };
+
   playGuessedMelody = () => {
     const sequence = this.props.dictation.sequenceOfMelody.map(
       elem => elem.key
@@ -48,8 +59,8 @@ export default class Dictation extends Component {
   };
 
   playWrittenMelody = () => {
-    const sequence = this.props.dictation.sequenceOfWrittenMelody.map(
-      elem => elem.note
+    const sequence = this.getKeysArrayOfMeloday(
+      this.props.dictation.sequenceOfWrittenMelody
     );
 
     this.playMelody(sequence);
@@ -84,37 +95,70 @@ export default class Dictation extends Component {
   };
 
   checkAnswerHandler = () => {
-    const arrayOfMelody = this.props.dictation.sequenceOfMelody.map(
-      elem => elem.key
+    const arrKeysArrayOfMeloday = this.getKeysArrayOfMeloday(
+      this.props.dictation.sequenceOfMelody
     );
 
-    const arrayOfAnswer = this.props.dictation.sequenceOfWrittenMelody.map(
-      elem => elem.note
+    const arrKeysArrayOfWrittenMeloday = this.getKeysArrayOfMeloday(
+      this.props.dictation.sequenceOfWrittenMelody
     );
 
-    let hits = [];
+    if (arrKeysArrayOfMeloday.length === arrKeysArrayOfWrittenMeloday.length) {
+      const checkAnswers = this.getArrayOfEqualsOfAnswers(
+        arrKeysArrayOfMeloday,
+        arrKeysArrayOfWrittenMeloday
+      );
 
-    let right = false;
+      this.changeStat(checkAnswers);
+      this.props.actionWriteAnswers(checkAnswers);
+    }
+  };
 
-    for (let i = 0; i < arrayOfMelody.length; i++) {
-      if (arrayOfMelody[i] === arrayOfAnswer[i]) {
-        hits.push(true);
-      } else {
-        hits.push(false);
-      }
+  getKeysArrayOfMeloday = sequence => {
+    const arr = sequence.map(elem => elem.key);
+
+    return arr;
+  };
+
+  getArrayOfEqualsOfAnswers = (arr1, arr2) => {
+    const checkAnswers = [];
+    for (let i = 0; i < arr1.length; i++) {
+      checkAnswers.push(arr1[i] === arr2[i]);
     }
 
-    if (hits.indexOf(false) === -1) {
-      right = true;
-    }
+    return checkAnswers;
+  };
 
-    console.log(hits);
+  changeStat = arr => {
+    if (arr.indexOf(false) === -1) {
+      this.props.actionIncrementRightAnswers();
+    } else {
+      this.props.actionIncrementAmountOfAnswers();
+    }
+  };
+
+  nextButtonHandler = () => {
+    this.setNewMelody();
+
+    this.clearAnswers();
+
+    this.props.actionClearWrittenMelody();
   };
 
   render() {
     const modeWrite = this.props.dictation.modeWrite || false;
 
     const needToWriteNote = this.props.needToWriteNote;
+
+    const {
+      amountOfNotes,
+      sequenceOfMelody,
+      sequenceOfWrittenMelody,
+      answerGiven,
+      answers
+    } = this.props.dictation;
+
+    const { nextButtonHandler } = this;
 
     return (
       <div>
@@ -127,17 +171,19 @@ export default class Dictation extends Component {
           changeMode={this.changeMode}
           clearButtonHandler={this.clearButtonHandler}
           checkAnswerHandler={this.checkAnswerHandler}
+          sequenceOfWrittenMelody={sequenceOfWrittenMelody}
+          amountOfNotes={amountOfNotes}
+          answerGiven={answerGiven}
+          nextButtonHandler={nextButtonHandler}
         />
-        <p>
-          {needToWriteNote
-            ? this.props.dictation.sequenceOfWrittenMelody.reduce(
-                (output, elem) => {
-                  return output + " " + elem.note;
-                },
-                ""
-              )
-            : null}
-        </p>
+        <DuctationOutput
+          amountOfNotes={amountOfNotes}
+          needToWriteNote={needToWriteNote}
+          sequenceOfMelody={sequenceOfMelody}
+          sequenceOfWrittenMelody={sequenceOfWrittenMelody}
+          answerGiven={answerGiven}
+          answers={answers}
+        />
       </div>
     );
   }

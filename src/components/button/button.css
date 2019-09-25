@@ -101,6 +101,26 @@
 	box-shadow: 0 0 0 3px rgba(197, 81, 92, .5);
 }
 
+.button.danger-outline {
+	color: #de5b67;
+	border-color: #de5b67;
+}
+
+.button.danger-outline:disabled:hover {
+	background: none;
+}
+
+.button.danger-outline:hover,
+.button.danger-outline.active {
+	background-color: #c5515c;
+	border-color: #c5515c;
+}
+
+.button.danger-outline:active,
+.button.danger-outline.active {
+	box-shadow: 0 0 0 3px rgba(197, 81, 92, .5);
+}
+
 .button.info-outline {
 	color: #17a2b8;
 	border-color: #17a2b8;

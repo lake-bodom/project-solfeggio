@@ -17,9 +17,8 @@ export const actionNeedToWriteNote = bool => ({
 
 export const actionWritePlayNote = (note, needToWriteNote) => ({
   type: WRITE_PLAY_NOTE,
-  note,
-  id: Date.now(),
-  needToWriteNote
+  needToWriteNote,
+  payload: { ...note, id: Date.now() }
 });
 
 export const actionInitDictation = bool => ({

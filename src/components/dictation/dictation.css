@@ -3,3 +3,28 @@
 	justify-content: space-between;
 	width: 482px;
 }
+
+.dictation-output {
+	margin-top: 20px;
+}
+
+.dictation-output h3 {
+	margin-bottom: 10px;
+}
+
+.dictation-output-element:not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.dictation-output-element .index-output-element {
+	font-weight: bold;
+}
+
+.dictation-output-element .right {
+	color: green;
+}
+
+.dictation-output-element .wrong {
+	color: red;
+	text-decoration: line-through;
+}

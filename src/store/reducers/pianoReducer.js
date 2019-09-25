@@ -1,8 +1,9 @@
 import {
   getBaseArrayOfNotes,
-  getFullArrayOfNotes,
-  getIndexes
+  getFullArrayAndMapIndexes,
+  setVisualEffect
 } from "../arrayOfNotes";
+
 import {
   CHANGE_NOTES_RANGE,
   SET_BORDERS_OF_RANGE,
@@ -10,39 +11,24 @@ import {
   TURN_OFF_VISUALIZATION
 } from "../actionTypes";
 
+import { dataOfIntervals } from "../dataOfIntervals";
+
 const baseArrOfNotes = getBaseArrayOfNotes();
-const arrOfNotes = getFullArrayOfNotes(baseArrOfNotes);
-
-const setVisualEffect = ({ arrOfNotes, sequence, type, active }) => {
-  let arr = [...arrOfNotes];
-  sequence.forEach(element => {
-    const { i, j } = getIndexes(element);
-
-    if (active) {
-      arr[i][j][type] = true;
-    } else {
-      if (!type) {
-        arr[i][j].right = false;
-        arr[i][j].wrong = false;
-      } else {
-        arr[i][j][type] = false;
-      }
-    }
-  });
-
-  return arr;
-};
+const { arrOfNotes, mapIndex } = getFullArrayAndMapIndexes(baseArrOfNotes);
+const numberOfSemitones = dataOfIntervals.map(elem => elem.numberOfSemitones);
+const minAmountOfNotes = Math.max.apply(null, numberOfSemitones);
 
 const initialState = {
   baseArrOfNotes,
   arrOfNotes,
+  mapIndex,
   firstBorder: { index: 0, key: baseArrOfNotes[0].key },
   secondBorder: {
     index: baseArrOfNotes.length - 1,
     key: baseArrOfNotes[baseArrOfNotes.length - 1].key
   },
   sliceArr: baseArrOfNotes,
-  minAmountOfNotes: 12
+  minAmountOfNotes
 };
 
 export default (state = initialState, action) => {
@@ -56,13 +42,13 @@ export default (state = initialState, action) => {
         state.firstBorder.index,
         state.secondBorder.index
       );
-      const arrOfNotes = getFullArrayOfNotes(sliceArr);
+      const { arrOfNotes, mapIndex } = getFullArrayAndMapIndexes(sliceArr);
 
-      return { ...state, arrOfNotes, sliceArr };
+      return { ...state, arrOfNotes, sliceArr, mapIndex };
     }
 
     case SHOW_NOTES_ON_THE_PIANO: {
-      let { arrOfNotes } = state;
+      let { arrOfNotes, mapIndex } = state;
 
       const { sequence, type } = action.payload;
 
@@ -72,7 +58,8 @@ export default (state = initialState, action) => {
           arrOfNotes,
           sequence,
           type,
-          active: true
+          active: true,
+          mapIndex
         })
       };
     }
@@ -88,7 +75,8 @@ export default (state = initialState, action) => {
           arrOfNotes,
           sequence,
           type,
-          active: false
+          active: false,
+          mapIndex
         })
       };
     }

@@ -40,7 +40,6 @@ export default class ActivateMidi extends Component {
       const options = { sequence: [note], type: "active" };
 
       if (eventKey === keydown && velocity !== 0) {
-        console.log(event);
         this.props.actionShowNotesOnThePiano(options);
         this.props.play(note);
       } else if (eventKey === keyup || velocity === 0) {

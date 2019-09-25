@@ -37,12 +37,14 @@ class App extends Component {
     });
   }
 
-  play = (note, onlyPlay) => {
+  play = (key, onlyPlay) => {
     const { duration } = this.state;
-    this.midiSounds.playChordNow(1, [note], duration);
+    this.midiSounds.playChordNow(1, [key], duration);
 
     if (!onlyPlay) {
       if (this.props.needToWriteNote) {
+        const note = this.props.sliceArr.find(elem => elem.key === key);
+
         if (this.props.modeDictation) {
           this.props.actionWritePlayNote(note, true);
         } else {
