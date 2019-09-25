@@ -15,7 +15,8 @@ const LeftSideButtons = ({
   actionIntervalsSettingsAction,
   actionNextButtonClick,
   actionGetNextInterval,
-  actionTurnOffVisualization
+  actionTurnOffVisualization,
+  actionHideAnswer
 }) => {
   const playInterval = () => {
     let first, second;
@@ -57,6 +58,7 @@ const LeftSideButtons = ({
     actionNextButtonClick(!settingsIsOpen);
     actionGetNextInterval({ sliceArr });
     actionTurnOffVisualization({ sequence: sequenceOfNotes });
+    actionHideAnswer();
     playInterval();
   };
 

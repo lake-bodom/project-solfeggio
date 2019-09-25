@@ -1,11 +1,11 @@
 import React from "react";
-import Stat from "./stat/Stat";
+import Stat from "../../containers/statContainer";
 import "./header.css";
 
-const Header = ({ statistics }) => {
+const Header = () => {
   return (
     <div className="header">
-      <Stat stat={statistics} />
+      <Stat />
     </div>
   );
 };

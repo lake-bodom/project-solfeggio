@@ -13,7 +13,8 @@ import {
 import {
   actionStatisticsClearing,
   actionIncrementRightAnswers,
-  actionIncrementAmountOfAnswers
+  actionIncrementAmountOfAnswers,
+  actionHideAnswer
 } from "../store/actions/statisticsActions";
 
 import {
@@ -41,7 +42,8 @@ const mapDispatchToProps = {
   actionStatisticsClearing,
   actionIncrementRightAnswers,
   actionIncrementAmountOfAnswers,
-  actionClearWrittenMelody
+  actionClearWrittenMelody,
+  actionHideAnswer
 };
 
 export default connect(

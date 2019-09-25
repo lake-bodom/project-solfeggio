@@ -9,7 +9,8 @@ import {
 
 import {
   actionStatisticsClearing,
-  actionNextButtonClick
+  actionNextButtonClick,
+  actionHideAnswer
 } from "../store/actions/statisticsActions";
 
 import { actionTurnOffVisualization } from "../store/actions/pianoActions";
@@ -29,7 +30,8 @@ const mapDispatchToProps = {
   actionNextButtonClick,
   actionGetNextInterval,
   actionTurnOffVisualization,
-  actionStatisticsClearing
+  actionStatisticsClearing,
+  actionHideAnswer
 };
 
 export default connect(

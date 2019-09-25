@@ -1,11 +1,6 @@
 import React from "react";
-
 const StatIntervalName = ({ name }) => {
-  return (
-    <React.Fragment>
-      <span>{name}</span>
-    </React.Fragment>
-  );
+  return <span>{name}</span>;
 };
 
 export default StatIntervalName;

@@ -2,6 +2,15 @@
 	margin-top: 20px;
 } */
 
+.buttonGroup.flex {
+	display: flex;
+	justify-content: center;
+}
+
+.buttonGroup.flex .button:first-child {
+	margin-right: 20px;
+}
+
 .buttonGroup.horizontal>.button {
 	margin-left: 0;
 	border-radius: 0;

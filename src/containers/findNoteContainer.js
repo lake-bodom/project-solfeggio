@@ -6,7 +6,8 @@ import { actionSetActiveNote } from "../store/actions/notesActions";
 import {
   actionStatisticsClearing,
   actionIncrementRightAnswers,
-  actionIncrementAmountOfAnswers
+  actionIncrementAmountOfAnswers,
+  actionHideAnswer
 } from "../store/actions/statisticsActions";
 
 import { actionNeedToWriteNote } from "../store/actions/applicationActions";
@@ -31,7 +32,8 @@ const mapDispatchToProps = {
   actionIncrementAmountOfAnswers,
   actionNeedToWriteNote,
   actionShowNotesOnThePiano,
-  actionTurnOffVisualization
+  actionTurnOffVisualization,
+  actionHideAnswer
 };
 
 export default connect(

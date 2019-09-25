@@ -4,7 +4,7 @@ import StatIntervalName from "./statInfo/StatIntervalName";
 import "./stat.css";
 
 const Stat = ({
-  stat: { nameOfInterval, right, rightAnswers, amountOfAnswers }
+  stat: { nameOfInterval, right, rightAnswers, amountOfAnswers, showAnswer }
 }) => {
   const statBody = nameOfInterval ? (
     <StatIntervalName name={nameOfInterval} />
@@ -14,7 +14,7 @@ const Stat = ({
 
   let classesNames = ["stat"];
 
-  if (nameOfInterval) {
+  if (showAnswer) {
     if (right) {
       classesNames.push("rightAnswer");
     } else {

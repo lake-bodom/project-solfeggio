@@ -10,7 +10,8 @@ const DictationOptionsButtons = ({
   sequenceOfWrittenMelody,
   amountOfNotes,
   answerGiven,
-  nextButtonHandler
+  nextButtonHandler,
+  settingsButtonHandler
 }) => {
   const access = amountOfNotes === sequenceOfWrittenMelody.length;
 
@@ -51,7 +52,9 @@ const DictationOptionsButtons = ({
           Проверить
         </Button>
       </ButtonsGroup>
-      <Button cls="primary">Настроки</Button>
+      <Button cls="primary" onClick={settingsButtonHandler}>
+        Настроки
+      </Button>
     </div>
   );
 };

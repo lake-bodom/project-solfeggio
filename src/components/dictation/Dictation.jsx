@@ -4,8 +4,13 @@ import "./dictation.css";
 import DictationPlayButtons from "./DictationPlayButtons";
 import DictationOptionsButtons from "./DictationOptionsButtons";
 import DuctationOutput from "./DuctationOutput";
+import DictationSettings from "./DictationSettings";
 
 export default class Dictation extends Component {
+  state = {
+    modalIsOpen: false
+  };
+
   componentDidMount() {
     const { defaultModeWrite } = this.props.dictation;
     this.props.actionWritePlayNote(null, false);
@@ -143,6 +148,16 @@ export default class Dictation extends Component {
     this.clearAnswers();
 
     this.props.actionClearWrittenMelody();
+
+    this.props.actionHideAnswer();
+  };
+
+  settingsButtonHandler = () => {
+    this.setState(prevState => {
+      return {
+        modalIsOpen: !prevState.modalIsOpen
+      };
+    });
   };
 
   render() {
@@ -158,7 +173,7 @@ export default class Dictation extends Component {
       answers
     } = this.props.dictation;
 
-    const { nextButtonHandler } = this;
+    const { nextButtonHandler, settingsButtonHandler } = this;
 
     return (
       <div>
@@ -175,6 +190,7 @@ export default class Dictation extends Component {
           amountOfNotes={amountOfNotes}
           answerGiven={answerGiven}
           nextButtonHandler={nextButtonHandler}
+          settingsButtonHandler={settingsButtonHandler}
         />
         <DuctationOutput
           amountOfNotes={amountOfNotes}
@@ -184,6 +200,10 @@ export default class Dictation extends Component {
           answerGiven={answerGiven}
           answers={answers}
         />
+
+        {this.state.modalIsOpen ? (
+          <DictationSettings settingsButtonHandler={settingsButtonHandler} />
+        ) : null}
       </div>
     );
   }

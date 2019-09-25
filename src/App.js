@@ -5,7 +5,7 @@ import MIDISounds from "midi-sounds-react";
 import { Route, Switch } from "react-router-dom";
 
 import Menu from "./containers/menuContainer";
-import Header from "./containers/headerContainer";
+import Header from "./components/header/Header";
 import Piano from "./containers/pianoContainer";
 
 import ChangeRangeOfNotes from "./containers/changeRangeOfNotesContainer";

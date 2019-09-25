@@ -2,14 +2,16 @@ import {
   INCREMENT_RIGHT_ANSWERS,
   INCREMENT_AMOUNT_OF_ANSWERS,
   NEXT_BUTTON_CLICK,
-  STATISTICS_CLEARING
+  STATISTICS_CLEARING,
+  STATISTICS_HIDE_ANSWER
 } from "../actionTypes";
 
 const initialState = {
   nameOfInterval: "",
   rightAnswers: 0,
   amountOfAnswers: 0,
-  right: false
+  right: false,
+  showAnswer: false
 };
 
 export default (state = initialState, action) => {
@@ -26,7 +28,8 @@ export default (state = initialState, action) => {
         rightAnswers,
         amountOfAnswers,
         nameOfInterval: action.payload ? action.payload : null,
-        right: true
+        right: true,
+        showAnswer: true
       };
     }
     case INCREMENT_AMOUNT_OF_ANSWERS: {
@@ -35,12 +38,17 @@ export default (state = initialState, action) => {
         ...state,
         amountOfAnswers,
         nameOfInterval: action.payload ? action.payload : null,
-        right: false
+        right: false,
+        showAnswer: true
       };
     }
 
     case NEXT_BUTTON_CLICK: {
       return { ...state, nameOfInterval: "", right: false };
+    }
+
+    case STATISTICS_HIDE_ANSWER: {
+      return { ...state, showAnswer: false };
     }
     default: {
       return state;

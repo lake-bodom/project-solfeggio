@@ -44,6 +44,7 @@ export default class FindNote extends Component {
 
     setTimeout(() => {
       this.props.actionTurnOffVisualization(options);
+      this.props.actionHideAnswer();
     }, 2000);
   };
 
@@ -64,6 +65,7 @@ export default class FindNote extends Component {
     setTimeout(() => {
       this.props.actionTurnOffVisualization(options1);
       this.props.actionTurnOffVisualization(options2);
+      this.props.actionHideAnswer();
     }, 1500);
   };
 

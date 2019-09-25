@@ -26,5 +26,15 @@
 
 .dictation-output-element .wrong {
 	color: red;
-	text-decoration: line-through;
+	position: relative;
+}
+
+.dictation-output-element .wrong::after {
+	position: absolute;
+	display: block;
+	content: "";
+	width: 100%;
+	border-top: 3px solid red;
+	right: 0;
+	top: 11px;
 }
