@@ -4,7 +4,8 @@ import {
   ADD_NOTE_TO_ANSWER_ARRAY,
   POP_LAST_ELEM_FROM_ANSWER_ARRAY,
   WRITE_ANSWERS,
-  CLEAR_WRITTEN_MELODY
+  CLEAR_WRITTEN_MELODY,
+  CHANGE_SETTINGS
 } from "../actionTypes";
 
 export const actionGetNewMelody = sliceArr => ({
@@ -33,4 +34,9 @@ export const actionWriteAnswers = arr => ({
 
 export const actionClearWrittenMelody = () => ({
   type: CLEAR_WRITTEN_MELODY
+});
+
+export const actionChangeSettings = settingsObj => ({
+  type: CHANGE_SETTINGS,
+  payload: settingsObj
 });

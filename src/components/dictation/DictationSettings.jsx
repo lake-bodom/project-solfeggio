@@ -1,43 +1,91 @@
-import React from "react";
+import React, { Component } from "react";
 import ModalWindow from "../modalWindow/ModalWindow";
-import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
-import Button from "../button/Button";
+import { SelectAmountOfNotes, SelectModes } from "./selectComponents";
 
-const DictationSettings = ({ settingsButtonHandler }) => {
-  const amountOfNotes = [3, 4, 5, 6, 7];
+export default class DictationSettings extends Component {
+  state = {
+    amountOfNotes: 4,
+    defaultModeWrite: false,
+    modeWrite: false
+  };
 
-  const selectBody = amountOfNotes.map(elem => {
+  componentDidMount() {
+    const { amountOfNotes, defaultModeWrite } = this.props;
+    this.setState({
+      amountOfNotes,
+      defaultModeWrite
+    });
+  }
+
+  selectAmountOfNotesHandler = e => {
+    this.setState({
+      amountOfNotes: +e.target.value
+    });
+  };
+
+  selectModesHandler = e => {
+    let defaultModeWrite, modeWrite;
+    const value = e.target.value;
+
+    if (value === "true") {
+      defaultModeWrite = true;
+      modeWrite = true;
+    }
+    if (value === "false") {
+      defaultModeWrite = false;
+      modeWrite = false;
+    }
+    this.setState({
+      defaultModeWrite,
+      modeWrite
+    });
+  };
+
+  saveButtonHandler = () => {
+    this.props.actionChangeSettings(this.state);
+  };
+
+  cancelButtonHandler = () => {
+    this.setState({
+      amountOfNotes: this.props.amountOfNotes,
+      defaultModeWrite: this.props.defaultModeWrite
+    });
+  };
+
+  render() {
+    const {
+      settingsButtonHandler,
+      amountOfNotes,
+      defaultModeWrite
+    } = this.props;
+
+    const {
+      selectAmountOfNotesHandler,
+      selectModesHandler,
+      saveButtonHandler,
+      cancelButtonHandler
+    } = this;
     return (
-      <option value={elem} key={elem}>
-        {elem}
-      </option>
+      <ModalWindow
+        close={settingsButtonHandler}
+        saveButton={true}
+        saveButtonName={"Сохранить"}
+        cancelButton={true}
+        cancelButtonName={"Отменить"}
+        saveButtonHandler={saveButtonHandler}
+        cancelButtonHandler={cancelButtonHandler}
+      >
+        <React.Fragment>
+          <h3>Настройки диктанта</h3>
+          <h4>Количество нот:</h4>
+          <SelectAmountOfNotes
+            value={amountOfNotes}
+            onChange={selectAmountOfNotesHandler}
+          />
+          <h4>Режим по умолчанию:</h4>
+          <SelectModes value={defaultModeWrite} onChange={selectModesHandler} />
+        </React.Fragment>
+      </ModalWindow>
     );
-  });
-
-  //   const SelectAmountJSX = <select>{selectBody}</select>;
-
-  console.log(selectBody);
-  /* const SelectModeJSX = (
-    <select>
-      <option value={false}>Играть</option>
-      <option value={true}>Писать</option>
-    </select>
-  );*/
-  return (
-    <ModalWindow close={settingsButtonHandler}>
-      <React.Fragment>
-        <h3>Настройки диктанта</h3>
-        <h4>Количество нот:</h4>
-        {/* <SelectAmountJSX /> */}
-        <h4>Режим по умолчанию:</h4>
-        {/* <SelectModeJSX /> */}
-        <ButtonsGroup cls="flex">
-          <Button cls="info">Сохранить</Button>
-          <Button cls="danger">Отменить</Button>
-        </ButtonsGroup>
-      </React.Fragment>
-    </ModalWindow>
-  );
-};
-
-export default DictationSettings;
+  }
+}

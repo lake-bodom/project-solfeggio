@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import "./modalWindow.css";
+import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
+import Button from "../button/Button";
 
 export default class ModalWindow extends Component {
   state = {
@@ -35,13 +37,42 @@ export default class ModalWindow extends Component {
     }, 100);
   };
 
+  saveHandler = () => {
+    this.closeHandler();
+    this.props.saveButtonHandler();
+  };
+
+  cancelHandler = () => {
+    this.closeHandler();
+    this.props.cancelButtonHandler();
+  };
+
   render() {
+    const {
+      saveButton,
+      saveButtonName,
+      cancelButton,
+      cancelButtonName
+    } = this.props;
+
     return ReactDOM.createPortal(
       <div className="modal-window" style={{ opacity: this.state.opacity }}>
         <span className="close" onClick={this.closeHandler}>
           &times;
         </span>
         {this.props.children}
+        <ButtonsGroup cls="flex">
+          {saveButton ? (
+            <Button onClick={this.saveHandler} cls="info">
+              {saveButtonName}
+            </Button>
+          ) : null}
+          {cancelButton ? (
+            <Button onClick={this.cancelHandler} cls="danger">
+              {cancelButtonName}
+            </Button>
+          ) : null}
+        </ButtonsGroup>
       </div>,
       this.modal
     );

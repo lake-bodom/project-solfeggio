@@ -4,7 +4,7 @@ import "./dictation.css";
 import DictationPlayButtons from "./DictationPlayButtons";
 import DictationOptionsButtons from "./DictationOptionsButtons";
 import DuctationOutput from "./DuctationOutput";
-import DictationSettings from "./DictationSettings";
+import DictationSettings from "../../containers/dictationSettingsContainer";
 
 export default class Dictation extends Component {
   state = {
