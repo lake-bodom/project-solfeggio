@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import {
   actionSetBordersOfRange,
-  actionChangeNotesRange
+  actionUpdatePianoKeys
 } from "../store/actions/pianoActions";
 
 const mapStateToProps = ({ piano }) => ({
@@ -12,7 +12,7 @@ const mapStateToProps = ({ piano }) => ({
 
 const mapDispatchToProps = {
   actionSetBordersOfRange,
-  actionChangeNotesRange
+  actionUpdatePianoKeys
 };
 export default connect(
   mapStateToProps,

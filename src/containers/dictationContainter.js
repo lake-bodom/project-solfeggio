@@ -1,5 +1,9 @@
-import { connect } from "react-redux";
 import Dictation from "../components/dictation/Dictation";
+import { connect } from "react-redux";
+
+import {
+  actionUpdatePianoKeys
+} from "../store/actions/pianoActions";
 
 import {
   actionGetNewMelody,
@@ -20,7 +24,8 @@ import {
 import {
   actionNeedToWriteNote,
   actionInitDictation,
-  actionWritePlayNote
+  actionWritePlayNote,
+  actionSetMode
 } from "../store/actions/applicationActions";
 
 const mapStateToProps = ({ piano, dictation, application }) => ({
@@ -43,7 +48,9 @@ const mapDispatchToProps = {
   actionIncrementRightAnswers,
   actionIncrementAmountOfAnswers,
   actionClearWrittenMelody,
-  actionHideAnswer
+  actionHideAnswer,
+  actionSetMode,
+  actionUpdatePianoKeys
 };
 
 export default connect(

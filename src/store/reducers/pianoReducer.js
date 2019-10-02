@@ -5,7 +5,7 @@ import {
 } from "../arrayOfNotes";
 
 import {
-  CHANGE_NOTES_RANGE,
+  UPDATE_PIANO_KEYS,
   SET_BORDERS_OF_RANGE,
   SHOW_NOTES_ON_THE_PIANO,
   TURN_OFF_VISUALIZATION
@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
       return { ...state, ...action.payload };
     }
 
-    case CHANGE_NOTES_RANGE: {
+    case UPDATE_PIANO_KEYS: {
       const sliceArr = getBaseArrayOfNotes(
         state.firstBorder.index,
         state.secondBorder.index

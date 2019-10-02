@@ -1,5 +1,7 @@
 import React from "react";
 import "./intervals.css";
+import Header from "../header/Header";
+import Piano from "../../containers/pianoContainer";
 
 import IntervalsOptionButtonsContainer from "../../containers/IntervalsOptionButtonsContainer";
 import ListOfIntervalsContainer from "../../containers/listOfIntervalsContainer";

@@ -23,6 +23,10 @@ export default class Dictation extends Component {
 
     this.setNewMelody();
     this.props.actionInitDictation(true);
+    this.props.actionSetMode({ mode: "Музыкальный диктант", stat: true });
+    this.props.actionUpdatePianoKeys();
+    this.clearAnswers();
+    this.props.actionClearWrittenMelody();
   }
 
   componentWillUnmount() {

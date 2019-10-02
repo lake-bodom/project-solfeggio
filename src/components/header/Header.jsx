@@ -2,10 +2,11 @@ import React from "react";
 import Stat from "../../containers/statContainer";
 import "./header.css";
 
-const Header = () => {
+const Header = ({ stat, mode }) => {
   return (
     <div className="header">
-      <Stat />
+      {stat ? <Stat /> : null}
+      <h2>{mode}</h2>
     </div>
   );
 };

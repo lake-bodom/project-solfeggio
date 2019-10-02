@@ -7,12 +7,12 @@ import PropTypes from "prop-types";
 import Button from "../button/Button";
 
 const ChangeRangeOfNotes = ({
-  actionChangeNotesRange,
+  actionUpdatePianoKeys,
   actionSetBordersOfRange,
   piano: { firstBorder, secondBorder, baseArrOfNotes, minAmountOfNotes }
 }) => {
   const clickHandler = () => {
-    actionChangeNotesRange();
+    actionUpdatePianoKeys();
   };
 
   return (
@@ -22,7 +22,7 @@ const ChangeRangeOfNotes = ({
         secondBorder={secondBorder}
         nameOfSelect="firstBorder"
         actionSetBordersOfRange={actionSetBordersOfRange}
-        actionChangeNotesRange={actionChangeNotesRange}
+        actionUpdatePianoKeys={actionUpdatePianoKeys}
         baseArrOfNotes={baseArrOfNotes}
         minAmountOfNotes={minAmountOfNotes}
       />
@@ -31,7 +31,7 @@ const ChangeRangeOfNotes = ({
         secondBorder={secondBorder}
         nameOfSelect="secondBorder"
         actionSetBordersOfRange={actionSetBordersOfRange}
-        actionChangeNotesRange={actionChangeNotesRange}
+        actionUpdatePianoKeys={actionUpdatePianoKeys}
         baseArrOfNotes={baseArrOfNotes}
         minAmountOfNotes={minAmountOfNotes}
       />
@@ -42,7 +42,7 @@ const ChangeRangeOfNotes = ({
 };
 
 ChangeRangeOfNotes.propTypes = {
-  actionChangeNotesRange: PropTypes.func.isRequired,
+  actionUpdatePianoKeys: PropTypes.func.isRequired,
   actionSetBordersOfRange: PropTypes.func.isRequired,
   piano: PropTypes.object
 };

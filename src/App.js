@@ -5,7 +5,7 @@ import MIDISounds from "midi-sounds-react";
 import { Route, Switch } from "react-router-dom";
 
 import Menu from "./containers/menuContainer";
-import Header from "./components/header/Header";
+import Header from "./containers/headerContainer";
 import Piano from "./containers/pianoContainer";
 
 import ChangeRangeOfNotes from "./containers/changeRangeOfNotesContainer";
@@ -13,6 +13,7 @@ import Intervals from "./components/intervals/Intervals";
 import ActivateMidiContainer from "./containers/activateMidiContainer";
 import FindNote from "./containers/findNoteContainer";
 import Dictation from "./containers/dictationContainter";
+import FreeMode from "./containers/freeModeContainer";
 
 class App extends Component {
   componentDidMount() {
@@ -57,11 +58,16 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Menu />
+        <Menu play={this.play} />
         <Header />
         <Piano play={this.play} />
 
         <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => <FreeMode play={this.play} />}
+          />
           <Route
             path="/intervals"
             render={() => <Intervals play={this.play} />}
@@ -70,11 +76,11 @@ class App extends Component {
             path="/find-note"
             render={() => <FindNote play={this.play} />}
           />
-          <Route path="/options" render={() => <ChangeRangeOfNotes />} />
           <Route
             path="/dictation"
             render={() => <Dictation play={this.play} />}
           />
+          <Route path="/options" render={() => <ChangeRangeOfNotes />} />
         </Switch>
 
         <ActivateMidiContainer play={this.play} />

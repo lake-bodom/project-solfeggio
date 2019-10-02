@@ -5,6 +5,8 @@ import Button from "../button/Button";
 export default class FindNote extends Component {
   componentDidMount() {
     this.props.actionSetActiveNote(this.props.sliceArr);
+    this.props.actionSetMode({ mode: "Искать ноту", stat: true })
+    this.props.actionUpdatePianoKeys();
   }
 
   componentWillUnmount() {

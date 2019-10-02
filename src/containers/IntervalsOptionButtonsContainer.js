@@ -13,7 +13,9 @@ import {
   actionHideAnswer
 } from "../store/actions/statisticsActions";
 
-import { actionTurnOffVisualization } from "../store/actions/pianoActions";
+import { actionTurnOffVisualization, actionUpdatePianoKeys } from "../store/actions/pianoActions";
+
+import { actionSetMode } from "../store/actions/applicationActions";
 
 const mapStateToProps = ({ intervals, piano }) => ({
   sliceArr: piano.sliceArr,
@@ -31,7 +33,9 @@ const mapDispatchToProps = {
   actionGetNextInterval,
   actionTurnOffVisualization,
   actionStatisticsClearing,
-  actionHideAnswer
+  actionHideAnswer,
+  actionSetMode,
+  actionUpdatePianoKeys
 };
 
 export default connect(

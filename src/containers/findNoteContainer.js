@@ -10,11 +10,12 @@ import {
   actionHideAnswer
 } from "../store/actions/statisticsActions";
 
-import { actionNeedToWriteNote } from "../store/actions/applicationActions";
+import { actionNeedToWriteNote, actionSetMode } from "../store/actions/applicationActions";
 
 import {
   actionShowNotesOnThePiano,
-  actionTurnOffVisualization
+  actionTurnOffVisualization,
+  actionUpdatePianoKeys
 } from "../store/actions/pianoActions";
 
 const mapStateToProps = ({ statistics, notes, piano, application }) => ({
@@ -33,7 +34,9 @@ const mapDispatchToProps = {
   actionNeedToWriteNote,
   actionShowNotesOnThePiano,
   actionTurnOffVisualization,
-  actionHideAnswer
+  actionHideAnswer,
+  actionSetMode,
+  actionUpdatePianoKeys
 };
 
 export default connect(

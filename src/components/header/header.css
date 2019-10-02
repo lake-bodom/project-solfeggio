@@ -1,7 +1,13 @@
 .header {
-	height: 100px;
-	padding: 20px 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  margin: 0 auto;
+  height: 100px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header h2 {
+  color: #535397;
+  /* align-self: flex-end; */
 }

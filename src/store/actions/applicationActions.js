@@ -2,7 +2,8 @@ import {
   MENU_ACTION,
   NEED_TO_WRITE_NOTE,
   WRITE_PLAY_NOTE,
-  INIT_DICTATION
+  INIT_DICTATION,
+  SET_MODE
 } from "../actionTypes";
 
 export const actionMenuAction = isOpen => ({
@@ -25,3 +26,9 @@ export const actionInitDictation = bool => ({
   type: INIT_DICTATION,
   payload: bool
 });
+
+export const actionSetMode = ({ mode, stat }) => ({
+  type: SET_MODE,
+  payload: { mode, stat }
+});
+

@@ -10,6 +10,9 @@ class IntervalsOptionButtons extends React.Component {
       sliceArr: this.props.sliceArr,
       initNewIntervalSequence
     });
+
+    this.props.actionSetMode({ mode: "Поиск интервала", stat: true });
+    this.props.actionUpdatePianoKeys();
   }
 
   componentWillUnmount() {

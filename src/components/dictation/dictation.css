@@ -25,7 +25,7 @@
 }
 
 .dictation-output-element .wrong {
-	color: red;
+	color: #de5b67;
 	position: relative;
 }
 
@@ -34,7 +34,7 @@
 	display: block;
 	content: "";
 	width: 100%;
-	border-top: 3px solid red;
+	border-top: 3px solid #de5b67;
 	right: 0;
 	top: 11px;
 }

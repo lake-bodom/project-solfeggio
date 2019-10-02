@@ -1,13 +1,12 @@
 import {
-  CHANGE_NOTES_RANGE,
+  UPDATE_PIANO_KEYS,
   SET_BORDERS_OF_RANGE,
   SHOW_NOTES_ON_THE_PIANO,
   TURN_OFF_VISUALIZATION
 } from "../actionTypes";
 
-export const actionChangeNotesRange = active => ({
-  type: CHANGE_NOTES_RANGE,
-  payload: active
+export const actionUpdatePianoKeys = () => ({
+  type: UPDATE_PIANO_KEYS
 });
 
 export const actionSetBordersOfRange = arr => ({

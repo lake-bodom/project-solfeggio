@@ -5,7 +5,7 @@ import "./menu.css";
 import Burger from "../burger/Burger";
 import MenuBody from "./MenuBody";
 
-const Menu = ({ menuIsOpen, actionMenuAction }) => {
+const Menu = ({ menuIsOpen, actionMenuAction, play }) => {
   const leftBurger = menuIsOpen ? "260px" : "10px";
   const leftMenuBody = menuIsOpen ? "0px" : "-1000px";
 
