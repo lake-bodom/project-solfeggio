@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+
 import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
 import Button from "../button/Button";
+
+import PropTypes from "prop-types";
 
 export default class FindNote extends Component {
   componentDidMount() {
     this.props.actionSetActiveNote(this.props.sliceArr);
-    this.props.actionSetMode({ mode: "Искать ноту", stat: true })
+    this.props.actionSetMode({ mode: "Искать ноту", stat: true });
     this.props.actionUpdatePianoKeys();
   }
 
@@ -112,3 +115,37 @@ export default class FindNote extends Component {
     );
   }
 }
+
+FindNote.propTypes = {
+  play: PropTypes.func.isRequired,
+  statistics: PropTypes.shape({
+    nameOfInterval: PropTypes.string.isRequired,
+    rightAnswers: PropTypes.number.isRequired,
+    amountOfAnswers: PropTypes.number.isRequired,
+    right: PropTypes.bool.isRequired,
+    showAnswer: PropTypes.bool.isRequired,
+  }).isRequired,
+  note: PropTypes.number.isRequired,
+  sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  playNote: PropTypes.object,
+  needToWriteNote: PropTypes
+};
+
+/*
+{
+  
+  
+  "playNote": null,
+  "needToWriteNote": false,
+  "actionStatisticsClearing": "fn()",
+  "actionSetActiveNote": "fn()",
+  "actionIncrementRightAnswers": "fn()",
+  "actionIncrementAmountOfAnswers": "fn()",
+  "actionNeedToWriteNote": "fn()",
+  "actionShowNotesOnThePiano": "fn()",
+  "actionTurnOffVisualization": "fn()",
+  "actionHideAnswer": "fn()",
+  "actionSetMode": "fn()",
+  "actionUpdatePianoKeys": "fn()"
+}
+*/

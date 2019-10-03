@@ -22,7 +22,7 @@ const Button = ({ onClick, children, cls, active, disabled }) => {
 };
 
 Button.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.string,
   onClick: PropTypes.func,
   cls: PropTypes.string,
   active: PropTypes.bool,
@@ -31,7 +31,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   children: "click",
-  onClick: () => {},
+  onClick: () => { },
   cls: "secondary-outline",
   active: false
 };

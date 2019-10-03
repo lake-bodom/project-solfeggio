@@ -1,6 +1,5 @@
 import React from "react";
 import SelectOfRange from "./SelectOfRange";
-import "./changeRangeOfNotes.css";
 
 import PropTypes from "prop-types";
 
@@ -17,12 +16,12 @@ const ChangeRangeOfNotes = ({
 
   return (
     <div className="changeRangeOfNotes">
+      <h3>Изменить диапазон:</h3>
       <SelectOfRange
         firstBorder={firstBorder}
         secondBorder={secondBorder}
         nameOfSelect="firstBorder"
         actionSetBordersOfRange={actionSetBordersOfRange}
-        actionUpdatePianoKeys={actionUpdatePianoKeys}
         baseArrOfNotes={baseArrOfNotes}
         minAmountOfNotes={minAmountOfNotes}
       />
@@ -31,7 +30,6 @@ const ChangeRangeOfNotes = ({
         secondBorder={secondBorder}
         nameOfSelect="secondBorder"
         actionSetBordersOfRange={actionSetBordersOfRange}
-        actionUpdatePianoKeys={actionUpdatePianoKeys}
         baseArrOfNotes={baseArrOfNotes}
         minAmountOfNotes={minAmountOfNotes}
       />

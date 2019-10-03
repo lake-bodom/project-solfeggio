@@ -1,6 +1,6 @@
-import React from "react";
-import LeftSideButtons from "./LeftSideButtons";
-import RightSideButtons from "./RightSideButtons";
+import React from 'react';
+import LeftSideButtons from './LeftSideButtons';
+import RightSideButtons from './RightSideButtons';
 
 class IntervalsOptionButtons extends React.Component {
   componentDidMount() {
@@ -8,17 +8,14 @@ class IntervalsOptionButtons extends React.Component {
 
     this.props.actionGetNextInterval({
       sliceArr: this.props.sliceArr,
-      initNewIntervalSequence
+      initNewIntervalSequence,
     });
 
-    this.props.actionSetMode({ mode: "Поиск интервала", stat: true });
+    this.props.actionSetMode({mode: 'Поиск интервала', stat: true});
     this.props.actionUpdatePianoKeys();
   }
 
   componentWillUnmount() {
-    const sequenceOfNotes = this.props.sequenceOfNotes;
-    const sequence = [sequenceOfNotes[0], sequenceOfNotes[1]];
-    this.props.actionTurnOffVisualization({ sequence });
     this.props.actionStatisticsClearing();
     this.props.actionIntervalsSettingsAction(false);
   }
@@ -37,8 +34,7 @@ class IntervalsOptionButtons extends React.Component {
       actionNextButtonClick,
       actionGetNextInterval,
       actionTurnOffVisualization,
-      actionHideAnswer
-    } = this.props;
+      actionHideAnswer} = this.props;
 
     return (
       <div className="intervalsOptionsButtons">

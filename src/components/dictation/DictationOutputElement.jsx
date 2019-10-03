@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 const DictationOutputElement = ({
   elem,
   index,
@@ -27,6 +29,15 @@ const DictationOutputElement = ({
       {rightElemJSX}
     </p>
   );
+};
+
+DictationOutputElement.propTypes = {
+  elem: PropTypes.object,
+  index: PropTypes.number.isRequired,
+  rightAnswer: PropTypes.bool,
+  answerGiven: PropTypes.bool.isRequired,
+  rightElem: PropTypes.object.isRequired,
+
 };
 
 export default DictationOutputElement;

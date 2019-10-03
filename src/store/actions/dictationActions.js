@@ -5,38 +5,38 @@ import {
   POP_LAST_ELEM_FROM_ANSWER_ARRAY,
   WRITE_ANSWERS,
   CLEAR_WRITTEN_MELODY,
-  CHANGE_SETTINGS
+  CHANGE_SETTINGS,
 } from "../actionTypes";
 
-export const actionGetNewMelody = sliceArr => ({
+export const actionGetNewMelody = (sliceArr) => ({
   type: GET_NEW_MELODY,
-  sliceArr
+  sliceArr,
 });
 
-export const actionChangeMode = payload => ({
+export const actionChangeMode = (payload) => ({
   type: CHANGE_MODE,
-  payload
+  payload,
 });
 
-export const actionAddNoteToAnswerArray = payload => ({
+export const actionAddNoteToAnswerArray = (payload) => ({
   type: ADD_NOTE_TO_ANSWER_ARRAY,
-  payload
+  payload,
 });
 
 export const actionPopLastElemFromAnswerArray = () => ({
-  type: POP_LAST_ELEM_FROM_ANSWER_ARRAY
+  type: POP_LAST_ELEM_FROM_ANSWER_ARRAY,
 });
 
-export const actionWriteAnswers = arr => ({
+export const actionWriteAnswers = (arr) => ({
   type: WRITE_ANSWERS,
-  payload: arr
+  payload: arr,
 });
 
 export const actionClearWrittenMelody = () => ({
-  type: CLEAR_WRITTEN_MELODY
+  type: CLEAR_WRITTEN_MELODY,
 });
 
-export const actionChangeSettings = settingsObj => ({
+export const actionChangeSettings = (settingsObj) => ({
   type: CHANGE_SETTINGS,
-  payload: settingsObj
+  payload: settingsObj,
 });

@@ -1,0 +1,11 @@
+.settings {
+	padding: 20px 0 0;
+}
+
+.settings div:not(:first-child) {
+	margin-top: 30px;
+}
+
+.settings h3 {
+	color: #535397;
+}

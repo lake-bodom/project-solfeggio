@@ -6,7 +6,7 @@ const MenuBody = ({ left, clickHandler }) => {
     <div className="menu-body" style={{ left: left }}>
       <nav className="nav">
         <NavLink onClick={clickHandler} to="/">
-          Свободный режим
+          Свободная игра
         </NavLink>
         <NavLink onClick={clickHandler} to="/find-note">
           Искать ноту

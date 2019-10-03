@@ -1,6 +1,8 @@
 import React from "react";
 import "./burger.css";
 
+import PropTypes from "prop-types";
+
 const Burger = ({ clickHandler, menuIsOpen, left }) => {
   const className = `burger${menuIsOpen ? " active" : ""}`;
   return (
@@ -11,5 +13,12 @@ const Burger = ({ clickHandler, menuIsOpen, left }) => {
     </div>
   );
 };
+
+Burger.propTypes = {
+  clickHandler: PropTypes.func.isRequired,
+  menuIsOpen: PropTypes.bool.isRequired,
+  left: PropTypes.string.isRequired
+};
+
 
 export default Burger;

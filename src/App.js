@@ -8,12 +8,12 @@ import Menu from "./containers/menuContainer";
 import Header from "./containers/headerContainer";
 import Piano from "./containers/pianoContainer";
 
-import ChangeRangeOfNotes from "./containers/changeRangeOfNotesContainer";
 import Intervals from "./components/intervals/Intervals";
 import ActivateMidiContainer from "./containers/activateMidiContainer";
 import FindNote from "./containers/findNoteContainer";
 import Dictation from "./containers/dictationContainter";
 import FreeMode from "./containers/freeModeContainer";
+import Settings from "./containers/settingsContainer";
 
 class App extends Component {
   componentDidMount() {
@@ -36,6 +36,8 @@ class App extends Component {
         this.props.actionMenuAction();
       }
     });
+
+
   }
 
   play = (key, onlyPlay) => {
@@ -80,7 +82,7 @@ class App extends Component {
             path="/dictation"
             render={() => <Dictation play={this.play} />}
           />
-          <Route path="/options" render={() => <ChangeRangeOfNotes />} />
+          <Route path="/options" render={() => <Settings />} />
         </Switch>
 
         <ActivateMidiContainer play={this.play} />

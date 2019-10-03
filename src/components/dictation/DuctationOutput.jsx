@@ -1,6 +1,8 @@
 import React from "react";
 import DictationOutputElement from "./DictationOutputElement";
 
+import PropTypes from "prop-types";
+
 const DuctationOutput = ({
   amountOfNotes,
   sequenceOfMelody,
@@ -32,6 +34,15 @@ const DuctationOutput = ({
       {dictationOutputBody}
     </div>
   );
+};
+
+DuctationOutput.propTypes = {
+  amountOfNotes: PropTypes.number.isRequired,
+  needToWriteNote: PropTypes.bool.isRequired,
+  sequenceOfMelody: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sequenceOfWrittenMelody: PropTypes.arrayOf(PropTypes.object).isRequired,
+  answers: PropTypes.arrayOf(PropTypes.bool).isRequired,
+  answerGiven: PropTypes.bool.isRequired,
 };
 
 export default DuctationOutput;

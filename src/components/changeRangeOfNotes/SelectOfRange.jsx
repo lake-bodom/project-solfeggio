@@ -1,6 +1,10 @@
 import React from "react";
 import SelectBody from "./SelectBody";
 
+import Select from "../select/Select";
+
+import PropTypes from "prop-types";
+
 const SelectOfRange = ({
   nameOfSelect,
   baseArrOfNotes,
@@ -24,8 +28,9 @@ const SelectOfRange = ({
 
   const valueOfSelect =
     nameOfSelect === "firstBorder" ? firstBorder.index : secondBorder.index;
+
   return (
-    <select
+    <Select
       value={valueOfSelect}
       onChange={e => {
         selectChangeHandler(e, nameOfSelect);
@@ -38,8 +43,23 @@ const SelectOfRange = ({
         nameOfSelect={nameOfSelect}
         baseArrOfNotes={baseArrOfNotes}
       />
-    </select>
+    </Select>
   );
+};
+
+SelectOfRange.propTypes = {
+  firstBorder: PropTypes.shape({
+    index: PropTypes.number.isRequired,
+    key: PropTypes.number.isRequired
+  }),
+  secondBorder: PropTypes.shape({
+    index: PropTypes.number.isRequired,
+    key: PropTypes.number.isRequired
+  }),
+  nameOfSelect: PropTypes.string.isRequired,
+  minAmountOfNotes: PropTypes.number.isRequired,
+  baseArrOfNotes: PropTypes.arrayOf(PropTypes.object.isRequired),
+  actionSetBordersOfRange: PropTypes.func.isRequired
 };
 
 export default SelectOfRange;

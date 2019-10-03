@@ -1,18 +1,18 @@
-.changeRangeOfNotes select {
+.select {
 	font: inherit;
 	margin-right: 20px;
 	color: #6c757d;
 	border: 1px solid #6c757d;
-	padding: .3rem 1rem;
+	padding: .4rem 1rem;
 	border-radius: 5px;
 	cursor: pointer;
 }
 
-.changeRangeOfNotes option {
+.select option {
 	cursor: pointer;
 }
 
-.changeRangeOfNotes option:disabled {
+.select option:disabled {
 	background: #e6e6e6;
 	color: #00496b;
 }

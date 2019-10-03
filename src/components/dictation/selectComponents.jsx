@@ -1,4 +1,7 @@
 import React from "react";
+import Select from "../select/Select";
+
+import PropTypes from "prop-types";
 
 const amountOfNotes = [3, 4, 5, 6, 7];
 
@@ -10,10 +13,15 @@ const amountOfNotesOptions = amountOfNotes.map(elem => (
 
 const SelectAmountOfNotes = ({ value, onChange }) => {
   return (
-    <select onChange={onChange} defaultValue={value}>
+    <Select onChange={onChange} value={value}>
       {amountOfNotesOptions}
-    </select>
+    </Select>
   );
+};
+
+SelectAmountOfNotes.propTypes = {
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 const modes = [
@@ -29,10 +37,16 @@ const modesOptions = modes.map(elem => (
 
 const SelectModes = ({ value, onChange }) => {
   return (
-    <select onChange={onChange} defaultValue={value}>
+    <Select onChange={onChange} value={value}>
       {modesOptions}
-    </select>
+    </Select>
   );
 };
+
+SelectModes.propTypes = {
+  value: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired
+};
+
 
 export { SelectAmountOfNotes, SelectModes };

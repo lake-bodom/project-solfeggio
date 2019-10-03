@@ -6,7 +6,7 @@ const Header = ({ stat, mode }) => {
   return (
     <div className="header">
       {stat ? <Stat /> : null}
-      <h2>{mode}</h2>
+      {mode ? <h2>{mode}</h2> : null}
     </div>
   );
 };

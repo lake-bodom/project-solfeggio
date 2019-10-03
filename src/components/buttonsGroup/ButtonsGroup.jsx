@@ -17,5 +17,4 @@ ButtonsGroup.defaultProps = {
   children: "",
   cls: "horizontal"
 };
-
 export default ButtonsGroup;

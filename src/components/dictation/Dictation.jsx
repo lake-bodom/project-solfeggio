@@ -6,6 +6,8 @@ import DictationOptionsButtons from "./DictationOptionsButtons";
 import DuctationOutput from "./DuctationOutput";
 import DictationSettings from "../../containers/dictationSettingsContainer";
 
+import PropTypes from "prop-types";
+
 export default class Dictation extends Component {
   state = {
     modalIsOpen: false
@@ -25,8 +27,8 @@ export default class Dictation extends Component {
     this.props.actionInitDictation(true);
     this.props.actionSetMode({ mode: "Музыкальный диктант", stat: true });
     this.props.actionUpdatePianoKeys();
-    this.clearAnswers();
     this.props.actionClearWrittenMelody();
+    this.clearAnswers();
   }
 
   componentWillUnmount() {
@@ -212,3 +214,35 @@ export default class Dictation extends Component {
     );
   }
 }
+
+Dictation.propTypes = {
+  sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  play: PropTypes.func.isRequired,
+  needToWriteNote: PropTypes.bool.isRequired,
+  playNote: PropTypes.object,
+  actionGetNewMelody: PropTypes.func.isRequired,
+  actionChangeMode: PropTypes.func.isRequired,
+  actionNeedToWriteNote: PropTypes.func.isRequired,
+  actionInitDictation: PropTypes.func.isRequired,
+  actionAddNoteToAnswerArray: PropTypes.func.isRequired,
+  actionWritePlayNote: PropTypes.func.isRequired,
+  actionPopLastElemFromAnswerArray: PropTypes.func.isRequired,
+  actionWriteAnswers: PropTypes.func.isRequired,
+  actionStatisticsClearing: PropTypes.func.isRequired,
+  actionIncrementRightAnswers: PropTypes.func.isRequired,
+  actionIncrementAmountOfAnswers: PropTypes.func.isRequired,
+  actionClearWrittenMelody: PropTypes.func.isRequired,
+  actionHideAnswer: PropTypes.func.isRequired,
+  actionSetMode: PropTypes.func.isRequired,
+  actionUpdatePianoKeys: PropTypes.func.isRequired,
+  dictation: PropTypes.shape({
+    amountOfNotes: PropTypes.number.isRequired,
+    sequenceOfMelody: PropTypes.arrayOf(PropTypes.object).isRequired,
+    sequenceOfWrittenMelody: PropTypes.arrayOf(PropTypes.object).isRequired,
+    defaultModeWrite: PropTypes.bool.isRequired,
+    answers: PropTypes.array.isRequired,
+    answerGiven: PropTypes.bool.isRequired,
+    modeWrite: PropTypes.bool.isRequired
+  }).isRequired,
+
+};

@@ -2,6 +2,9 @@ import React from "react";
 import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
 import Button from "../button/Button";
 
+import PropTypes from "prop-types";
+
+
 const DictationOptionsButtons = ({
   modeWrite,
   changeMode,
@@ -60,3 +63,15 @@ const DictationOptionsButtons = ({
 };
 
 export default DictationOptionsButtons;
+
+DictationOptionsButtons.propTypes = {
+  modeWrite: PropTypes.bool.isRequired,
+  changeMode: PropTypes.func.isRequired,
+  nextButtonHandler: PropTypes.func.isRequired,
+  clearButtonHandler: PropTypes.func.isRequired,
+  checkAnswerHandler: PropTypes.func.isRequired,
+  settingsButtonHandler: PropTypes.func.isRequired,
+  sequenceOfWrittenMelody: PropTypes.arrayOf(PropTypes.object),
+  amountOfNotes: PropTypes.number.isRequired,
+  answerGiven: PropTypes.bool.isRequired,
+};

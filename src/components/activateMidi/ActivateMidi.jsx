@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Button from "../button/Button";
 
+import PropTypes from "prop-types";
+
 export default class ActivateMidi extends Component {
   state = { status: "" };
 
@@ -73,3 +75,10 @@ export default class ActivateMidi extends Component {
     );
   }
 }
+
+ActivateMidi.propTypes = {
+  sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  play: PropTypes.func.isRequired,
+  actionShowNotesOnThePiano: PropTypes.func.isRequired,
+  actionTurnOffVisualization: PropTypes.func.isRequired,
+};

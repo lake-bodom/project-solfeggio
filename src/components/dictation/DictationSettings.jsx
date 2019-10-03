@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ModalWindow from "../modalWindow/ModalWindow";
 import { SelectAmountOfNotes, SelectModes } from "./selectComponents";
 
+import PropTypes from "prop-types";
+
 export default class DictationSettings extends Component {
   state = {
     amountOfNotes: 4,
@@ -35,6 +37,7 @@ export default class DictationSettings extends Component {
       defaultModeWrite = false;
       modeWrite = false;
     }
+
     this.setState({
       defaultModeWrite,
       modeWrite
@@ -89,3 +92,11 @@ export default class DictationSettings extends Component {
     );
   }
 }
+
+DictationSettings.propTypes = {
+  settingsButtonHandler: PropTypes.func.isRequired,
+  actionChangeSettings: PropTypes.func.isRequired,
+  amountOfNotes: PropTypes.number.isRequired,
+  defaultModeWrite: PropTypes.bool.isRequired,
+};
+
