@@ -68,7 +68,7 @@ class App extends Component {
           <Route
             path="/"
             exact
-            render={() => <FreeMode play={this.play} />}
+            render={() => <FreeMode />}
           />
           <Route
             path="/intervals"

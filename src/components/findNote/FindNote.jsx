@@ -118,6 +118,16 @@ export default class FindNote extends Component {
 
 FindNote.propTypes = {
   play: PropTypes.func.isRequired,
+  actionSetActiveNote: PropTypes.func.isRequired,
+  actionTurnOffVisualization: PropTypes.func.isRequired,
+  actionUpdatePianoKeys: PropTypes.func.isRequired,
+  actionSetMode: PropTypes.func.isRequired,
+  actionShowNotesOnThePiano: PropTypes.func.isRequired,
+  actionNeedToWriteNote: PropTypes.func.isRequired,
+  actionHideAnswer: PropTypes.func.isRequired,
+  actionIncrementAmountOfAnswers: PropTypes.func.isRequired,
+  actionIncrementRightAnswers: PropTypes.func.isRequired,
+  actionStatisticsClearing: PropTypes.func.isRequired,
   statistics: PropTypes.shape({
     nameOfInterval: PropTypes.string.isRequired,
     rightAnswers: PropTypes.number.isRequired,
@@ -131,21 +141,3 @@ FindNote.propTypes = {
   needToWriteNote: PropTypes
 };
 
-/*
-{
-  
-  
-  "playNote": null,
-  "needToWriteNote": false,
-  "actionStatisticsClearing": "fn()",
-  "actionSetActiveNote": "fn()",
-  "actionIncrementRightAnswers": "fn()",
-  "actionIncrementAmountOfAnswers": "fn()",
-  "actionNeedToWriteNote": "fn()",
-  "actionShowNotesOnThePiano": "fn()",
-  "actionTurnOffVisualization": "fn()",
-  "actionHideAnswer": "fn()",
-  "actionSetMode": "fn()",
-  "actionUpdatePianoKeys": "fn()"
-}
-*/

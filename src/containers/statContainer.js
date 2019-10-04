@@ -5,4 +5,6 @@ const mapStateToProps = ({ statistics }) => ({
   stat: statistics
 });
 
-export default connect(mapStateToProps)(Statistics);
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Statistics);

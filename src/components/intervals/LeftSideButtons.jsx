@@ -93,9 +93,9 @@ const LeftSideButtons = ({
 };
 
 LeftSideButtons.propTypes = {
-  sequenceOfNotes: PropTypes.array.isRequired,
+  sequenceOfNotes: PropTypes.array,
   typeOfInterval: PropTypes.string.isRequired,
-  settingsIsOpen: PropTypes.bool.isRequired,
+  settingsIsOpen: PropTypes.bool,
   play: PropTypes.func.isRequired,
   actionIntervalsSettingsAction: PropTypes.func.isRequired
 };

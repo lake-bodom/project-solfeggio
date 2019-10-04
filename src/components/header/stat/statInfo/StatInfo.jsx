@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 const StatInfo = ({ rightAnswers, amountOfAnswers }) => {
   const percent =
     amountOfAnswers !== 0
@@ -12,6 +14,11 @@ const StatInfo = ({ rightAnswers, amountOfAnswers }) => {
       <span>({percent}%)</span>
     </React.Fragment>
   );
+};
+
+StatInfo.propTypes = {
+  rightAnswers: PropTypes.number.isRequired,
+  amountOfAnswers: PropTypes.number.isRequired
 };
 
 export default StatInfo;

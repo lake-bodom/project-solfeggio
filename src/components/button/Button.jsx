@@ -22,7 +22,7 @@ const Button = ({ onClick, children, cls, active, disabled }) => {
 };
 
 Button.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   onClick: PropTypes.func,
   cls: PropTypes.string,
   active: PropTypes.bool,

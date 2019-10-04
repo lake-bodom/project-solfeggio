@@ -6,4 +6,7 @@ const mapStateToProps = ({ application }) => ({
 	stat: application.stat
 });
 
-export default connect(mapStateToProps)(Header);
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

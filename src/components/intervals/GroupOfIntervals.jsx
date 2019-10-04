@@ -2,6 +2,8 @@ import React from "react";
 import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
 import Button from "../button/Button";
 
+import PropTypes from "prop-types";
+
 const GroupOfIntervals = ({
   group,
   settingsIsOpen,
@@ -51,7 +53,25 @@ const GroupOfIntervals = ({
     );
   });
 
+  GroupOfIntervals.propTypes = {
+    settingsIsOpen: PropTypes.bool,
+    group: PropTypes.arrayOf(PropTypes.object).isRequired,
+    activeInterval: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      rusName: PropTypes.string.isRequired,
+      numberOfSemitones: PropTypes.number.isRequired,
+      chosen: PropTypes.bool.isRequired
+    }).isRequired,
+    sequenceOfNotes: PropTypes.arrayOf(PropTypes.number).isRequired,
+    actionShowTheCorrectInterval: PropTypes.func.isRequired,
+    actionInverseChosenInterval: PropTypes.func.isRequired,
+    actionIncrementRightAnswers: PropTypes.func.isRequired,
+    actionIncrementAmountOfAnswers: PropTypes.func.isRequired,
+    actionShowNotesOnThePiano: PropTypes.func.isRequired
+  };
+
   return <ButtonsGroup cls="vertical">{body}</ButtonsGroup>;
 };
 
 export default GroupOfIntervals;
+
