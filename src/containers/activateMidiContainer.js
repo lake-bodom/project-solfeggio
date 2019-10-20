@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import {
   actionShowNotesOnThePiano,
-  actionTurnOffVisualization
+  actionUpdatePianoKeys
 } from "../store/actions/pianoActions";
 
 const mapStateToProps = ({ piano }) => ({
@@ -12,7 +12,7 @@ const mapStateToProps = ({ piano }) => ({
 
 const mapDispatchToProps = {
   actionShowNotesOnThePiano,
-  actionTurnOffVisualization
+  actionUpdatePianoKeys
 };
 
 export default connect(

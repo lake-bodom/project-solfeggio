@@ -16,7 +16,7 @@ const DictationOptionsButtons = ({
   nextButtonHandler,
   settingsButtonHandler
 }) => {
-  const access = amountOfNotes === sequenceOfWrittenMelody.length;
+  const access = amountOfNotes === sequenceOfWrittenMelody.length && !answerGiven;
 
   const clickHandlerNextPlayButton = () => {
     changeMode();
@@ -73,5 +73,5 @@ DictationOptionsButtons.propTypes = {
   settingsButtonHandler: PropTypes.func.isRequired,
   sequenceOfWrittenMelody: PropTypes.arrayOf(PropTypes.object),
   amountOfNotes: PropTypes.number.isRequired,
-  answerGiven: PropTypes.bool.isRequired,
+  answerGiven: PropTypes.bool.isRequired
 };

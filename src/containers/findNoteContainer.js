@@ -14,7 +14,6 @@ import { actionNeedToWriteNote, actionSetMode } from "../store/actions/applicati
 
 import {
   actionShowNotesOnThePiano,
-  actionTurnOffVisualization,
   actionUpdatePianoKeys
 } from "../store/actions/pianoActions";
 
@@ -33,7 +32,6 @@ const mapDispatchToProps = {
   actionIncrementAmountOfAnswers,
   actionNeedToWriteNote,
   actionShowNotesOnThePiano,
-  actionTurnOffVisualization,
   actionHideAnswer,
   actionSetMode,
   actionUpdatePianoKeys

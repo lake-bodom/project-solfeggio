@@ -13,7 +13,7 @@ import {
   actionHideAnswer
 } from "../store/actions/statisticsActions";
 
-import { actionTurnOffVisualization, actionUpdatePianoKeys } from "../store/actions/pianoActions";
+import { actionUpdatePianoKeys } from "../store/actions/pianoActions";
 
 import { actionSetMode } from "../store/actions/applicationActions";
 
@@ -31,7 +31,6 @@ const mapDispatchToProps = {
   actionIntervalsSettingsAction,
   actionNextButtonClick,
   actionGetNextInterval,
-  actionTurnOffVisualization,
   actionStatisticsClearing,
   actionHideAnswer,
   actionSetMode,

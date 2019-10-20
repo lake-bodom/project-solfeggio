@@ -1,6 +1,8 @@
-import React from 'react';
-import LeftSideButtons from './LeftSideButtons';
-import RightSideButtons from './RightSideButtons';
+import React from "react";
+import LeftSideButtons from "./LeftSideButtons";
+import RightSideButtons from "./RightSideButtons";
+
+import PropTypes from "prop-types";
 
 class IntervalsOptionButtons extends React.Component {
   componentDidMount() {
@@ -8,10 +10,10 @@ class IntervalsOptionButtons extends React.Component {
 
     this.props.actionGetNextInterval({
       sliceArr: this.props.sliceArr,
-      initNewIntervalSequence,
+      initNewIntervalSequence
     });
 
-    this.props.actionSetMode({mode: 'Поиск интервала', stat: true});
+    this.props.actionSetMode({ mode: "Поиск интервала", stat: true });
     this.props.actionUpdatePianoKeys();
   }
 
@@ -33,8 +35,9 @@ class IntervalsOptionButtons extends React.Component {
       actionIntervalsSettingsAction,
       actionNextButtonClick,
       actionGetNextInterval,
-      actionTurnOffVisualization,
-      actionHideAnswer} = this.props;
+      actionHideAnswer,
+      actionUpdatePianoKeys
+    } = this.props;
 
     return (
       <div className="intervalsOptionsButtons">
@@ -49,7 +52,7 @@ class IntervalsOptionButtons extends React.Component {
           actionIntervalsSettingsAction={actionIntervalsSettingsAction}
           actionNextButtonClick={actionNextButtonClick}
           actionGetNextInterval={actionGetNextInterval}
-          actionTurnOffVisualization={actionTurnOffVisualization}
+          actionUpdatePianoKeys={actionUpdatePianoKeys}
           actionHideAnswer={actionHideAnswer}
         />
         <RightSideButtons
@@ -60,5 +63,22 @@ class IntervalsOptionButtons extends React.Component {
     );
   }
 }
+
+IntervalsOptionButtons.propTypes = {
+  play: PropTypes.func.isRequired,
+  sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sequenceOfNotes: PropTypes.arrayOf(PropTypes.number),
+  nextSequenceOfNotes: PropTypes.arrayOf(PropTypes.number),
+  typeOfInterval: PropTypes.string.isRequired,
+  showAnswer: PropTypes.bool,
+  actionSetActiveTypeOfInterval: PropTypes.func.isRequired,
+  actionIntervalsSettingsAction: PropTypes.func.isRequired,
+  actionNextButtonClick: PropTypes.func.isRequired,
+  actionGetNextInterval: PropTypes.func.isRequired,
+  actionStatisticsClearing: PropTypes.func.isRequired,
+  actionHideAnswer: PropTypes.func.isRequired,
+  actionSetMode: PropTypes.func.isRequired,
+  actionUpdatePianoKeys: PropTypes.func.isRequired
+};
 
 export default IntervalsOptionButtons;

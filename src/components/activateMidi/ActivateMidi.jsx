@@ -45,7 +45,7 @@ export default class ActivateMidi extends Component {
         this.props.actionShowNotesOnThePiano(options);
         this.props.play(note);
       } else if (eventKey === keyup || velocity === 0) {
-        this.props.actionTurnOffVisualization(options);
+        this.props.actionUpdatePianoKeys();
       }
     }
   };
@@ -80,5 +80,5 @@ ActivateMidi.propTypes = {
   sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
   play: PropTypes.func.isRequired,
   actionShowNotesOnThePiano: PropTypes.func.isRequired,
-  actionTurnOffVisualization: PropTypes.func.isRequired,
+  actionUpdatePianoKeys: PropTypes.func.isRequired
 };

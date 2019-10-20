@@ -15,8 +15,8 @@ const LeftSideButtons = ({
   actionIntervalsSettingsAction,
   actionNextButtonClick,
   actionGetNextInterval,
-  actionTurnOffVisualization,
-  actionHideAnswer
+  actionHideAnswer,
+  actionUpdatePianoKeys
 }) => {
   const playInterval = () => {
     let first, second;
@@ -57,7 +57,7 @@ const LeftSideButtons = ({
   const nextClickHandler = () => {
     actionNextButtonClick(!settingsIsOpen);
     actionGetNextInterval({ sliceArr });
-    actionTurnOffVisualization({ sequence: sequenceOfNotes });
+    actionUpdatePianoKeys();
     actionHideAnswer();
     playInterval();
   };
@@ -68,7 +68,8 @@ const LeftSideButtons = ({
 
     if (settingsIsOpen) {
       actionNextButtonClick();
-      actionTurnOffVisualization({ sequence: sequenceOfNotes });
+      actionUpdatePianoKeys();
+      actionHideAnswer();
       actionGetNextInterval({ sliceArr, initNewIntervalSequence });
     }
   };
@@ -93,11 +94,19 @@ const LeftSideButtons = ({
 };
 
 LeftSideButtons.propTypes = {
-  sequenceOfNotes: PropTypes.array,
-  typeOfInterval: PropTypes.string.isRequired,
   settingsIsOpen: PropTypes.bool,
+  sequenceOfNotes: PropTypes.arrayOf(PropTypes.number),
+  nextSequenceOfNotes: PropTypes.arrayOf(PropTypes.number),
+  typeOfInterval: PropTypes.string.isRequired,
+  showAnswer: PropTypes.bool,
+  sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
   play: PropTypes.func.isRequired,
-  actionIntervalsSettingsAction: PropTypes.func.isRequired
+  actionIntervalsSettingsAction: PropTypes.func.isRequired,
+  actionNextButtonClick: PropTypes.func.isRequired,
+  actionGetNextInterval: PropTypes.func.isRequired,
+  actionUpdatePianoKeys: PropTypes.func.isRequired,
+  actionHideAnswer: PropTypes.func.isRequired
 };
 
 export default LeftSideButtons;
+

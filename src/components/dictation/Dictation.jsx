@@ -243,6 +243,5 @@ Dictation.propTypes = {
     answers: PropTypes.array.isRequired,
     answerGiven: PropTypes.bool.isRequired,
     modeWrite: PropTypes.bool.isRequired
-  }).isRequired,
-
+  }).isRequired
 };

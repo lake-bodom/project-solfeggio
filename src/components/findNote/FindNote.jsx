@@ -48,7 +48,7 @@ export default class FindNote extends Component {
     this.props.actionShowNotesOnThePiano(options);
 
     setTimeout(() => {
-      this.props.actionTurnOffVisualization(options);
+      this.props.actionUpdatePianoKeys();
       this.props.actionHideAnswer();
     }, 2000);
   };
@@ -68,8 +68,7 @@ export default class FindNote extends Component {
     this.props.actionShowNotesOnThePiano(options2);
 
     setTimeout(() => {
-      this.props.actionTurnOffVisualization(options1);
-      this.props.actionTurnOffVisualization(options2);
+      this.props.actionUpdatePianoKeys();
       this.props.actionHideAnswer();
     }, 1500);
   };
@@ -119,7 +118,6 @@ export default class FindNote extends Component {
 FindNote.propTypes = {
   play: PropTypes.func.isRequired,
   actionSetActiveNote: PropTypes.func.isRequired,
-  actionTurnOffVisualization: PropTypes.func.isRequired,
   actionUpdatePianoKeys: PropTypes.func.isRequired,
   actionSetMode: PropTypes.func.isRequired,
   actionShowNotesOnThePiano: PropTypes.func.isRequired,
@@ -133,7 +131,7 @@ FindNote.propTypes = {
     rightAnswers: PropTypes.number.isRequired,
     amountOfAnswers: PropTypes.number.isRequired,
     right: PropTypes.bool.isRequired,
-    showAnswer: PropTypes.bool.isRequired,
+    showAnswer: PropTypes.bool.isRequired
   }).isRequired,
   note: PropTypes.number.isRequired,
   sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,

@@ -2,7 +2,9 @@
   "name": "solfeggio",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lake-bodom.github.io/project-solfeggio/",
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "midi-sounds-react": "^1.2.54",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -16,6 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "browserslist": {

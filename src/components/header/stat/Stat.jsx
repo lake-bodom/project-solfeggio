@@ -29,7 +29,7 @@ const Stat = ({
 
 Stat.propTypes = {
   stat: PropTypes.shape({
-    nameOfInterval: PropTypes.string.isRequired,
+    nameOfInterval: PropTypes.string,
     right: PropTypes.bool.isRequired,
     rightAnswers: PropTypes.number.isRequired,
     amountOfAnswers: PropTypes.number.isRequired,

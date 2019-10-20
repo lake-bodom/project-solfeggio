@@ -7,8 +7,7 @@ import {
 import {
   UPDATE_PIANO_KEYS,
   SET_BORDERS_OF_RANGE,
-  SHOW_NOTES_ON_THE_PIANO,
-  TURN_OFF_VISUALIZATION
+  SHOW_NOTES_ON_THE_PIANO
 } from "../actionTypes";
 
 import { dataOfIntervals } from "../dataOfIntervals";
@@ -59,23 +58,6 @@ export default (state = initialState, action) => {
           sequence,
           type,
           active: true,
-          mapIndex
-        })
-      };
-    }
-
-    case TURN_OFF_VISUALIZATION: {
-      let { arrOfNotes } = state;
-
-      const { sequence, type } = action.payload;
-
-      return {
-        ...state,
-        arrOfNotes: setVisualEffect({
-          arrOfNotes,
-          sequence,
-          type,
-          active: false,
           mapIndex
         })
       };
