@@ -32,7 +32,8 @@ const mapStateToProps = ({ piano, dictation, application }) => ({
   sliceArr: piano.sliceArr,
   dictation,
   needToWriteNote: application.needToWriteNote,
-  playNote: application.playNote
+  playNote: application.playNote,
+  duration: application.duration
 });
 
 const mapDispatchToProps = {

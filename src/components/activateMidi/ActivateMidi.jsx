@@ -67,7 +67,7 @@ export default class ActivateMidi extends Component {
         <Button cls="primary" onClick={this.startListening}>
           Включить MIDI клавиатуру
         </Button>
-        <p style={{ marginTop: "20px" }}>
+        <p style={{ marginTop: "20px", marginBottom: "20px" }}>
           <b>Статус midi:</b>{" "}
           {this.state.status ? this.state.status : "отключена"}
         </p>

@@ -57,3 +57,7 @@
 .modal-window select:not(:last-child) {
 	margin-bottom: 10px;
 }
+
+.modal-window p {
+	text-align: center;
+}

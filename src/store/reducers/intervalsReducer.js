@@ -10,7 +10,8 @@ import {
   INTERVALS_SETTINGS_ACTION,
   INVERSE_CHOSEN_INTERVAL,
   SHOW_THE_CORRECT_INTERVAL,
-  GET_NEXT_INTERVAL
+  GET_NEXT_INTERVAL,
+  SET_INITIAL_STATE
 } from "../actionTypes";
 
 const allIntervals = [...dataOfIntervals];
@@ -48,13 +49,16 @@ const getNewData = ({
   initNewIntervalSequence,
   nextActiveInterval,
   nextSequenceOfNotes,
-  sliceArr
+  sliceArr,
+  allIntervals
 }) => {
+
   const activeInterval = !initNewIntervalSequence
     ? nextActiveInterval
       ? nextActiveInterval
       : getNewActiveInterval(allIntervals)
     : getNewActiveInterval(allIntervals);
+
 
   const sequenceOfNotes = !initNewIntervalSequence
     ? nextSequenceOfNotes
@@ -85,8 +89,8 @@ export default (state = initialState, action) => {
     }
 
     case INVERSE_CHOSEN_INTERVAL: {
-      const { payload } = action;
-      const chosen = payload.chosen;
+      const interval = { ...action.payload };
+      const chosen = interval.chosen;
 
       const allIntervals = [...state.allIntervals];
 
@@ -94,10 +98,10 @@ export default (state = initialState, action) => {
         return { ...state };
       }
 
-      const index = findIndex(allIntervals, payload.name);
-      payload.chosen = !payload.chosen;
+      const index = findIndex(allIntervals, interval.name);
+      interval.chosen = !interval.chosen;
 
-      allIntervals[index] = payload;
+      allIntervals[index] = interval;
 
       return { ...state, allIntervals };
     }
@@ -131,6 +135,10 @@ export default (state = initialState, action) => {
         nextActiveInterval,
         nextSequenceOfNotes
       };
+    }
+
+    case SET_INITIAL_STATE: {
+      return initialState;
     }
 
     default: {

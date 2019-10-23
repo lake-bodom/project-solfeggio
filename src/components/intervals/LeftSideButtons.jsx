@@ -11,6 +11,7 @@ const LeftSideButtons = ({
   settingsIsOpen,
   showAnswer,
   sliceArr,
+  duration,
   play,
   actionIntervalsSettingsAction,
   actionNextButtonClick,
@@ -34,14 +35,14 @@ const LeftSideButtons = ({
         play(first);
         setTimeout(() => {
           play(second);
-        }, 800);
+        }, duration * 1000);
         break;
       }
       case "melodicDown": {
         play(second);
         setTimeout(() => {
           play(first);
-        }, 800);
+        }, duration * 1000);
         break;
       }
       case "harmonic": {
@@ -100,6 +101,7 @@ LeftSideButtons.propTypes = {
   typeOfInterval: PropTypes.string.isRequired,
   showAnswer: PropTypes.bool,
   sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  duration: PropTypes.number.isRequired,
   play: PropTypes.func.isRequired,
   actionIntervalsSettingsAction: PropTypes.func.isRequired,
   actionNextButtonClick: PropTypes.func.isRequired,

@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+import PropTypes from "prop-types";
+
 const MenuBody = ({ left, clickHandler }) => {
   return (
     <div className="menu-body" style={{ left: left }}>
@@ -23,6 +25,11 @@ const MenuBody = ({ left, clickHandler }) => {
       </nav>
     </div>
   );
+};
+
+MenuBody.propTypes = {
+  left: PropTypes.string.isRequired,
+  clickHandler: PropTypes.func.isRequired
 };
 
 export default MenuBody;

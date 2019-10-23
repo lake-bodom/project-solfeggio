@@ -1,7 +1,7 @@
 import {
   UPDATE_PIANO_KEYS,
   SET_BORDERS_OF_RANGE,
-  SHOW_NOTES_ON_THE_PIANO,
+  SHOW_NOTES_ON_THE_PIANO
 } from "../actionTypes";
 
 export const actionUpdatePianoKeys = () => ({

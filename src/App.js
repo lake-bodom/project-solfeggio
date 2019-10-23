@@ -15,15 +15,14 @@ import Dictation from "./containers/dictationContainter";
 import FreeMode from "./containers/freeModeContainer";
 import Settings from "./containers/settingsContainer";
 
+import PropTypes from "prop-types";
+
 class App extends Component {
   componentDidMount() {
-    var bpm = 80;
-    var N = (4 * 60) / bpm;
-    var duration = N / 4;
-    this.setState({ duration });
+
     // this.setState(this.state);
     // this.midiSounds.playChordNow(1, [60], 1);
-    this.midiSounds.setEchoLevel(0);
+    this.midiSounds.setEchoLevel(this.props.echoLevel);
 
     document.getElementById("root").addEventListener("click", () => {
       if (this.props.menuIsOpen) {
@@ -36,12 +35,16 @@ class App extends Component {
         this.props.actionMenuAction();
       }
     });
+  }
 
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.echoLevel !== this.props.echoLevel) {
+      this.midiSounds.setEchoLevel(this.props.echoLevel);
+    }
   }
 
   play = (key, onlyPlay) => {
-    const { duration } = this.state;
+    const { duration } = this.props;
     this.midiSounds.playChordNow(1, [key], duration);
 
     if (!onlyPlay) {
@@ -60,7 +63,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Menu play={this.play} />
+        <Menu />
         <Header />
         <Piano play={this.play} />
 
@@ -82,7 +85,7 @@ class App extends Component {
             path="/dictation"
             render={() => <Dictation play={this.play} />}
           />
-          <Route path="/options" render={() => <Settings />} />
+          <Route path="/options" render={() => <Settings play={this.play} />} />
         </Switch>
 
         <ActivateMidiContainer play={this.play} />
@@ -97,5 +100,19 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  echoLevel: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+  menuIsOpen: PropTypes.bool.isRequired,
+  needToWriteNote: PropTypes.bool.isRequired,
+  modeDictation: PropTypes.bool.isRequired,
+  sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  mapIndex: PropTypes.object.isRequired,
+  actionMenuAction: PropTypes.func.isRequired,
+  actionWritePlayNote: PropTypes.func.isRequired
+};
+
+
 
 export default App;

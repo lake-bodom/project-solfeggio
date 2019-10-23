@@ -74,7 +74,7 @@ export const dataOfIntervals = [
 ];
 
 export const getChosenIntervals = arr => {
-  return [...arr].filter(elem => {
+  return arr.filter(elem => {
     return elem.chosen;
   });
 };

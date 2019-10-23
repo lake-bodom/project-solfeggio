@@ -36,8 +36,7 @@ DictationOutputElement.propTypes = {
   index: PropTypes.number.isRequired,
   rightAnswer: PropTypes.bool,
   answerGiven: PropTypes.bool.isRequired,
-  rightElem: PropTypes.object.isRequired,
-
+  rightElem: PropTypes.object.isRequired
 };
 
 export default DictationOutputElement;

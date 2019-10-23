@@ -5,7 +5,8 @@ import {
   POP_LAST_ELEM_FROM_ANSWER_ARRAY,
   WRITE_ANSWERS,
   CLEAR_WRITTEN_MELODY,
-  CHANGE_SETTINGS
+  CHANGE_SETTINGS,
+  SET_INITIAL_STATE
 } from "../actionTypes";
 
 const initialState = {
@@ -70,6 +71,11 @@ export default (state = initialState, action) => {
 
     case CHANGE_SETTINGS: {
       return { ...state, ...action.payload };
+    }
+
+    
+    case SET_INITIAL_STATE: {
+      return initialState;
     }
 
     default:

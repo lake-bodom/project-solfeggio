@@ -31,6 +31,7 @@ class IntervalsOptionButtons extends React.Component {
       nextSequenceOfNotes,
       settingsIsOpen,
       showAnswer,
+      duration,
       actionSetActiveTypeOfInterval,
       actionIntervalsSettingsAction,
       actionNextButtonClick,
@@ -38,6 +39,7 @@ class IntervalsOptionButtons extends React.Component {
       actionHideAnswer,
       actionUpdatePianoKeys
     } = this.props;
+
 
     return (
       <div className="intervalsOptionsButtons">
@@ -48,6 +50,7 @@ class IntervalsOptionButtons extends React.Component {
           settingsIsOpen={settingsIsOpen}
           showAnswer={showAnswer}
           sliceArr={sliceArr}
+          duration={duration}
           play={play}
           actionIntervalsSettingsAction={actionIntervalsSettingsAction}
           actionNextButtonClick={actionNextButtonClick}
@@ -71,6 +74,7 @@ IntervalsOptionButtons.propTypes = {
   nextSequenceOfNotes: PropTypes.arrayOf(PropTypes.number),
   typeOfInterval: PropTypes.string.isRequired,
   showAnswer: PropTypes.bool,
+  duration: PropTypes.number.isRequired,
   actionSetActiveTypeOfInterval: PropTypes.func.isRequired,
   actionIntervalsSettingsAction: PropTypes.func.isRequired,
   actionNextButtonClick: PropTypes.func.isRequired,
@@ -78,7 +82,8 @@ IntervalsOptionButtons.propTypes = {
   actionStatisticsClearing: PropTypes.func.isRequired,
   actionHideAnswer: PropTypes.func.isRequired,
   actionSetMode: PropTypes.func.isRequired,
-  actionUpdatePianoKeys: PropTypes.func.isRequired
+  actionUpdatePianoKeys: PropTypes.func.isRequired,
+  settingsIsOpen: PropTypes.bool
 };
 
 export default IntervalsOptionButtons;

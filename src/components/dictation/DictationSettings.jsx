@@ -97,6 +97,6 @@ DictationSettings.propTypes = {
   settingsButtonHandler: PropTypes.func.isRequired,
   actionChangeSettings: PropTypes.func.isRequired,
   amountOfNotes: PropTypes.number.isRequired,
-  defaultModeWrite: PropTypes.bool.isRequired,
+  defaultModeWrite: PropTypes.bool.isRequired
 };
 

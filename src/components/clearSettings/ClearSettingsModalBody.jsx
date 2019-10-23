@@ -1,18 +1,26 @@
 import React from "react";
-import ModalWindow from "../modalWindow/ModalWindow"
+import ModalWindow from "../modalWindow/ModalWindow";
 
-const ClearLocalStorageModalBody = ({ close, saveButtonHandler
-	, cancelButtonHandler }) => {
-	return (
-		<ModalWindow close={close} saveButton={true}
-			saveButtonName={"Сохранить"}
-			cancelButton={true}
-			cancelButtonName={"Отменить"}
-			saveButtonHandler={saveButtonHandler}
-			cancelButtonHandler={cancelButtonHandler}>
-			<h3>Сбросить все настройки</h3>
-		</ModalWindow>
-	)
+import PropTypes from "prop-types";
+
+const ClearSettingsModalBody = ({ close, saveButtonHandler }) => {
+
+  return (
+    <ModalWindow close={close} saveButton={true}
+      saveButtonName={"Да"}
+      cancelButton={true}
+      cancelButtonName={"Нет"}
+      saveButtonHandler={saveButtonHandler}
+      cancelButtonHandler={() => { }}>
+      <h3>Сбросить все настройки</h3>
+      <p>Вы уверены, что хотите совершить сброс всех настроек?</p>
+    </ModalWindow>
+  );
 };
 
-export default ClearLocalStorageModalBody;
+ClearSettingsModalBody.propTypes = {
+  close: PropTypes.func.isRequired,
+  saveButtonHandler: PropTypes.func.isRequired
+};
+
+export default ClearSettingsModalBody;

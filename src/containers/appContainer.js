@@ -11,6 +11,8 @@ const mapStateToProps = ({ application, piano }) => ({
   note: application.note,
   needToWriteNote: application.needToWriteNote,
   modeDictation: application.modeDictation,
+  echoLevel: application.echoLevel,
+  duration: application.duration,
   sliceArr: piano.sliceArr,
   mapIndex: piano.mapIndex
 });

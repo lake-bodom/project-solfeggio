@@ -1,77 +1,71 @@
 .buttonGroup.flex {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .buttonGroup.flex .button:first-child {
-	margin-right: 20px;
+    margin-right: 20px;
 }
 
 .buttonGroup.horizontal>.button {
-	margin-left: 0;
-	border-radius: 0;
-	border-right-width: 0;
+    margin-left: 0;
+    border-radius: 0;
+    border-right-width: 0;
 }
 
 .buttonGroup.horizontal>.button:first-child {
-	border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
 }
 
 .buttonGroup.horizontal>.button:last-child {
-	border-radius: 0 5px 5px 0;
-	border-right-width: 1px;
+    border-radius: 0 5px 5px 0;
+    border-right-width: 1px;
 }
 
 .buttonGroup.vertical {
-	margin-right: 20px;
+    margin-right: 20px;
 }
 
 .buttonGroup.vertical>.button {
-	display: block;
-	border-radius: 0;
-	margin-top: 0;
-	border-bottom-width: 0;
-	width: 100%
+    display: block;
+    border-radius: 0;
+    margin-top: 0;
+    border-bottom-width: 0;
+    width: 100%
 }
 
 .buttonGroup.vertical>.button:first-child {
-	margin-top: 20px;
-	border-radius: 5px 5px 0 0;
+    margin-top: 20px;
+    border-radius: 5px 5px 0 0;
 }
 
 .buttonGroup.vertical>.button:last-child {
-	border-radius: 0 0 5px 5px;
-	border-bottom-width: 1px;
+    border-radius: 0 0 5px 5px;
+    border-bottom-width: 1px;
 }
 
-.buttonGroup.vertical>.button:only-child,
-.buttonGroup.horizontal>.button:only-child {
-	border-radius: 5px;
+.buttonGroup.vertical>.button:only-child, .buttonGroup.horizontal>.button:only-child {
+    border-radius: 5px;
 }
-
 
 @media (max-width: 815px) {
-
-	.buttonGroup.horizontal {
-		margin-right: 20px;
-	}
-
-	.buttonGroup.horizontal>.button {
-		display: block;
-		border-radius: 0;
-		margin-top: 0;
-		border-bottom-width: 0;
-		width: 100%;
-		border-right-width: 1px;
-	}
-
-	.buttonGroup.horizontal>.button:first-child {
-		margin-top: 20px;
-		border-radius: 5px 5px 0 0;
-	}
-
-	.buttonGroup.horizontal>.button:last-child {
-		border-radius: 0 0 5px 5px;
-		border-bottom-width: 1px;
-	}
+    .buttonGroup.horizontal {
+        margin-right: 20px;
+    }
+    .buttonGroup.horizontal>.button {
+        display: block;
+        border-radius: 0;
+        margin-top: 0;
+        border-bottom-width: 0;
+        width: 100%;
+        border-right-width: 1px;
+    }
+    .buttonGroup.horizontal>.button:first-child {
+        margin-top: 20px;
+        border-radius: 5px 5px 0 0;
+    }
+    .buttonGroup.horizontal>.button:last-child {
+        border-radius: 0 0 5px 5px;
+        border-bottom-width: 1px;
+    }
 }

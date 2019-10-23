@@ -28,3 +28,4 @@ export const actionStatisticsClearing = () => ({
 export const actionHideAnswer = () => ({
   type: STATISTICS_HIDE_ANSWER
 });
+

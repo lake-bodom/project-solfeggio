@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import Button from "../button/Button";
-import ClearLocalStorageModalBody from "./ClearSettingsModalBody";
+import ClearSettingsModalBody from "./ClearSettingsModalBody";
 
-export default class ClearLocalStorage extends Component {
+import PropTypes from "prop-types";
+
+import "./clearSettings.css";
+
+export default class ClearSettings extends Component {
 	state = {
-		modalIsOpen: false
+		modalIsOpen: false,
+		dataIsClearing: false
 	}
 
 	modalOpenerHandler = () => {
@@ -13,17 +18,38 @@ export default class ClearLocalStorage extends Component {
 		}));
 	}
 
+	saveButtonHandler = () => {
+		localStorage.clear();
+		this.props.setInitialState();
+		this.setState(prev => ({
+			dataIsClearing: !prev.dataIsClearing
+		}), () => {
+			setTimeout(() => {
+				this.setState(prev => ({
+					dataIsClearing: !prev.dataIsClearing
+				}));
+			}, 3000);
+		});
+	}
+
 	render() {
-		const { modalIsOpen } = this.state;
+		const { modalIsOpen, dataIsClearing } = this.state;
 		const { modalOpenerHandler } = this;
 		return (
-			<div className="changeRangeOfNotes">
+			<div className="clear-settings">
 				<h3>Сбросить настройки:</h3>
 				<Button onClick={modalOpenerHandler}>
 					Сбросить все настройки
 				</Button>
-				{modalIsOpen ? <ClearLocalStorageModalBody close={this.modalOpenerHandler} /> : null}
+				{dataIsClearing ? <span>
+					Настройки сброшены
+				</span> : null}
+				{modalIsOpen ? <ClearSettingsModalBody close={this.modalOpenerHandler} saveButtonHandler={this.saveButtonHandler} /> : null}
 			</div>
 		);
 	}
 }
+
+ClearSettings.propTypes = {
+	setInitialState: PropTypes.func.isRequired
+};

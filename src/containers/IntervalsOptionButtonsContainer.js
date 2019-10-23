@@ -17,13 +17,14 @@ import { actionUpdatePianoKeys } from "../store/actions/pianoActions";
 
 import { actionSetMode } from "../store/actions/applicationActions";
 
-const mapStateToProps = ({ intervals, piano }) => ({
+const mapStateToProps = ({ intervals, piano, application }) => ({
   sliceArr: piano.sliceArr,
   sequenceOfNotes: intervals.sequenceOfNotes,
   nextSequenceOfNotes: intervals.nextSequenceOfNotes,
   typeOfInterval: intervals.typeOfInterval,
   showAnswer: intervals.showAnswer,
-  settingsIsOpen: intervals.settingsIsOpen
+  settingsIsOpen: intervals.settingsIsOpen,
+  duration: application.duration
 });
 
 const mapDispatchToProps = {

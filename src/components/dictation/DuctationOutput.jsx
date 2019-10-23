@@ -42,7 +42,7 @@ DuctationOutput.propTypes = {
   sequenceOfMelody: PropTypes.arrayOf(PropTypes.object).isRequired,
   sequenceOfWrittenMelody: PropTypes.arrayOf(PropTypes.object).isRequired,
   answers: PropTypes.arrayOf(PropTypes.bool).isRequired,
-  answerGiven: PropTypes.bool.isRequired,
+  answerGiven: PropTypes.bool.isRequired
 };
 
 export default DuctationOutput;

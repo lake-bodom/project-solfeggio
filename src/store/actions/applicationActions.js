@@ -3,7 +3,10 @@ import {
   NEED_TO_WRITE_NOTE,
   WRITE_PLAY_NOTE,
   INIT_DICTATION,
-  SET_MODE
+  SET_MODE,
+  SET_INITIAL_STATE,
+  SET_ECHO_LEVEL,
+  SET_BPM_LEVEL
 } from "../actionTypes";
 
 export const actionMenuAction = isOpen => ({
@@ -30,5 +33,19 @@ export const actionInitDictation = bool => ({
 export const actionSetMode = ({ mode, stat }) => ({
   type: SET_MODE,
   payload: { mode, stat }
+});
+
+export const actionApplicationSetInitialState = () => ({
+  type: SET_INITIAL_STATE
+});
+
+export const actionSetEchoLevel = (payload) => ({
+  type: SET_ECHO_LEVEL,
+  payload
+});
+
+export const actionSetBpmLevel = (payload) => ({
+  type: SET_BPM_LEVEL,
+  payload
 });
 

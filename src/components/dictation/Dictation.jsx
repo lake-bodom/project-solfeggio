@@ -83,7 +83,7 @@ export default class Dictation extends Component {
       if (sequence[i]) {
         setTimeout(() => {
           this.props.play(sequence[i], onlyPlay);
-        }, 800 * i);
+        }, this.props.duration * 1000 * i);
       }
     }
   };
@@ -243,5 +243,6 @@ Dictation.propTypes = {
     answers: PropTypes.array.isRequired,
     answerGiven: PropTypes.bool.isRequired,
     modeWrite: PropTypes.bool.isRequired
-  }).isRequired
+  }).isRequired,
+  duration: PropTypes.number.isRequired
 };

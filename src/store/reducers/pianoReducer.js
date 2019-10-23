@@ -7,7 +7,8 @@ import {
 import {
   UPDATE_PIANO_KEYS,
   SET_BORDERS_OF_RANGE,
-  SHOW_NOTES_ON_THE_PIANO
+  SHOW_NOTES_ON_THE_PIANO,
+  SET_INITIAL_STATE
 } from "../actionTypes";
 
 import { dataOfIntervals } from "../dataOfIntervals";
@@ -61,6 +62,11 @@ export default (state = initialState, action) => {
           mapIndex
         })
       };
+    }
+
+
+    case SET_INITIAL_STATE: {
+      return initialState;
     }
 
     default: {

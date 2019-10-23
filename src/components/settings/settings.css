@@ -2,10 +2,20 @@
 	padding: 20px 0 0;
 }
 
-.settings div:not(:first-child) {
+.settings>div:not(:first-child) {
 	margin-top: 30px;
 }
 
-.settings h3 {
+.settings>div>h3 {
+	margin-bottom: 10px;
 	color: #535397;
+}
+
+.settings button {
+	margin-top: 0;
+}
+
+.range-settings-wrap {
+	display: flex;
+	align-items: flex-end;
 }

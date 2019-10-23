@@ -5,6 +5,9 @@ import "./modalWindow.css";
 import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
 import Button from "../button/Button";
 
+import PropTypes from "prop-types";
+
+
 export default class ModalWindow extends Component {
   state = {
     opacity: 0
@@ -78,3 +81,18 @@ export default class ModalWindow extends Component {
     );
   }
 }
+
+ModalWindow.propTypes = {
+  close: PropTypes.func.isRequired,
+  saveButton: PropTypes.bool.isRequired,
+  saveButtonName: PropTypes.string,
+  cancelButton: PropTypes.bool.isRequired,
+  cancelButtonName: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  saveButtonHandler: PropTypes.func,
+  cancelButtonHandler: PropTypes.func
+};
+
+ModalWindow.defaultProps = {
+  cancelButtonHandler: () => { }  
+};

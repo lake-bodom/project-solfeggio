@@ -6,6 +6,8 @@ import {
   createGroupsOfIntervals
 } from "../../store/dataOfIntervals";
 
+import PropTypes from "prop-types";
+
 const ListOfIntervals = ({
   settingsIsOpen,
   allIntervals,
@@ -18,6 +20,7 @@ const ListOfIntervals = ({
   actionIncrementAmountOfAnswers,
   actionShowNotesOnThePiano
 }) => {
+
   let arr = [];
 
   if (settingsIsOpen) {
@@ -51,4 +54,38 @@ const ListOfIntervals = ({
   );
 };
 
+ListOfIntervals.propTypes = {
+  actionInverseChosenInterval: PropTypes.func.isRequired,
+  actionShowTheCorrectInterval: PropTypes.func.isRequired,
+  actionIncrementRightAnswers: PropTypes.func.isRequired,
+  actionIncrementAmountOfAnswers: PropTypes.func.isRequired,
+  actionShowNotesOnThePiano: PropTypes.func.isRequired,
+  allIntervals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  activeInterval: PropTypes.object,
+  showAnswer: PropTypes.bool,
+  sequenceOfNotes: PropTypes.arrayOf(PropTypes.number),
+  settingsIsOpen: PropTypes.bool
+
+};
+
 export default ListOfIntervals;
+
+/*
+
+activeInterval: PropTypes.shape({
+    name: PropTypes.string,
+    rusName: PropTypes.string,
+    numberOfSemitones: PropTypes.number,
+    chosen: PropTypes.bool
+  }).isRequired,
+
+{
+
+
+  "sequenceOfNotes": [
+    50,
+    57
+  ],
+}
+
+*/

@@ -133,9 +133,9 @@ FindNote.propTypes = {
     right: PropTypes.bool.isRequired,
     showAnswer: PropTypes.bool.isRequired
   }).isRequired,
-  note: PropTypes.number.isRequired,
+  note: PropTypes.number,
   sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
   playNote: PropTypes.object,
-  needToWriteNote: PropTypes
+  needToWriteNote: PropTypes.bool.isRequired
 };
 
