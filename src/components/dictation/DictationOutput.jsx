@@ -3,7 +3,7 @@ import DictationOutputElement from "./DictationOutputElement";
 
 import PropTypes from "prop-types";
 
-const DuctationOutput = ({
+const DictationOutput = ({
   amountOfNotes,
   sequenceOfMelody,
   sequenceOfWrittenMelody,
@@ -36,7 +36,7 @@ const DuctationOutput = ({
   );
 };
 
-DuctationOutput.propTypes = {
+DictationOutput.propTypes = {
   amountOfNotes: PropTypes.number.isRequired,
   needToWriteNote: PropTypes.bool.isRequired,
   sequenceOfMelody: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -45,4 +45,4 @@ DuctationOutput.propTypes = {
   answerGiven: PropTypes.bool.isRequired
 };
 
-export default DuctationOutput;
+export default DictationOutput;

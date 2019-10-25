@@ -17,7 +17,9 @@ const LeftSideButtons = ({
   actionNextButtonClick,
   actionGetNextInterval,
   actionHideAnswer,
-  actionUpdatePianoKeys
+  actionUpdatePianoKeys,
+  actionKeyboardSetPlayFlag,
+  playFlag
 }) => {
   const playInterval = () => {
     let first, second;
@@ -75,10 +77,30 @@ const LeftSideButtons = ({
     }
   };
 
+  if (playFlag && !settingsIsOpen) {
+    setTimeout(() => {
+      actionKeyboardSetPlayFlag(false);
+    }, 300);
+    if (showAnswer) {
+      nextClickHandler();
+
+    } else {
+      playInterval();
+    }
+  } else {
+    actionKeyboardSetPlayFlag(false);
+  }
+
+  const playButtonClasses = [(settingsIsOpen ? "secondary" : "info")];
+
+  if (playFlag) {
+    playButtonClasses.push("active");
+  }
+
   return (
     <ButtonsGroup cls="horizontal">
       <Button
-        cls={settingsIsOpen ? "secondary" : "info"}
+        cls={playButtonClasses.join(" ")}
         disabled={settingsIsOpen ? true : false}
         onClick={showAnswer ? nextClickHandler : playInterval}
       >
@@ -107,7 +129,9 @@ LeftSideButtons.propTypes = {
   actionNextButtonClick: PropTypes.func.isRequired,
   actionGetNextInterval: PropTypes.func.isRequired,
   actionUpdatePianoKeys: PropTypes.func.isRequired,
-  actionHideAnswer: PropTypes.func.isRequired
+  actionHideAnswer: PropTypes.func.isRequired,
+  actionKeyboardSetPlayFlag: PropTypes.func.isRequired,
+  playFlag: PropTypes.bool.isRequired
 };
 
 export default LeftSideButtons;

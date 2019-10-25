@@ -5,6 +5,7 @@ import Button from "../button/Button";
 import PropTypes from "prop-types";
 
 const GroupOfIntervals = ({
+  groupIndex,
   group,
   settingsIsOpen,
   activeInterval,
@@ -33,7 +34,7 @@ const GroupOfIntervals = ({
     ? actionInverseChosenInterval
     : checkAnswer;
 
-  const body = group.map(interval => {
+  const body = group.map((interval, index) => {
     return (
       <Button
         key={interval.name}
@@ -48,12 +49,13 @@ const GroupOfIntervals = ({
               : String.fromCharCode(215)}
           </span>
         ) : null}
-        {interval.rusName}
+        <b>{groupIndex * 4 + index + 1})&nbsp;</b>{interval.rusName}
       </Button>
     );
   });
 
   GroupOfIntervals.propTypes = {
+    groupIndex: PropTypes.number.isRequired,
     settingsIsOpen: PropTypes.bool,
     group: PropTypes.arrayOf(PropTypes.object).isRequired,
     activeInterval: PropTypes.shape({

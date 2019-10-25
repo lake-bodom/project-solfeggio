@@ -20,6 +20,7 @@ store.subscribe(() => {
   sliceState.dictation = state.dictation;
   sliceState.application = state.application;
 
+
   const { allIntervals, typeOfInterval } = state.intervals;
   sliceState.intervals = { allIntervals, typeOfInterval };
 

@@ -20,7 +20,6 @@ const ListOfIntervals = ({
   actionIncrementAmountOfAnswers,
   actionShowNotesOnThePiano
 }) => {
-
   let arr = [];
 
   if (settingsIsOpen) {
@@ -29,8 +28,9 @@ const ListOfIntervals = ({
     arr = createGroupsOfIntervals(getChosenIntervals(allIntervals));
   }
 
-  const body = arr.map(group => (
+  const body = arr.map((group, groupIndex) => (
     <GroupOfIntervals
+      groupIndex={groupIndex}
       group={group}
       key={group[0].name}
       settingsIsOpen={settingsIsOpen}
@@ -69,23 +69,3 @@ ListOfIntervals.propTypes = {
 };
 
 export default ListOfIntervals;
-
-/*
-
-activeInterval: PropTypes.shape({
-    name: PropTypes.string,
-    rusName: PropTypes.string,
-    numberOfSemitones: PropTypes.number,
-    chosen: PropTypes.bool
-  }).isRequired,
-
-{
-
-
-  "sequenceOfNotes": [
-    50,
-    57
-  ],
-}
-
-*/

@@ -7,34 +7,29 @@ import PropTypes from "prop-types";
 import "./clearSettings.css";
 
 export default class ClearSettings extends Component {
-	state = {
-		modalIsOpen: false,
-		dataIsClearing: false
-	}
+
 
 	modalOpenerHandler = () => {
-		this.setState(prev => ({
-			modalIsOpen: !prev.modalIsOpen
-		}));
+		this.props.actionSetModalWindowFlag(true);
+	}
+
+	modalCloserHandler = () => {
+		this.props.actionSetModalWindowFlag(false);
 	}
 
 	saveButtonHandler = () => {
 		localStorage.clear();
 		this.props.setInitialState();
-		this.setState(prev => ({
-			dataIsClearing: !prev.dataIsClearing
-		}), () => {
-			setTimeout(() => {
-				this.setState(prev => ({
-					dataIsClearing: !prev.dataIsClearing
-				}));
-			}, 3000);
-		});
+		this.props.actionSetDataClearingFlag(true);
+		setTimeout(() => {
+			this.props.actionSetDataClearingFlag(false);
+		}, 1000);
 	}
 
 	render() {
-		const { modalIsOpen, dataIsClearing } = this.state;
 		const { modalOpenerHandler } = this;
+		const { modalWindowFlag, dataIsClearing } = this.props;
+
 		return (
 			<div className="clear-settings">
 				<h3>Сбросить настройки:</h3>
@@ -44,12 +39,16 @@ export default class ClearSettings extends Component {
 				{dataIsClearing ? <span>
 					Настройки сброшены
 				</span> : null}
-				{modalIsOpen ? <ClearSettingsModalBody close={this.modalOpenerHandler} saveButtonHandler={this.saveButtonHandler} /> : null}
+				{modalWindowFlag ? <ClearSettingsModalBody close={this.modalCloserHandler} saveButtonHandler={this.saveButtonHandler} /> : null}
 			</div>
 		);
 	}
 }
 
 ClearSettings.propTypes = {
-	setInitialState: PropTypes.func.isRequired
+	actionSetDataClearingFlag: PropTypes.func.isRequired,
+	setInitialState: PropTypes.func.isRequired,
+	actionSetModalWindowFlag: PropTypes.func.isRequired,
+	modalWindowFlag: PropTypes.bool,
+	dataIsClearing: PropTypes.bool
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import OptionFromSelectRanges from "./OptionFromSelectRanges";
+import OptionFromSelect from "./OptionFromSelect";
 
 import PropTypes from "prop-types";
 
@@ -22,7 +22,7 @@ const SelectBody = ({
     }
 
     return (
-      <OptionFromSelectRanges
+      <OptionFromSelect
         disabled={disabled}
         fullName={fullName}
         index={index}
@@ -44,7 +44,7 @@ SelectBody.propType = {
     key: PropTypes.number.isRequired
   }),
   nameOfSelect: PropTypes.string.isRequired,
-  baseArrOfNotes: PropTypes.arrayOf(PropTypes.object.isRequired),
+  baseArrOfNotes: PropTypes.arrayOf(PropTypes.object.isRequired)
 };
 
 

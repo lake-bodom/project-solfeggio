@@ -9,32 +9,21 @@ import PropTypes from "prop-types";
 
 
 export default class ModalWindow extends Component {
-  state = {
-    opacity: 0
-  };
 
   modal = document.createElement("div");
 
   componentDidMount() {
     this.modal.className = "modal-wrap";
     document.body.appendChild(this.modal);
-    document.body.style.overflow = "hidden";
-    setTimeout(() => {
-      this.setState({
-        opacity: 1
-      });
-    }, 100);
+    document.body.style.overflowY = "hidden";
   }
 
   componentWillUnmount() {
     document.body.removeChild(this.modal);
-    document.body.style.overflow = "auto";
+    document.body.style.overflowY = "auto";
   }
 
   closeHandler = () => {
-    this.setState({
-      opacity: 0
-    });
     setTimeout(() => {
       this.props.close();
     }, 100);
@@ -58,8 +47,9 @@ export default class ModalWindow extends Component {
       cancelButtonName
     } = this.props;
 
+
     return ReactDOM.createPortal(
-      <div className="modal-window" style={{ opacity: this.state.opacity }}>
+      <div className="modal-window" >
         <span className="close" onClick={this.closeHandler}>
           &times;
         </span>
@@ -94,5 +84,5 @@ ModalWindow.propTypes = {
 };
 
 ModalWindow.defaultProps = {
-  cancelButtonHandler: () => { }  
+  cancelButtonHandler: () => { }
 };

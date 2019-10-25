@@ -8,17 +8,22 @@ const InputRange = ({ level, onChangeHandler, min, max, step }) => {
 
 	const percent = (level - min) / (max - min);
 
-	let style;
+	let levelValueStyle;
 
-	if (percent < 0.5) {
-		style = { left: `calc(-8px  + 100% * ${percent} - 10px * ${percent} )` };
+	if (percent < 0.35) {
+		levelValueStyle = { left: `calc(-8px  + 100% * ${percent} - 10px * ${percent} )` };
+	} else if (percent > 0.85) {
+		levelValueStyle = { left: `calc(-12px * ${percent ? percent : 1} + 100% * ${percent} - 11px * ${percent} )` };
+	} else if (percent > 0.65) {
+		levelValueStyle = { left: `calc(-14px * ${percent ? percent : 1} + 100% * ${percent} - 11px * ${percent} )` };
 	} else {
-		style = { left: `calc(-12px * ${percent ? percent : 1} + 100% * ${percent} - 11px * ${percent} )` };
+		levelValueStyle = { left: `calc(-18px * ${percent ? percent : 1} + 100% * ${percent} - 11px * ${percent} )` };
 	}
 
+
 	return (
-		<div className="input-range-wrap">
-			<div className="input-range-value" style={style}>{level}</div>
+		<div className="input-range-wrap" >
+			<div className="input-range-value" style={levelValueStyle}>{level}</div>
 			<input type="range" min={min} max={max} step={step} onChange={onChangeHandler} value={level} />
 		</div>
 	);

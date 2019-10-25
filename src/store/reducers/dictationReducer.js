@@ -13,6 +13,7 @@ const initialState = {
   amountOfNotes: 4,
   sequenceOfMelody: [],
   sequenceOfWrittenMelody: [],
+  readyToCheck: false,
   defaultModeWrite: false,
   answers: [],
   answerGiven: false
@@ -41,13 +42,20 @@ export default (state = initialState, action) => {
     }
     case CHANGE_MODE: {
       const modeWrite = action.payload;
-      return { ...state, modeWrite };
+      return { ...state, modeWrite, readyToCheck: false };
     }
+
     case ADD_NOTE_TO_ANSWER_ARRAY: {
       const { sequenceOfWrittenMelody } = state;
       sequenceOfWrittenMelody.push(action.payload);
 
-      return { ...state, sequenceOfWrittenMelody };
+      let readyToCheck = false;
+
+      if (state.amountOfNotes === sequenceOfWrittenMelody.length) {
+        readyToCheck = true;
+      }
+
+      return { ...state, sequenceOfWrittenMelody, readyToCheck };
     }
 
     case POP_LAST_ELEM_FROM_ANSWER_ARRAY: {
@@ -73,7 +81,7 @@ export default (state = initialState, action) => {
       return { ...state, ...action.payload };
     }
 
-    
+
     case SET_INITIAL_STATE: {
       return initialState;
     }

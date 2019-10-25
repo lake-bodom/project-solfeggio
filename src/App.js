@@ -19,9 +19,6 @@ import PropTypes from "prop-types";
 
 class App extends Component {
   componentDidMount() {
-
-    // this.setState(this.state);
-    // this.midiSounds.playChordNow(1, [60], 1);
     this.midiSounds.setEchoLevel(this.props.echoLevel);
 
     document.getElementById("root").addEventListener("click", () => {
@@ -30,10 +27,36 @@ class App extends Component {
       }
     });
 
-    document.body.addEventListener("keyup", e => {
-      if (e.keyCode === 27) {
-        this.props.actionMenuAction();
+    document.body.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        if (this.props.modalWindowFlag) {
+          this.props.actionSetModalWindowFlag(false);
+        } else {
+          this.props.actionMenuAction();
+        }
       }
+      if (e.key === "Enter" && !this.props.playFlag) {
+        this.props.actionKeyboardSetPlayFlag(true);
+      }
+
+      if (e.key === "+" && !this.props.playWrittenMelodyFlag) {
+        this.props.actionKeyboardSetPlayWrittenMelodyFlag(true);
+      }
+
+      if (e.key === " " && !this.props.changeModeFlag) {
+        this.props.actionKeyboardSetChangeModeFlag(true);
+      }
+
+      if (e.key === "Backspace" && !this.props.dictationClearNoteFlag) {
+        this.props.actionKeyboardSetDictationClearNoteFlag(true);
+      }
+
+      if (e.key === "-" && !this.props.dictationCheckFlag) {
+        this.props.actionKeyboardSetDictationCheckFlag(true);
+      }
+
+      console.log(e);
+      // e.preventDefault();
     });
   }
 
@@ -41,11 +64,16 @@ class App extends Component {
     if (prevProps.echoLevel !== this.props.echoLevel) {
       this.midiSounds.setEchoLevel(this.props.echoLevel);
     }
+
+    if (prevProps.instrumentId !== this.props.instrumentId) {
+      this.midiSounds.playChordNow(this.props.instrumentId, [60], 0);
+    }
   }
 
   play = (key, onlyPlay) => {
-    const { duration } = this.props;
-    this.midiSounds.playChordNow(1, [key], duration);
+    const { duration, instrumentId } = this.props;
+    this.midiSounds.playChordNow((instrumentId ? instrumentId : 1), [key], duration);
+
 
     if (!onlyPlay) {
       if (this.props.needToWriteNote) {
@@ -61,6 +89,7 @@ class App extends Component {
   };
 
   render() {
+    const { instrumentId } = this.props;
     return (
       <div className="app">
         <Menu />
@@ -93,7 +122,7 @@ class App extends Component {
           <MIDISounds
             ref={ref => (this.midiSounds = ref)}
             appElementName="root"
-            instruments={[1]}
+            instruments={[instrumentId ? instrumentId : 1]}
           />
         </div>
       </div>
@@ -102,6 +131,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+  instrumentId: PropTypes.number.isRequired,
   echoLevel: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
   menuIsOpen: PropTypes.bool.isRequired,
@@ -110,7 +140,19 @@ App.propTypes = {
   sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
   mapIndex: PropTypes.object.isRequired,
   actionMenuAction: PropTypes.func.isRequired,
-  actionWritePlayNote: PropTypes.func.isRequired
+  actionWritePlayNote: PropTypes.func.isRequired,
+  actionKeyboardSetPlayFlag: PropTypes.func.isRequired,
+  modalWindowFlag: PropTypes.bool,
+  actionSetModalWindowFlag: PropTypes.func.isRequired,
+  playFlag: PropTypes.bool.isRequired,
+  playWrittenMelodyFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetPlayWrittenMelodyFlag: PropTypes.func.isRequired,
+  changeModeFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetChangeModeFlag: PropTypes.func.isRequired,
+  dictationClearNoteFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetDictationClearNoteFlag: PropTypes.func.isRequired,
+  actionKeyboardSetDictationCheckFlag: PropTypes.func.isRequired,
+  dictationCheckFlag: PropTypes.bool.isRequired
 };
 
 

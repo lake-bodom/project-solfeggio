@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import {
 	actionSetMode,
 	actionSetEchoLevel,
-	actionSetBpmLevel
+	actionSetBpmLevel,
+	actionSetInstrumentId
 } from "../store/actions/applicationActions";
 
 import {
@@ -14,14 +15,16 @@ import {
 const mapStateToProps = ({ application }) => ({
 	duration: application.duration,
 	echoLevel: application.echoLevel,
-	bpm: application.bpm
+	bpm: application.bpm,
+	instrumentId: application.instrumentId
 });
 
 const mapDispatchToProps = {
 	actionSetMode,
 	actionUpdatePianoKeys,
 	actionSetEchoLevel,
-	actionSetBpmLevel
+	actionSetBpmLevel,
+	actionSetInstrumentId
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

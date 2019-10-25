@@ -15,11 +15,27 @@ class IntervalsOptionButtons extends React.Component {
 
     this.props.actionSetMode({ mode: "Поиск интервала", stat: true });
     this.props.actionUpdatePianoKeys();
+
+    if (this.props.playFlag) {
+      this.props.actionKeyboardSetPlayFlag(false);
+    }
+    if (this.props.changeModeFlag) {
+      this.props.actionKeyboardSetChangeModeFlag(false);
+    }
   }
 
   componentWillUnmount() {
     this.props.actionStatisticsClearing();
     this.props.actionIntervalsSettingsAction(false);
+    if (this.props.playFlag) {
+      this.props.actionKeyboardSetPlayFlag(false);
+    }
+    if (this.props.changeModeFlag) {
+      this.props.actionKeyboardSetChangeModeFlag(false);
+    }
+    if (this.props.changeModeFlag) {
+      this.props.actionKeyboardSetChangeModeFlag(false);
+    }
   }
 
   render() {
@@ -37,7 +53,11 @@ class IntervalsOptionButtons extends React.Component {
       actionNextButtonClick,
       actionGetNextInterval,
       actionHideAnswer,
-      actionUpdatePianoKeys
+      actionUpdatePianoKeys,
+      playFlag,
+      actionKeyboardSetPlayFlag,
+      changeModeFlag,
+      actionKeyboardSetChangeModeFlag
     } = this.props;
 
 
@@ -57,10 +77,14 @@ class IntervalsOptionButtons extends React.Component {
           actionGetNextInterval={actionGetNextInterval}
           actionUpdatePianoKeys={actionUpdatePianoKeys}
           actionHideAnswer={actionHideAnswer}
+          playFlag={playFlag}
+          actionKeyboardSetPlayFlag={actionKeyboardSetPlayFlag}
         />
         <RightSideButtons
           typeOfInterval={typeOfInterval}
           actionSetActiveTypeOfInterval={actionSetActiveTypeOfInterval}
+          changeModeFlag={changeModeFlag}
+          actionKeyboardSetChangeModeFlag={actionKeyboardSetChangeModeFlag}
         />
       </div>
     );
@@ -83,7 +107,14 @@ IntervalsOptionButtons.propTypes = {
   actionHideAnswer: PropTypes.func.isRequired,
   actionSetMode: PropTypes.func.isRequired,
   actionUpdatePianoKeys: PropTypes.func.isRequired,
-  settingsIsOpen: PropTypes.bool
+  settingsIsOpen: PropTypes.bool,
+  actionKeyboardSetPlayFlag: PropTypes.func.isRequired,
+  playFlag: PropTypes.bool.isRequired,
+  changeModeFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetChangeModeFlag: PropTypes.func.isRequired
+
+
+
 };
 
 export default IntervalsOptionButtons;

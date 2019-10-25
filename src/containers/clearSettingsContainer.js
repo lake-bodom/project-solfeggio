@@ -1,14 +1,19 @@
 import ClearSettings from "../components/clearSettings/ClearSettings";
 import { connect } from "react-redux";
 
-import { actionApplicationSetInitialState } from "../store/actions/applicationActions";
+import { actionApplicationSetInitialState, actionSetModalWindowFlag, actionSetDataClearingFlag } from "../store/actions/applicationActions";
 
 const setInitialState = actionApplicationSetInitialState;
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ application }) => ({
+  modalWindowFlag: application.modalWindowFlag,
+  dataIsClearing: application.dataIsClearing
+});
 
 const mapDispatchToProps = {
-  setInitialState
+  setInitialState,
+  actionSetModalWindowFlag,
+  actionSetDataClearingFlag
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClearSettings);

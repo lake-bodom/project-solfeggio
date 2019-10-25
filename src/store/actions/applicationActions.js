@@ -6,7 +6,15 @@ import {
   SET_MODE,
   SET_INITIAL_STATE,
   SET_ECHO_LEVEL,
-  SET_BPM_LEVEL
+  SET_BPM_LEVEL,
+  SET_INSTRUMENTID,
+  KEYBOARD_SET_PLAY_FLAG,
+  SET_MODAL_WINDOW_FLAG,
+  DATA_CLEARING_FLAG,
+  KEYBOARD_SET_PLAY_WRITTEN_MELODY_FLAG,
+  KEYBOARD_SET_CHANGE_MODE_FLAG,
+  KEYBOARD_SET_DICTATION_CLEAR_NOTE_FLAG,
+  KEYBOARD_SET_DICTATION_CHECK_FLAG
 } from "../actionTypes";
 
 export const actionMenuAction = isOpen => ({
@@ -46,6 +54,46 @@ export const actionSetEchoLevel = (payload) => ({
 
 export const actionSetBpmLevel = (payload) => ({
   type: SET_BPM_LEVEL,
+  payload
+});
+
+export const actionSetInstrumentId = (payload) => ({
+  type: SET_INSTRUMENTID,
+  payload
+});
+
+export const actionKeyboardSetPlayFlag = (payload) => ({
+  type: KEYBOARD_SET_PLAY_FLAG,
+  payload
+});
+
+export const actionSetModalWindowFlag = (payload) => ({
+  type: SET_MODAL_WINDOW_FLAG,
+  payload
+});
+
+export const actionSetDataClearingFlag = (payload) => ({
+  type: DATA_CLEARING_FLAG,
+  payload
+});
+
+export const actionKeyboardSetPlayWrittenMelodyFlag = (payload) => ({
+  type: KEYBOARD_SET_PLAY_WRITTEN_MELODY_FLAG,
+  payload
+});
+
+export const actionKeyboardSetChangeModeFlag = (payload) => ({
+  type: KEYBOARD_SET_CHANGE_MODE_FLAG,
+  payload
+});
+
+export const actionKeyboardSetDictationClearNoteFlag = (payload) => ({
+  type: KEYBOARD_SET_DICTATION_CLEAR_NOTE_FLAG,
+  payload
+});
+
+export const actionKeyboardSetDictationCheckFlag = (payload) => ({
+  type: KEYBOARD_SET_DICTATION_CHECK_FLAG,
   payload
 });
 

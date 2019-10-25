@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const OptionFromSelectRanges = ({ index, fullName, disabled }) => {
+const OptionFromSelect = ({ index, fullName, disabled }) => {
   return (
     <option disabled={disabled} value={index}>
       {fullName}
@@ -9,10 +9,14 @@ const OptionFromSelectRanges = ({ index, fullName, disabled }) => {
   );
 };
 
-OptionFromSelectRanges.propTypes = {
+OptionFromSelect.propTypes = {
   index: PropTypes.number.isRequired,
   fullName: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired
+  disabled: PropTypes.bool
 };
 
-export default OptionFromSelectRanges;
+OptionFromSelect.defaultProps = {
+  disabled: false
+};
+
+export default OptionFromSelect;

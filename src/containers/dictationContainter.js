@@ -25,7 +25,13 @@ import {
   actionNeedToWriteNote,
   actionInitDictation,
   actionWritePlayNote,
-  actionSetMode
+  actionSetMode,
+  actionSetModalWindowFlag,
+  actionKeyboardSetPlayFlag,
+  actionKeyboardSetPlayWrittenMelodyFlag,
+  actionKeyboardSetChangeModeFlag,
+  actionKeyboardSetDictationClearNoteFlag,
+  actionKeyboardSetDictationCheckFlag
 } from "../store/actions/applicationActions";
 
 const mapStateToProps = ({ piano, dictation, application }) => ({
@@ -33,7 +39,13 @@ const mapStateToProps = ({ piano, dictation, application }) => ({
   dictation,
   needToWriteNote: application.needToWriteNote,
   playNote: application.playNote,
-  duration: application.duration
+  duration: application.duration,
+  modalWindowFlag: application.modalWindowFlag,
+  playFlag: application.playFlag,
+  playWrittenMelodyFlag: application.playWrittenMelodyFlag,
+  changeModeFlag: application.changeModeFlag,
+  dictationClearNoteFlag: application.dictationClearNoteFlag,
+  dictationCheckFlag: application.dictationCheckFlag
 });
 
 const mapDispatchToProps = {
@@ -51,10 +63,18 @@ const mapDispatchToProps = {
   actionClearWrittenMelody,
   actionHideAnswer,
   actionSetMode,
-  actionUpdatePianoKeys
+  actionUpdatePianoKeys,
+  actionSetModalWindowFlag,
+  actionKeyboardSetPlayFlag,
+  actionKeyboardSetPlayWrittenMelodyFlag,
+  actionKeyboardSetChangeModeFlag,
+  actionKeyboardSetDictationClearNoteFlag,
+  actionKeyboardSetDictationCheckFlag
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Dictation);
+
+

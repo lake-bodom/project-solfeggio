@@ -27,7 +27,7 @@ const getNewActiveInterval = arr => {
 const initialState = {
   allIntervals,
   typeOfInterval: "melodicUp",
-  activeInterval: "",
+  activeInterval: null,
   nextActiveInterval: "",
   sequenceOfNotes: [],
   settingsIsOpen: false,

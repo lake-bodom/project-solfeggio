@@ -3,16 +3,12 @@ import "./dictation.css";
 
 import DictationPlayButtons from "./DictationPlayButtons";
 import DictationOptionsButtons from "./DictationOptionsButtons";
-import DuctationOutput from "./DuctationOutput";
+import DuctationOutput from "./DictationOutput";
 import DictationSettings from "../../containers/dictationSettingsContainer";
 
 import PropTypes from "prop-types";
 
 export default class Dictation extends Component {
-  state = {
-    modalIsOpen: false
-  };
-
   componentDidMount() {
     const { defaultModeWrite } = this.props.dictation;
     this.props.actionWritePlayNote(null, false);
@@ -29,6 +25,25 @@ export default class Dictation extends Component {
     this.props.actionUpdatePianoKeys();
     this.props.actionClearWrittenMelody();
     this.clearAnswers();
+
+    if (this.props.playFlag) {
+      this.props.actionKeyboardSetPlayFlag(false);
+    }
+    if (this.props.playWrittenMelodyFlag) {
+      this.props.actionKeyboardSetPlayWrittenMelodyFlag(false);
+    }
+    if (this.props.changeModeFlag) {
+      this.props.actionKeyboardSetChangeModeFlag(false);
+    }
+    if (this.props.modalWindowFlag) {
+      this.props.actionSetModalWindowFlag(false);
+    }
+    if (this.props.dictationClearNoteFlag) {
+      this.props.actionSetModalWindowFlag(false);
+    }
+    if (this.props.dictationCheckFlag) {
+      this.props.actionKeyboardSetDictationCheckFlag(false);
+    }
   }
 
   componentWillUnmount() {
@@ -36,12 +51,35 @@ export default class Dictation extends Component {
     this.clearAnswers();
     this.props.actionStatisticsClearing();
     this.props.actionClearWrittenMelody();
+
+    if (this.props.modalWindowFlag) {
+      this.props.actionSetModalWindowFlag(false);
+    }
+    if (this.props.playFlag) {
+      this.props.actionKeyboardSetPlayFlag(false);
+    }
+    if (this.props.playWrittenMelodyFlag) {
+      this.props.actionKeyboardSetPlayWrittenMelodyFlag(false);
+    }
+    if (this.props.changeModeFlag) {
+      this.props.actionKeyboardSetChangeModeFlag(false);
+    }
+    if (this.props.dictationClearNoteFlag) {
+      this.props.actionSetModalWindowFlag(false);
+    }
+    if (this.props.dictationCheckFlag) {
+      this.props.actionKeyboardSetDictationCheckFlag(false);
+    }
   }
 
   componentDidUpdate(prevState) {
-    const { sequenceOfWrittenMelody } = this.props.dictation;
-    const { amountOfNotes } = this.props.dictation;
-    const { playNote } = this.props;
+    const { sequenceOfWrittenMelody, amountOfNotes, answerGiven, readyToCheck } = this.props.dictation;
+    const { playNote, playFlag, actionKeyboardSetPlayFlag, playWrittenMelodyFlag, actionKeyboardSetPlayWrittenMelodyFlag, changeModeFlag, dictationClearNoteFlag, actionKeyboardSetDictationClearNoteFlag, dictationCheckFlag,
+      actionKeyboardSetDictationCheckFlag } = this.props;
+
+    if (prevState.dictation.amountOfNotes !== amountOfNotes) {
+      this.setNewMelody();
+    }
 
     if (sequenceOfWrittenMelody.length < amountOfNotes && playNote) {
       if (
@@ -49,6 +87,41 @@ export default class Dictation extends Component {
         (prevState.playNote === null && playNote !== null)
       ) {
         this.props.actionAddNoteToAnswerArray(playNote);
+      }
+    }
+
+    if (playFlag) {
+      this.playGuessedMelody();
+      setTimeout(() => {
+        actionKeyboardSetPlayFlag(false);
+      }, 300);
+    }
+
+    if (playWrittenMelodyFlag) {
+      this.playWrittenMelody();
+      setTimeout(() => {
+        actionKeyboardSetPlayWrittenMelodyFlag(false);
+      }, 300);
+    }
+
+    if (changeModeFlag) {
+      this.props.actionKeyboardSetChangeModeFlag(false);
+      this.nextPlayButtonHandler();
+    }
+
+    if (dictationClearNoteFlag) {
+      this.clearButtonHandler();
+      setTimeout(() => {
+        actionKeyboardSetDictationClearNoteFlag(false);
+      }, 300);
+    }
+
+    if (dictationCheckFlag) {
+      actionKeyboardSetDictationCheckFlag(false);
+      if (dictationCheckFlag && readyToCheck && !answerGiven) {
+        this.checkAnswerHandler();
+        setTimeout(() => {
+        }, 300);
       }
     }
   }
@@ -113,12 +186,9 @@ export default class Dictation extends Component {
     const arrKeysArrayOfWrittenMeloday = this.getKeysArrayOfMeloday(
       this.props.dictation.sequenceOfWrittenMelody
     );
-
     if (arrKeysArrayOfMeloday.length === arrKeysArrayOfWrittenMeloday.length) {
-      const checkAnswers = this.getArrayOfEqualsOfAnswers(
-        arrKeysArrayOfMeloday,
-        arrKeysArrayOfWrittenMeloday
-      );
+      const checkAnswers = this.getArrayOfEqualsOfAnswers(arrKeysArrayOfMeloday
+        , arrKeysArrayOfWrittenMeloday);
 
       this.changeStat(checkAnswers);
       this.props.actionWriteAnswers(checkAnswers);
@@ -132,6 +202,8 @@ export default class Dictation extends Component {
   };
 
   getArrayOfEqualsOfAnswers = (arr1, arr2) => {
+
+
     const checkAnswers = [];
     for (let i = 0; i < arr1.length; i++) {
       checkAnswers.push(arr1[i] === arr2[i]);
@@ -159,11 +231,14 @@ export default class Dictation extends Component {
   };
 
   settingsButtonHandler = () => {
-    this.setState(prevState => {
-      return {
-        modalIsOpen: !prevState.modalIsOpen
-      };
-    });
+    this.props.actionSetModalWindowFlag(!this.props.modalWindowFlag);
+  };
+
+  nextPlayButtonHandler = () => {
+    this.changeMode();
+    if (this.props.dictation.answerGiven) {
+      this.nextButtonHandler();
+    }
   };
 
   render() {
@@ -176,16 +251,21 @@ export default class Dictation extends Component {
       sequenceOfMelody,
       sequenceOfWrittenMelody,
       answerGiven,
-      answers
+      answers,
+      readyToCheck
     } = this.props.dictation;
 
-    const { nextButtonHandler, settingsButtonHandler } = this;
+    const { playFlag, playWrittenMelodyFlag, dictationClearNoteFlag } = this.props;
+
+    const { nextPlayButtonHandler, settingsButtonHandler } = this;
 
     return (
       <div>
         <DictationPlayButtons
           playGuessedMelody={this.playGuessedMelody}
           playWrittenMelody={this.playWrittenMelody}
+          playFlag={playFlag}
+          playWrittenMelodyFlag={playWrittenMelodyFlag}
         />
         <DictationOptionsButtons
           modeWrite={modeWrite}
@@ -195,8 +275,10 @@ export default class Dictation extends Component {
           sequenceOfWrittenMelody={sequenceOfWrittenMelody}
           amountOfNotes={amountOfNotes}
           answerGiven={answerGiven}
-          nextButtonHandler={nextButtonHandler}
+          nextPlayButtonHandler={nextPlayButtonHandler}
           settingsButtonHandler={settingsButtonHandler}
+          dictationClearNoteFlag={dictationClearNoteFlag}
+          readyToCheck={readyToCheck}
         />
         <DuctationOutput
           amountOfNotes={amountOfNotes}
@@ -207,7 +289,7 @@ export default class Dictation extends Component {
           answers={answers}
         />
 
-        {this.state.modalIsOpen ? (
+        {this.props.modalWindowFlag ? (
           <DictationSettings settingsButtonHandler={settingsButtonHandler} />
         ) : null}
       </div>
@@ -242,7 +324,20 @@ Dictation.propTypes = {
     defaultModeWrite: PropTypes.bool.isRequired,
     answers: PropTypes.array.isRequired,
     answerGiven: PropTypes.bool.isRequired,
-    modeWrite: PropTypes.bool.isRequired
+    modeWrite: PropTypes.bool,
+    readyToCheck: PropTypes.bool
   }).isRequired,
-  duration: PropTypes.number.isRequired
+  duration: PropTypes.number.isRequired,
+  actionSetModalWindowFlag: PropTypes.func.isRequired,
+  modalWindowFlag: PropTypes.bool,
+  actionKeyboardSetPlayFlag: PropTypes.func.isRequired,
+  playFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetPlayWrittenMelodyFlag: PropTypes.func.isRequired,
+  playWrittenMelodyFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetChangeModeFlag: PropTypes.func.isRequired,
+  changeModeFlag: PropTypes.bool.isRequired,
+  dictationClearNoteFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetDictationClearNoteFlag: PropTypes.func.isRequired,
+  actionKeyboardSetDictationCheckFlag: PropTypes.func.isRequired,
+  dictationCheckFlag: PropTypes.bool.isRequired
 };

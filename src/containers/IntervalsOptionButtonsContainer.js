@@ -15,7 +15,7 @@ import {
 
 import { actionUpdatePianoKeys } from "../store/actions/pianoActions";
 
-import { actionSetMode } from "../store/actions/applicationActions";
+import { actionSetMode, actionKeyboardSetPlayFlag, actionKeyboardSetChangeModeFlag } from "../store/actions/applicationActions";
 
 const mapStateToProps = ({ intervals, piano, application }) => ({
   sliceArr: piano.sliceArr,
@@ -24,7 +24,9 @@ const mapStateToProps = ({ intervals, piano, application }) => ({
   typeOfInterval: intervals.typeOfInterval,
   showAnswer: intervals.showAnswer,
   settingsIsOpen: intervals.settingsIsOpen,
-  duration: application.duration
+  duration: application.duration,
+  playFlag: application.playFlag,
+  changeModeFlag: application.changeModeFlag
 });
 
 const mapDispatchToProps = {
@@ -35,7 +37,9 @@ const mapDispatchToProps = {
   actionStatisticsClearing,
   actionHideAnswer,
   actionSetMode,
-  actionUpdatePianoKeys
+  actionUpdatePianoKeys,
+  actionKeyboardSetPlayFlag,
+  actionKeyboardSetChangeModeFlag
 };
 
 export default connect(

@@ -9,9 +9,9 @@ const TempoSettings = ({ children, bpm, actionSetBpmLevel }) => {
 		actionSetBpmLevel(+e.target.value);
 	};
 
-	return <div className="range-settings">
+	return <div className="input-settings">
 		<h3>Настрока темпа (bpm):</h3>
-		<div className="range-settings-wrap">
+		<div className="input-settings-wrap">
 			<InputRange min={50} max={180} step={1} level={bpm} onChangeHandler={onChangeHandler} />
 			{children}
 		</div>

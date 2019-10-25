@@ -9,9 +9,9 @@ const EchoSettings = ({ children, echoLevel, actionSetEchoLevel }) => {
 		actionSetEchoLevel(+e.target.value);
 	};
 
-	return <div className="range-settings">
+	return <div className="input-settings">
 		<h3>Уровень эхо:</h3>
-		<div className="range-settings-wrap">
+		<div className="input-settings-wrap">
 			<InputRange min={0} max={1} step={0.1} level={echoLevel} onChangeHandler={onChangeHandler} />
 			{children}
 		</div>

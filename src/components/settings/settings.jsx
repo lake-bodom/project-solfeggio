@@ -8,6 +8,8 @@ import PropTypes from "prop-types";
 import PlayExampleButton from "./playExampleButton/PlayExampleButton";
 import EchoSettings from "../echoSettings/EchoSettings";
 import TempoSettings from "../tempoSettings/TempoSettings";
+import ChangeInstrument from "../changeInstrument/ChangeInstrument";
+import KeyboardSettings from "../keyboardSettings/KeyboardSettings";
 
 export default class Settings extends Component {
 	componentDidMount() {
@@ -18,8 +20,7 @@ export default class Settings extends Component {
 	}
 
 	render() {
-
-		const { actionSetEchoLevel, echoLevel, bpm, actionSetBpmLevel } = this.props;
+		const { actionSetEchoLevel, echoLevel, bpm, actionSetBpmLevel, actionSetInstrumentId, instrumentId } = this.props;
 
 		const playExampleComponent = (
 			<PlayExampleButton play={this.props.play} duration={this.props.duration} />
@@ -36,7 +37,10 @@ export default class Settings extends Component {
 					bpm={bpm}>
 					{playExampleComponent}
 				</TempoSettings>
-
+				<ChangeInstrument actionSetInstrumentId={actionSetInstrumentId} instrumentId={instrumentId}>
+					{playExampleComponent}
+				</ChangeInstrument>
+				<KeyboardSettings /> 
 				<ClearSettings />
 			</div>
 		);
@@ -49,7 +53,9 @@ Settings.propTypes = {
 	play: PropTypes.func.isRequired,
 	actionSetEchoLevel: PropTypes.func.isRequired,
 	actionSetBpmLevel: PropTypes.func.isRequired,
+	actionSetInstrumentId: PropTypes.func.isRequired,
 	duration: PropTypes.number.isRequired,
 	echoLevel: PropTypes.number.isRequired,
-	bpm: PropTypes.number.isRequired
+	bpm: PropTypes.number.isRequired,
+	instrumentId: PropTypes.number.isRequired
 };

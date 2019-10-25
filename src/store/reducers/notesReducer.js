@@ -10,6 +10,8 @@ export default (state = initialState, action) => {
 
       return { ...state, note };
     }
+
+
     default:
       return { ...state };
   }

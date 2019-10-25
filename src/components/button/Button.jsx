@@ -15,6 +15,7 @@ const Button = ({ onClick, children, cls, active, disabled }) => {
       onClick={onClick}
       className={classNames.join(" ")}
       disabled={disabled}
+      onFocus={(e) => { e.target.blur(); }}
     >
       {children}
     </button>

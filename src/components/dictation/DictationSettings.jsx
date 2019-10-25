@@ -78,16 +78,14 @@ export default class DictationSettings extends Component {
         saveButtonHandler={saveButtonHandler}
         cancelButtonHandler={cancelButtonHandler}
       >
-        <React.Fragment>
-          <h3>Настройки диктанта</h3>
-          <h4>Количество нот:</h4>
-          <SelectAmountOfNotes
-            value={amountOfNotes}
-            onChange={selectAmountOfNotesHandler}
-          />
-          <h4>Режим по умолчанию:</h4>
-          <SelectModes value={defaultModeWrite} onChange={selectModesHandler} />
-        </React.Fragment>
+        <h3>Настройки диктанта</h3>
+        <h4>Количество нот:</h4>
+        <SelectAmountOfNotes
+          value={amountOfNotes}
+          onChange={selectAmountOfNotesHandler}
+        />
+        <h4>Режим по умолчанию:</h4>
+        <SelectModes value={defaultModeWrite} onChange={selectModesHandler} />
       </ModalWindow>
     );
   }

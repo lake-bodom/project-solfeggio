@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const Burger = ({ clickHandler, menuIsOpen, left }) => {
   const className = `burger${menuIsOpen ? " active" : ""}`;
   return (
-    <div style={{ left: left }} className={className} onClick={clickHandler}>
+    <div onFocus={(e) => { e.target.blur(); }} style={{ left: left }} className={className} onClick={clickHandler}>
       <span />
       <span />
       <span />

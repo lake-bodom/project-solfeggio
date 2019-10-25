@@ -14,9 +14,9 @@ export default class ActivateMidi extends Component {
   };
 
   requestMIDIAccessSuccess = midi => {
-    var inputs = midi.inputs.values();
+    const inputs = midi.inputs.values();
     for (
-      var input = inputs.next();
+      let input = inputs.next();
       input && !input.done;
       input = inputs.next()
     ) {

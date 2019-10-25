@@ -10,27 +10,52 @@ export default class FindNote extends Component {
     this.props.actionSetActiveNote(this.props.sliceArr);
     this.props.actionSetMode({ mode: "Искать ноту", stat: true });
     this.props.actionUpdatePianoKeys();
+    if (this.props.playFlag) {
+      this.props.actionKeyboardSetPlayFlag(false);
+    }
+    if (this.props.changeModeFlag) {
+      this.props.actionKeyboardSetChangeModeFlag(false);
+    }
   }
 
   componentWillUnmount() {
     this.props.actionStatisticsClearing();
+    if (this.props.playFlag) {
+      this.props.actionKeyboardSetPlayFlag(false);
+    }
+    if (this.props.changeModeFlag) {
+      this.props.actionKeyboardSetChangeModeFlag(false);
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.needToWriteNote && !this.props.needToWriteNote) {
-      if (this.props.playNote !== null) {
-        const playNote = this.props.playNote.key;
-        const note = this.props.note;
 
-        if (playNote === note) {
-          this.props.actionIncrementRightAnswers();
+    const { needToWriteNote, playNote, note, actionIncrementRightAnswers, actionIncrementAmountOfAnswers, actionSetActiveNote, playFlag, actionKeyboardSetPlayFlag, changeModeFlag, actionKeyboardSetChangeModeFlag, sliceArr } = this.props;
+
+    if (prevProps.needToWriteNote && !needToWriteNote) {
+      if (playNote !== null) {
+        const playNoteKey = playNote.key;
+
+        if (playNoteKey === note) {
+          actionIncrementRightAnswers();
           this.setVisualEffect({ right: true });
         } else {
-          this.props.actionIncrementAmountOfAnswers();
+          actionIncrementAmountOfAnswers();
           this.setVisualEffect({ right: false, note });
         }
-        this.props.actionSetActiveNote(this.props.sliceArr);
+        actionSetActiveNote(sliceArr);
       }
+    }
+
+    if (playFlag) {
+      this.playButtonHandler();
+      setTimeout(() => {
+        actionKeyboardSetPlayFlag(false);
+      }, 300);
+    }
+    if (changeModeFlag) {
+      this.setMode(!needToWriteNote);
+      actionKeyboardSetChangeModeFlag(false);
     }
   }
 
@@ -91,14 +116,20 @@ export default class FindNote extends Component {
   };
 
   render() {
-    const { needToWriteNote } = this.props;
+    const { needToWriteNote, playFlag } = this.props;
     const { playButtonHandler, answerButtonHandler } = this;
+
+    const playButtonClasses = [(needToWriteNote ? "secondary-outline" : "info")];
+
+    if (playFlag) {
+      playButtonClasses.push("active");
+    }
 
     return (
       <div className="findNote">
         <ButtonsGroup cls="horizontal">
           <Button
-            cls={needToWriteNote ? "secondary-outline" : "info"}
+            cls={playButtonClasses.join(" ")}
             onClick={playButtonHandler}
           >
             Играть ноту
@@ -127,7 +158,6 @@ FindNote.propTypes = {
   actionIncrementRightAnswers: PropTypes.func.isRequired,
   actionStatisticsClearing: PropTypes.func.isRequired,
   statistics: PropTypes.shape({
-    nameOfInterval: PropTypes.string.isRequired,
     rightAnswers: PropTypes.number.isRequired,
     amountOfAnswers: PropTypes.number.isRequired,
     right: PropTypes.bool.isRequired,
@@ -136,6 +166,10 @@ FindNote.propTypes = {
   note: PropTypes.number,
   sliceArr: PropTypes.arrayOf(PropTypes.object).isRequired,
   playNote: PropTypes.object,
-  needToWriteNote: PropTypes.bool.isRequired
+  needToWriteNote: PropTypes.bool.isRequired,
+  playFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetPlayFlag: PropTypes.func.isRequired,
+  changeModeFlag: PropTypes.bool.isRequired,
+  actionKeyboardSetChangeModeFlag: PropTypes.func.isRequired
 };
 
