@@ -4,7 +4,8 @@ import {
   INVERSE_CHOSEN_INTERVAL,
   GET_ANSWER_INTERVAL,
   SHOW_THE_CORRECT_INTERVAL,
-  GET_NEXT_INTERVAL
+  GET_NEXT_INTERVAL,
+  SET_ACTIVE_KEYBOARD_INTERVAL
 } from "../actionTypes";
 
 export const actionSetActiveTypeOfInterval = active => ({
@@ -33,4 +34,9 @@ export const actionShowTheCorrectInterval = () => ({
 export const actionGetNextInterval = options => ({
   type: GET_NEXT_INTERVAL,
   payload: options
+});
+
+export const actionSetActiveKeyboardInterval = obj => ({
+  type: SET_ACTIVE_KEYBOARD_INTERVAL,
+  payload: obj
 });

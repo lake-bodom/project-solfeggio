@@ -5,15 +5,17 @@ import PianoBody from "./PianoBody";
 
 import PropTypes from "prop-types";
 
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+
 class Piano extends React.Component {
   render() {
     const { arrOfNotes, play } = this.props;
     return (
-      <React.Fragment>
+      <ErrorBoundary>
         <div className="piano">
           <PianoBody arrOfNotes={arrOfNotes} play={play} />
         </div>
-      </React.Fragment>
+      </ErrorBoundary>
     );
   }
 }

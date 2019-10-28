@@ -5,16 +5,19 @@ import IntervalsOptionButtonsContainer from "../../containers/IntervalsOptionBut
 import ListOfIntervalsContainer from "../../containers/listOfIntervalsContainer";
 
 import PropTypes from "prop-types";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 const Intervals = ({ play }) => {
   return (
-    <div className="intervals">
-      <IntervalsOptionButtonsContainer
-        play={play}
-      ></IntervalsOptionButtonsContainer>
+    <ErrorBoundary>
+      <div className="intervals">
+        <IntervalsOptionButtonsContainer
+          play={play}
+        ></IntervalsOptionButtonsContainer>
 
-      <ListOfIntervalsContainer />
-    </div>
+        <ListOfIntervalsContainer />
+      </div>
+    </ErrorBoundary>
   );
 };
 

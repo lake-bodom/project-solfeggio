@@ -1,5 +1,5 @@
 .intervals {
-	margin-bottom: 20px;
+	/* margin-bottom: 20px; */
 }
 
 .intervalsOptionsButtons {
@@ -9,11 +9,17 @@
 
 .listOfIntervals {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .listOfIntervals>div {
 	flex-basis: 200px;
 	flex-shrink: 0;
+}
+
+.listOfIntervals p {
+	width: 100%;
+	margin-top: 20px;
 }
 
 .intervals span.check {
@@ -34,7 +40,6 @@
 	.intervalsOptionsButtons {
 		justify-content: flex-start;
 	}
-
 	.listOfIntervals {
 		flex-wrap: wrap;
 	}
@@ -44,5 +49,4 @@
 	.listOfIntervals>div {
 		flex-basis: 180px;
 	}
-
 }

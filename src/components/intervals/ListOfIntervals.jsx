@@ -18,29 +18,67 @@ const ListOfIntervals = ({
   actionShowTheCorrectInterval,
   actionIncrementRightAnswers,
   actionIncrementAmountOfAnswers,
-  actionShowNotesOnThePiano
+  actionShowNotesOnThePiano,
+  intervalsKeyboardFlag,
+  actionKeyboardSetIntervalButtonFlag,
+  actionSetActiveKeyboardInterval,
+  activeKeyboardInterval
 }) => {
-  let arr = [];
+  let arrayOfGroups = [];
+  let sortedIntervals = [];
 
   if (settingsIsOpen) {
-    arr = createGroupsOfIntervals(allIntervals);
+    sortedIntervals = allIntervals;
+    arrayOfGroups = createGroupsOfIntervals(sortedIntervals);
   } else {
-    arr = createGroupsOfIntervals(getChosenIntervals(allIntervals));
+    sortedIntervals = getChosenIntervals(allIntervals);
+    arrayOfGroups = createGroupsOfIntervals(getChosenIntervals(allIntervals));
   }
 
-  const body = arr.map((group, groupIndex) => (
+  const checkAnswer = interval => {
+    actionShowTheCorrectInterval();
+    const right = activeInterval.name === interval.name;
+    const type = right ? "right" : "wrong";
+
+    if (right) {
+      actionIncrementRightAnswers(activeInterval.rusName);
+      actionShowNotesOnThePiano({ type, sequence: sequenceOfNotes });
+    } else {
+      actionIncrementAmountOfAnswers(activeInterval.rusName);
+      actionShowNotesOnThePiano({ type, sequence: sequenceOfNotes });
+    }
+  };
+
+  const intervalClickHandler = settingsIsOpen
+    ? actionInverseChosenInterval
+    : checkAnswer;
+
+  if (intervalsKeyboardFlag.intervalButtonFlag) {
+    const intervalKeyboardActive = sortedIntervals[intervalsKeyboardFlag.interval];
+
+    actionKeyboardSetIntervalButtonFlag(false);
+    actionSetActiveKeyboardInterval(intervalKeyboardActive);
+
+    setTimeout(() => {
+      intervalClickHandler(intervalKeyboardActive);
+    }, 150);
+
+  }
+
+  if (activeKeyboardInterval && activeKeyboardInterval.hasOwnProperty("name")) {
+    setTimeout(() => {
+      actionSetActiveKeyboardInterval({});
+    }, 150);
+  }
+
+  const body = arrayOfGroups.map((group, groupIndex) => (
     <GroupOfIntervals
       groupIndex={groupIndex}
       group={group}
       key={group[0].name}
       settingsIsOpen={settingsIsOpen}
-      activeInterval={activeInterval}
-      sequenceOfNotes={sequenceOfNotes}
-      actionShowTheCorrectInterval={actionShowTheCorrectInterval}
-      actionInverseChosenInterval={actionInverseChosenInterval}
-      actionIncrementRightAnswers={actionIncrementRightAnswers}
-      actionIncrementAmountOfAnswers={actionIncrementAmountOfAnswers}
-      actionShowNotesOnThePiano={actionShowNotesOnThePiano}
+      intervalClickHandler={intervalClickHandler}
+      activeKeyboardInterval={activeKeyboardInterval}
     />
   ));
 
@@ -64,8 +102,14 @@ ListOfIntervals.propTypes = {
   activeInterval: PropTypes.object,
   showAnswer: PropTypes.bool,
   sequenceOfNotes: PropTypes.arrayOf(PropTypes.number),
-  settingsIsOpen: PropTypes.bool
-
+  settingsIsOpen: PropTypes.bool,
+  intervalsKeyboardFlag: PropTypes.shape({
+    intervalButtonFlag: PropTypes.bool.isRequired,
+    interval: PropTypes.number.isRequired
+  }).isRequired,
+  actionKeyboardSetIntervalButtonFlag: PropTypes.func.isRequired,
+  activeKeyboardInterval: PropTypes.object,
+  actionSetActiveKeyboardInterval: PropTypes.func.isRequired
 };
 
 export default ListOfIntervals;

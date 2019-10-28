@@ -11,7 +11,8 @@ import {
   INVERSE_CHOSEN_INTERVAL,
   SHOW_THE_CORRECT_INTERVAL,
   GET_NEXT_INTERVAL,
-  SET_INITIAL_STATE
+  SET_INITIAL_STATE,
+  SET_ACTIVE_KEYBOARD_INTERVAL
 } from "../actionTypes";
 
 const allIntervals = [...dataOfIntervals];
@@ -31,7 +32,8 @@ const initialState = {
   nextActiveInterval: "",
   sequenceOfNotes: [],
   settingsIsOpen: false,
-  showAnswer: false
+  showAnswer: false,
+  activeKeyboardInterval: {}
 };
 
 const findIndex = (arr, name) => {
@@ -135,6 +137,11 @@ export default (state = initialState, action) => {
         nextActiveInterval,
         nextSequenceOfNotes
       };
+    }
+
+
+    case SET_ACTIVE_KEYBOARD_INTERVAL: {
+      return { ...state, activeKeyboardInterval: action.payload };
     }
 
     case SET_INITIAL_STATE: {

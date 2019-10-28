@@ -4,6 +4,7 @@ import ButtonsGroup from "../buttonsGroup/ButtonsGroup";
 import Button from "../button/Button";
 
 import PropTypes from "prop-types";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 export default class FindNote extends Component {
   componentDidMount() {
@@ -126,22 +127,24 @@ export default class FindNote extends Component {
     }
 
     return (
-      <div className="findNote">
-        <ButtonsGroup cls="horizontal">
-          <Button
-            cls={playButtonClasses.join(" ")}
-            onClick={playButtonHandler}
-          >
-            Играть ноту
+      <ErrorBoundary>
+        <div className="findNote">
+          <ButtonsGroup cls="horizontal">
+            <Button
+              cls={playButtonClasses.join(" ")}
+              onClick={playButtonHandler}
+            >
+              Играть ноту
           </Button>
-          <Button
-            cls={needToWriteNote ? "info" : "secondary-outline"}
-            onClick={answerButtonHandler}
-          >
-            Ответить
+            <Button
+              cls={needToWriteNote ? "info" : "secondary-outline"}
+              onClick={answerButtonHandler}
+            >
+              Ответить
           </Button>
-        </ButtonsGroup>
-      </div>
+          </ButtonsGroup>
+        </div>
+      </ErrorBoundary>
     );
   }
 }

@@ -18,7 +18,6 @@ const DictationOptionsButtons = ({
 }) => {
 
   const access = readyToCheck && !answerGiven;
-  // const access = amountOfNotes === sequenceOfWrittenMelody.length && !answerGiven;
 
 
   const clearButtonClasses = ["secondary-outline"];

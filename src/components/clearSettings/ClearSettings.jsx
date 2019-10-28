@@ -28,11 +28,11 @@ export default class ClearSettings extends Component {
 
 	render() {
 		const { modalOpenerHandler } = this;
-		const { modalWindowFlag, dataIsClearing } = this.props;
+		const { modalWindowFlag, dataIsClearing, withTitle } = this.props;
 
 		return (
 			<div className="clear-settings">
-				<h3>Сбросить настройки:</h3>
+				{withTitle ? <h3>Сбросить настройки:</h3> : null}
 				<Button onClick={modalOpenerHandler}>
 					Сбросить все настройки
 				</Button>
@@ -50,5 +50,6 @@ ClearSettings.propTypes = {
 	setInitialState: PropTypes.func.isRequired,
 	actionSetModalWindowFlag: PropTypes.func.isRequired,
 	modalWindowFlag: PropTypes.bool,
-	dataIsClearing: PropTypes.bool
+	dataIsClearing: PropTypes.bool,
+	withTitle: PropTypes.bool.isRequired
 };

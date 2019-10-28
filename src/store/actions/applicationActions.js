@@ -14,7 +14,9 @@ import {
   KEYBOARD_SET_PLAY_WRITTEN_MELODY_FLAG,
   KEYBOARD_SET_CHANGE_MODE_FLAG,
   KEYBOARD_SET_DICTATION_CLEAR_NOTE_FLAG,
-  KEYBOARD_SET_DICTATION_CHECK_FLAG
+  KEYBOARD_SET_DICTATION_CHECK_FLAG,
+  KEYBOARD_SET_INTERVAL_BUTTON_FLAG,
+  KEYBOARD_SET_NEW_HOT_KEY_FLAG
 } from "../actionTypes";
 
 export const actionMenuAction = isOpen => ({
@@ -97,3 +99,15 @@ export const actionKeyboardSetDictationCheckFlag = (payload) => ({
   payload
 });
 
+export const actionKeyboardSetIntervalButtonFlag = (bool, interval = 0) => ({
+  type: KEYBOARD_SET_INTERVAL_BUTTON_FLAG,
+  payload: {
+    intervalButtonFlag: bool,
+    interval
+  }
+});
+
+export const actionKeyboardSetNewHotKeyFlag = (payload) => ({
+  type: KEYBOARD_SET_NEW_HOT_KEY_FLAG,
+  payload
+});

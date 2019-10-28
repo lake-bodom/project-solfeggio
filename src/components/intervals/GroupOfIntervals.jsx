@@ -8,39 +8,25 @@ const GroupOfIntervals = ({
   groupIndex,
   group,
   settingsIsOpen,
-  activeInterval,
-  sequenceOfNotes,
-  actionShowTheCorrectInterval,
-  actionInverseChosenInterval,
-  actionIncrementRightAnswers,
-  actionIncrementAmountOfAnswers,
-  actionShowNotesOnThePiano
+  intervalClickHandler,
+  activeKeyboardInterval
 }) => {
-  const checkAnswer = interval => {
-    actionShowTheCorrectInterval();
-    const right = activeInterval.name === interval.name;
-    const type = right ? "right" : "wrong";
-
-    if (right) {
-      actionIncrementRightAnswers(activeInterval.rusName);
-      actionShowNotesOnThePiano({ type, sequence: sequenceOfNotes });
-    } else {
-      actionIncrementAmountOfAnswers(activeInterval.rusName);
-      actionShowNotesOnThePiano({ type, sequence: sequenceOfNotes });
-    }
-  };
-
-  const funcOnClick = settingsIsOpen
-    ? actionInverseChosenInterval
-    : checkAnswer;
 
   const body = group.map((interval, index) => {
+
+    let cls = ["secondary-outline"];
+
+    if (activeKeyboardInterval && activeKeyboardInterval.name && activeKeyboardInterval.name === interval.name) {
+      cls.push("active");
+    }
+
     return (
       <Button
         key={interval.name}
         onClick={() => {
-          funcOnClick(interval);
+          intervalClickHandler(interval);
         }}
+        cls={cls.join(" ")}
       >
         {settingsIsOpen ? (
           <span className="check">
@@ -56,24 +42,13 @@ const GroupOfIntervals = ({
 
   GroupOfIntervals.propTypes = {
     groupIndex: PropTypes.number.isRequired,
-    settingsIsOpen: PropTypes.bool,
     group: PropTypes.arrayOf(PropTypes.object).isRequired,
-    activeInterval: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      rusName: PropTypes.string.isRequired,
-      numberOfSemitones: PropTypes.number.isRequired,
-      chosen: PropTypes.bool.isRequired
-    }).isRequired,
-    sequenceOfNotes: PropTypes.arrayOf(PropTypes.number).isRequired,
-    actionShowTheCorrectInterval: PropTypes.func.isRequired,
-    actionInverseChosenInterval: PropTypes.func.isRequired,
-    actionIncrementRightAnswers: PropTypes.func.isRequired,
-    actionIncrementAmountOfAnswers: PropTypes.func.isRequired,
-    actionShowNotesOnThePiano: PropTypes.func.isRequired
+    settingsIsOpen: PropTypes.bool,
+    intervalClickHandler: PropTypes.func.isRequired,
+    activeKeyboardInterval: PropTypes.object
   };
 
   return <ButtonsGroup cls="vertical">{body}</ButtonsGroup>;
 };
 
 export default GroupOfIntervals;
-

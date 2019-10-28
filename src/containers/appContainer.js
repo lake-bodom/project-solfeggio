@@ -9,7 +9,10 @@ import {
   actionKeyboardSetPlayWrittenMelodyFlag,
   actionKeyboardSetChangeModeFlag,
   actionKeyboardSetDictationClearNoteFlag,
-  actionKeyboardSetDictationCheckFlag
+  actionKeyboardSetDictationCheckFlag,
+  actionKeyboardSetIntervalButtonFlag,
+  actionKeyboardSetNewHotKeyFlag
+
 } from "../store/actions/applicationActions";
 
 const mapStateToProps = ({ application, piano }) => ({
@@ -26,6 +29,8 @@ const mapStateToProps = ({ application, piano }) => ({
   instrumentId: application.instrumentId,
   dictationClearNoteFlag: application.dictationClearNoteFlag,
   dictationCheckFlag: application.dictationCheckFlag,
+  intervalsKeyboardFlag: application.intervalsKeyboardFlag,
+  hotKeys: application.hotKeys,
   sliceArr: piano.sliceArr,
   mapIndex: piano.mapIndex
 });
@@ -38,8 +43,9 @@ const mapDispatchToProps = {
   actionKeyboardSetPlayWrittenMelodyFlag,
   actionKeyboardSetChangeModeFlag,
   actionKeyboardSetDictationClearNoteFlag,
-  actionKeyboardSetDictationCheckFlag
-
+  actionKeyboardSetDictationCheckFlag,
+  actionKeyboardSetIntervalButtonFlag,
+  actionKeyboardSetNewHotKeyFlag
 };
 
 export default connect(

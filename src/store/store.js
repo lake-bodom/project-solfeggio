@@ -19,6 +19,7 @@ store.subscribe(() => {
   sliceState.piano = state.piano;
   sliceState.dictation = state.dictation;
   sliceState.application = state.application;
+  // sliceState.intervals = state.intervals;
 
 
   const { allIntervals, typeOfInterval } = state.intervals;

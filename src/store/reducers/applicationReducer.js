@@ -14,7 +14,9 @@ import {
   KEYBOARD_SET_PLAY_WRITTEN_MELODY_FLAG,
   KEYBOARD_SET_CHANGE_MODE_FLAG,
   KEYBOARD_SET_DICTATION_CLEAR_NOTE_FLAG,
-  KEYBOARD_SET_DICTATION_CHECK_FLAG
+  KEYBOARD_SET_DICTATION_CHECK_FLAG,
+  KEYBOARD_SET_INTERVAL_BUTTON_FLAG,
+  KEYBOARD_SET_NEW_HOT_KEY_FLAG
 } from "../actionTypes";
 
 let bpm = 80;
@@ -27,7 +29,7 @@ const initialState = {
   modeDictation: false,
   mode: "",
   stat: true,
-  echoLevel: 0.5,
+  echoLevel: 0.3,
   bpm,
   duration,
   instrumentId: 1,
@@ -37,7 +39,26 @@ const initialState = {
   modalWindowFlag: false,
   changeModeFlag: false,
   dictationClearNoteFlag: false,
-  dictationCheckFlag: false
+  dictationCheckFlag: false,
+  intervalsKeyboardFlag: {
+    intervalButtonFlag: false,
+    interval: 0
+  },
+  hotKeys: {
+    newHotKey: {
+      change: false,
+      newHotKeyType: "",
+      index: null,
+      key: null
+    },
+    closeHotKey: "Escape",
+    playHotKey: "Enter",
+    playWrittenMelodyHoteKey: "+",
+    changeModeHoteKey: " ",
+    dictationClearNoteHoteKey: "Backspace",
+    dictationCheckHoteKey: "-",
+    listOfIntervalsHotKeys: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "/", "*"]
+  }
 };
 
 export default (state = initialState, action) => {
@@ -119,6 +140,56 @@ export default (state = initialState, action) => {
 
     case KEYBOARD_SET_DICTATION_CHECK_FLAG: {
       return { ...state, dictationCheckFlag: action.payload };
+    }
+
+    case KEYBOARD_SET_INTERVAL_BUTTON_FLAG: {
+      return { ...state, intervalsKeyboardFlag: action.payload };
+    }
+
+    case KEYBOARD_SET_NEW_HOT_KEY_FLAG: {
+
+      let newHotKey = action.payload;
+      let hotKeys = { ...state.hotKeys };
+      const listOfIntervalsHotKeys = [...hotKeys.listOfIntervalsHotKeys];
+
+      if (!newHotKey.key && !newHotKey.change) {
+        return { ...state, hotKeys: { ...state.hotKeys, newHotKey } };
+      }
+
+      if (newHotKey.key && !newHotKey.change && hotKeys.newHotKey.change) {
+
+        for (const elem in hotKeys) {
+          if (hotKeys.hasOwnProperty(elem) && elem !== newHotKey.newHotKeyType) {
+            if (hotKeys[elem] === newHotKey.key) {
+              hotKeys[elem] = null;
+            }
+          } else {
+            hotKeys[elem] = newHotKey.key;
+          }
+        }
+
+
+
+        for (let i = 0; i < listOfIntervalsHotKeys.length; i++) {
+          if (newHotKey.index === null || newHotKey.index !== i) {
+            if (listOfIntervalsHotKeys[i] === newHotKey.key) {
+              listOfIntervalsHotKeys[i] = null;
+            }
+          } else {
+            listOfIntervalsHotKeys[i] = newHotKey.key;
+          }
+        }
+
+        hotKeys.newHotKey = newHotKey;
+        hotKeys.listOfIntervalsHotKeys = listOfIntervalsHotKeys;
+
+        return { ...state, hotKeys: { ...hotKeys } };
+      }
+
+
+
+      return { ...state, hotKeys: { ...state.hotKeys, newHotKey } };
+
     }
 
     case SET_INITIAL_STATE: {

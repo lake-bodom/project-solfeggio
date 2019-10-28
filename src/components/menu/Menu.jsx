@@ -7,6 +7,9 @@ import MenuBody from "./MenuBody";
 
 import PropTypes from "prop-types";
 
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+
+
 const Menu = ({ menuIsOpen, actionMenuAction }) => {
   const leftBurger = menuIsOpen ? "260px" : "10px";
   const leftMenuBody = menuIsOpen ? "0px" : "-1000px";
@@ -16,14 +19,16 @@ const Menu = ({ menuIsOpen, actionMenuAction }) => {
   };
 
   return ReactDOM.createPortal(
-    <div className="menu">
-      <MenuBody left={leftMenuBody} clickHandler={menuHandler} />
-      <Burger
-        left={leftBurger}
-        clickHandler={menuHandler}
-        menuIsOpen={menuIsOpen}
-      />
-    </div>,
+    <ErrorBoundary>
+      <div className="menu">
+        <MenuBody left={leftMenuBody} clickHandler={menuHandler} />
+        <Burger
+          left={leftBurger}
+          clickHandler={menuHandler}
+          menuIsOpen={menuIsOpen}
+        />
+      </div>
+    </ErrorBoundary>,
     document.getElementById("menu")
   );
 };

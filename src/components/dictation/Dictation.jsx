@@ -7,6 +7,7 @@ import DuctationOutput from "./DictationOutput";
 import DictationSettings from "../../containers/dictationSettingsContainer";
 
 import PropTypes from "prop-types";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 export default class Dictation extends Component {
   componentDidMount() {
@@ -260,39 +261,41 @@ export default class Dictation extends Component {
     const { nextPlayButtonHandler, settingsButtonHandler } = this;
 
     return (
-      <div>
-        <DictationPlayButtons
-          playGuessedMelody={this.playGuessedMelody}
-          playWrittenMelody={this.playWrittenMelody}
-          playFlag={playFlag}
-          playWrittenMelodyFlag={playWrittenMelodyFlag}
-        />
-        <DictationOptionsButtons
-          modeWrite={modeWrite}
-          changeMode={this.changeMode}
-          clearButtonHandler={this.clearButtonHandler}
-          checkAnswerHandler={this.checkAnswerHandler}
-          sequenceOfWrittenMelody={sequenceOfWrittenMelody}
-          amountOfNotes={amountOfNotes}
-          answerGiven={answerGiven}
-          nextPlayButtonHandler={nextPlayButtonHandler}
-          settingsButtonHandler={settingsButtonHandler}
-          dictationClearNoteFlag={dictationClearNoteFlag}
-          readyToCheck={readyToCheck}
-        />
-        <DuctationOutput
-          amountOfNotes={amountOfNotes}
-          needToWriteNote={needToWriteNote}
-          sequenceOfMelody={sequenceOfMelody}
-          sequenceOfWrittenMelody={sequenceOfWrittenMelody}
-          answerGiven={answerGiven}
-          answers={answers}
-        />
+      <ErrorBoundary>
+        <div>
+          <DictationPlayButtons
+            playGuessedMelody={this.playGuessedMelody}
+            playWrittenMelody={this.playWrittenMelody}
+            playFlag={playFlag}
+            playWrittenMelodyFlag={playWrittenMelodyFlag}
+          />
+          <DictationOptionsButtons
+            modeWrite={modeWrite}
+            changeMode={this.changeMode}
+            clearButtonHandler={this.clearButtonHandler}
+            checkAnswerHandler={this.checkAnswerHandler}
+            sequenceOfWrittenMelody={sequenceOfWrittenMelody}
+            amountOfNotes={amountOfNotes}
+            answerGiven={answerGiven}
+            nextPlayButtonHandler={nextPlayButtonHandler}
+            settingsButtonHandler={settingsButtonHandler}
+            dictationClearNoteFlag={dictationClearNoteFlag}
+            readyToCheck={readyToCheck}
+          />
+          <DuctationOutput
+            amountOfNotes={amountOfNotes}
+            needToWriteNote={needToWriteNote}
+            sequenceOfMelody={sequenceOfMelody}
+            sequenceOfWrittenMelody={sequenceOfWrittenMelody}
+            answerGiven={answerGiven}
+            answers={answers}
+          />
 
-        {this.props.modalWindowFlag ? (
-          <DictationSettings settingsButtonHandler={settingsButtonHandler} />
-        ) : null}
-      </div>
+          {this.props.modalWindowFlag ? (
+            <DictationSettings settingsButtonHandler={settingsButtonHandler} />
+          ) : null}
+        </div>
+      </ErrorBoundary>
     );
   }
 }

@@ -10,6 +10,7 @@ import EchoSettings from "../echoSettings/EchoSettings";
 import TempoSettings from "../tempoSettings/TempoSettings";
 import ChangeInstrument from "../changeInstrument/ChangeInstrument";
 import KeyboardSettings from "../keyboardSettings/KeyboardSettings";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 export default class Settings extends Component {
 	componentDidMount() {
@@ -20,29 +21,31 @@ export default class Settings extends Component {
 	}
 
 	render() {
-		const { actionSetEchoLevel, echoLevel, bpm, actionSetBpmLevel, actionSetInstrumentId, instrumentId } = this.props;
+		const { actionSetEchoLevel, echoLevel, bpm, actionSetBpmLevel, actionSetInstrumentId, instrumentId, hotKeys, actionKeyboardSetNewHotKeyFlag } = this.props;
 
 		const playExampleComponent = (
 			<PlayExampleButton play={this.props.play} duration={this.props.duration} />
 		);
 
 		return (
-			<div className="settings">
-				<ChangeRangeOfNotes />
-				<EchoSettings actionSetEchoLevel={actionSetEchoLevel}
-					echoLevel={echoLevel}>
-					{playExampleComponent}
-				</EchoSettings>
-				<TempoSettings actionSetBpmLevel={actionSetBpmLevel}
-					bpm={bpm}>
-					{playExampleComponent}
-				</TempoSettings>
-				<ChangeInstrument actionSetInstrumentId={actionSetInstrumentId} instrumentId={instrumentId}>
-					{playExampleComponent}
-				</ChangeInstrument>
-				<KeyboardSettings /> 
-				<ClearSettings />
-			</div>
+			<ErrorBoundary>
+				<div className="settings">
+					<ChangeRangeOfNotes />
+					<EchoSettings actionSetEchoLevel={actionSetEchoLevel}
+						echoLevel={echoLevel}>
+						{playExampleComponent}
+					</EchoSettings>
+					<TempoSettings actionSetBpmLevel={actionSetBpmLevel}
+						bpm={bpm}>
+						{playExampleComponent}
+					</TempoSettings>
+					<ChangeInstrument actionSetInstrumentId={actionSetInstrumentId} instrumentId={instrumentId}>
+						{playExampleComponent}
+					</ChangeInstrument>
+					<KeyboardSettings hotKeys={hotKeys} actionKeyboardSetNewHotKeyFlag={actionKeyboardSetNewHotKeyFlag} />
+					<ClearSettings withTitle={true} />
+				</div>
+			</ErrorBoundary>
 		);
 	}
 }
@@ -57,5 +60,7 @@ Settings.propTypes = {
 	duration: PropTypes.number.isRequired,
 	echoLevel: PropTypes.number.isRequired,
 	bpm: PropTypes.number.isRequired,
-	instrumentId: PropTypes.number.isRequired
+	instrumentId: PropTypes.number.isRequired,
+	hotKeys: PropTypes.object.isRequired,
+	actionKeyboardSetNewHotKeyFlag: PropTypes.func.isRequired
 };

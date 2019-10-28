@@ -5,7 +5,8 @@ import {
 	actionSetMode,
 	actionSetEchoLevel,
 	actionSetBpmLevel,
-	actionSetInstrumentId
+	actionSetInstrumentId,
+	actionKeyboardSetNewHotKeyFlag
 } from "../store/actions/applicationActions";
 
 import {
@@ -16,6 +17,7 @@ const mapStateToProps = ({ application }) => ({
 	duration: application.duration,
 	echoLevel: application.echoLevel,
 	bpm: application.bpm,
+	hotKeys: application.hotKeys,
 	instrumentId: application.instrumentId
 });
 
@@ -24,7 +26,8 @@ const mapDispatchToProps = {
 	actionUpdatePianoKeys,
 	actionSetEchoLevel,
 	actionSetBpmLevel,
-	actionSetInstrumentId
+	actionSetInstrumentId,
+	actionKeyboardSetNewHotKeyFlag
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

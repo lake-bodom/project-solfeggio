@@ -11,6 +11,10 @@
 	color: #535397;
 }
 
+.settings>div>h4 {
+	color: #37376d;
+}
+
 .settings button {
 	margin-top: 0;
 }

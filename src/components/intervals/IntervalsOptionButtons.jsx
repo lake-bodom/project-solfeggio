@@ -8,6 +8,10 @@ class IntervalsOptionButtons extends React.Component {
   componentDidMount() {
     const initNewIntervalSequence = true;
 
+    if (this.props.settingsIsOpen) {
+      this.props.actionIntervalsSettingsAction(false);
+    }
+
     this.props.actionGetNextInterval({
       sliceArr: this.props.sliceArr,
       initNewIntervalSequence

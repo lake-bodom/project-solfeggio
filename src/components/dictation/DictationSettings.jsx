@@ -57,10 +57,10 @@ export default class DictationSettings extends Component {
 
   render() {
     const {
-      settingsButtonHandler,
-      amountOfNotes,
-      defaultModeWrite
+      settingsButtonHandler
     } = this.props;
+
+    const { amountOfNotes, defaultModeWrite } = this.state;
 
     const {
       selectAmountOfNotesHandler,
