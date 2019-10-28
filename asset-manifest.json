@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/project-solfeggio/static/css/main.7d156078.chunk.css",
+    "main.css": "/project-solfeggio/static/css/main.72228923.chunk.css",
     "main.js": "/project-solfeggio/static/js/main.b8474b6c.chunk.js",
     "main.js.map": "/project-solfeggio/static/js/main.b8474b6c.chunk.js.map",
     "runtime~main.js": "/project-solfeggio/static/js/runtime~main.d73016cd.js",
@@ -8,8 +8,8 @@
     "static/js/2.0f395207.chunk.js": "/project-solfeggio/static/js/2.0f395207.chunk.js",
     "static/js/2.0f395207.chunk.js.map": "/project-solfeggio/static/js/2.0f395207.chunk.js.map",
     "index.html": "/project-solfeggio/index.html",
-    "precache-manifest.d6701a3d66a56339fc634660f0ee4d3a.js": "/project-solfeggio/precache-manifest.d6701a3d66a56339fc634660f0ee4d3a.js",
+    "precache-manifest.f1b59098d1b562215084cbef7710480e.js": "/project-solfeggio/precache-manifest.f1b59098d1b562215084cbef7710480e.js",
     "service-worker.js": "/project-solfeggio/service-worker.js",
-    "static/css/main.7d156078.chunk.css.map": "/project-solfeggio/static/css/main.7d156078.chunk.css.map"
+    "static/css/main.72228923.chunk.css.map": "/project-solfeggio/static/css/main.72228923.chunk.css.map"
   }
 }
