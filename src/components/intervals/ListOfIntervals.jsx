@@ -56,12 +56,15 @@ const ListOfIntervals = ({
   if (intervalsKeyboardFlag.intervalButtonFlag) {
     const intervalKeyboardActive = sortedIntervals[intervalsKeyboardFlag.interval];
 
+
     actionKeyboardSetIntervalButtonFlag(false);
     actionSetActiveKeyboardInterval(intervalKeyboardActive);
 
-    setTimeout(() => {
-      intervalClickHandler(intervalKeyboardActive);
-    }, 150);
+    if (!showAnswer || settingsIsOpen) {
+      setTimeout(() => {
+        intervalClickHandler(intervalKeyboardActive);
+      }, 150);
+    }
 
   }
 
