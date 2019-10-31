@@ -174,44 +174,6 @@ class App extends Component {
   }
 }
 
-{/* <ErrorBoundary>
-        <div className="app">
-          <Menu />
-          <Header />
-          <Piano play={this.play} />
-
-          <Switch>
-            <Route
-              path="/"
-              exact
-              render={() => <FreeMode />}
-            />
-            <Route
-              path="/intervals"
-              render={() => <Intervals play={this.play} />}
-            />
-            <Route
-              path="/find-note"
-              render={() => <FindNote play={this.play} />}
-            />
-            <Route
-              path="/dictation"
-              render={() => <Dictation play={this.play} />}
-            />
-            <Route path="/options" render={() => <Settings play={this.play} />} />
-          </Switch>
-
-          <ActivateMidiContainer play={this.play} />
-          <div className="midiComponent" style={{ display: "none" }}>
-            <MIDISounds
-              ref={ref => (this.midiSounds = ref)}
-              appElementName="root"
-              instruments={[instrumentId ? instrumentId : 1]}
-            />
-          </div>
-        </div>
-      </ErrorBoundary> */}
-
 App.propTypes = {
   instrumentId: PropTypes.number.isRequired,
   echoLevel: PropTypes.number.isRequired,

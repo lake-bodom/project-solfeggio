@@ -98,8 +98,6 @@ const getIndexes = ({ key, mapIndex }) => {
   return { i, j };
 };
 
-window.getIndexes = getIndexes;
-
 const setVisualEffect = ({ arrOfNotes, sequence, type, active, mapIndex }) => {
   let arr = [...arrOfNotes];
 

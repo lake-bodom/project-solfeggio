@@ -9,7 +9,7 @@ import {
 	actionUpdatePianoKeys
 } from "../store/actions/pianoActions";
 
-const mapStateToProps = () => ({})
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
 	actionSetMode,

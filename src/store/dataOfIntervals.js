@@ -81,7 +81,7 @@ export const getChosenIntervals = arr => {
 
 export const createGroupsOfIntervals = arr => {
   const chunk = 4;
-  var i,
+  let i,
     j,
     tmp = [];
   for (i = 0, j = arr.length; i < j; i += chunk) {
@@ -103,13 +103,11 @@ export const getNewSequenceOfNotes = (sliceArr, activeInterval) => {
 };
 
 const getBordersOfSequence = (arr, num) => {
-  let firstNote = arr[Math.floor(Math.random() * arr.length)];
-  let secondNote = arr[arr.indexOf(firstNote) + num];
+  const firstIndex = Math.floor(Math.random() * (arr.length - num));
 
-  if (!secondNote) {
-    secondNote = arr[arr.length - 1];
-    firstNote = arr[arr.indexOf(secondNote) - num];
-  }
+  let firstNote = arr[firstIndex].key;
+  let secondNote = arr[firstIndex + num].key;
 
-  return [firstNote.key, secondNote.key];
+
+  return [firstNote, secondNote];
 };

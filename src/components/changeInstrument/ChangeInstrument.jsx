@@ -1,7 +1,7 @@
 import React from "react";
 
 import { instruments } from "./instruments";
-import OptionFromSelect from "../changeRangeOfNotes/OptionFromSelect";
+import OptionFromSelect from "../optionFromSelect/OptionFromSelect";
 import Select from "../select/Select";
 
 import PropTypes from "prop-types";

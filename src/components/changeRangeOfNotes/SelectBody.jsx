@@ -1,5 +1,5 @@
 import React from "react";
-import OptionFromSelect from "./OptionFromSelect";
+import OptionFromSelect from "../optionFromSelect/OptionFromSelect";
 
 import PropTypes from "prop-types";
 

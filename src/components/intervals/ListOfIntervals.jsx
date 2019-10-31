@@ -53,10 +53,9 @@ const ListOfIntervals = ({
     ? actionInverseChosenInterval
     : checkAnswer;
 
-  if (intervalsKeyboardFlag.intervalButtonFlag) {
-    const intervalKeyboardActive = sortedIntervals[intervalsKeyboardFlag.interval];
+  const intervalKeyboardActive = sortedIntervals[intervalsKeyboardFlag.interval];
 
-
+  if (intervalsKeyboardFlag.intervalButtonFlag && intervalKeyboardActive) {
     actionKeyboardSetIntervalButtonFlag(false);
     actionSetActiveKeyboardInterval(intervalKeyboardActive);
 
@@ -65,12 +64,13 @@ const ListOfIntervals = ({
         intervalClickHandler(intervalKeyboardActive);
       }, 150);
     }
-
+  } else if (intervalsKeyboardFlag.intervalButtonFlag) {
+    actionKeyboardSetIntervalButtonFlag(false);
   }
 
   if (activeKeyboardInterval && activeKeyboardInterval.hasOwnProperty("name")) {
     setTimeout(() => {
-      actionSetActiveKeyboardInterval({});
+      actionSetActiveKeyboardInterval(null);
     }, 150);
   }
 
